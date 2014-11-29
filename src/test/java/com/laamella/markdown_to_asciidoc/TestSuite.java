@@ -22,7 +22,7 @@ public class TestSuite {
         char[] markDown = readToCharArray("testsuite.md");
         RootNode rootNode = processor.parseMarkdown(markDown);
         String asciiDoc = new ToAsciiDocSerializer(new LinkRenderer()).toAsciiDoc(rootNode);
-        assertEquals(readToString("testsuite.txt"), asciiDoc);
+        assertEquals(readToString("testsuite.adoc"), asciiDoc);
     }
 
     private char[] readToCharArray(String resourceName) {

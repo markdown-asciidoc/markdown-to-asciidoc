@@ -42,7 +42,7 @@ public class ToAsciiDocSerializer implements Visitor {
     public ToAsciiDocSerializer(final LinkRenderer linkRenderer, final Map<String, VerbatimSerializer> verbatimSerializers, final List<ToHtmlSerializerPlugin> plugins) {
         this.linkRenderer = linkRenderer;
         this.verbatimSerializers = new HashMap<String, VerbatimSerializer>(verbatimSerializers);
-        if(!this.verbatimSerializers.containsKey(VerbatimSerializer.DEFAULT)) {
+        if (!this.verbatimSerializers.containsKey(VerbatimSerializer.DEFAULT)) {
             this.verbatimSerializers.put(VerbatimSerializer.DEFAULT, DefaultVerbatimSerializer.INSTANCE);
         }
         this.plugins = plugins;
@@ -114,7 +114,19 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(HeaderNode node) {
-        printTag(node, "h" + node.getLevel());
+        printer.println().println();
+        repeat('=', node.getLevel());
+        printer.print(' ');
+        visitChildren(node);
+        printer.print(' ');
+        repeat('=', node.getLevel());
+
+    }
+
+    private void repeat(char c, int times) {
+        for (int i = 0; i < times; i++) {
+            printer.print(c);
+        }
     }
 
     public void visit(HtmlBlockNode node) {
@@ -129,7 +141,8 @@ public class ToAsciiDocSerializer implements Visitor {
 
     public void visit(ListItemNode node) {
         printer.println();
-        printTag(node, "li");
+        printer.print("* ");
+        visitChildren(node);
     }
 
     public void visit(MailLinkNode node) {
@@ -141,7 +154,8 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(ParaNode node) {
-        printTag(node, "p");
+        printer.println().println();
+        visitChildren(node);
     }
 
     public void visit(QuotedNode node) {
@@ -225,8 +239,8 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(StrongEmphSuperNode node) {
-        if(node.isClosed()){
-            if(node.isStrong())
+        if (node.isClosed()) {
+            if (node.isStrong())
                 printTag(node, "strong");
             else
                 printTag(node, "em");
@@ -251,10 +265,11 @@ public class ToAsciiDocSerializer implements Visitor {
         visitChildren(node);
         printer.print("</caption>");
     }
+
     public void visit(TableCellNode node) {
         String tag = inTableHeader ? "th" : "td";
         List<TableColumnNode> columns = currentTableNode.getColumns();
-        TableColumnNode column = columns.get(Math.min(currentTableColumn, columns.size()-1));
+        TableColumnNode column = columns.get(Math.min(currentTableColumn, columns.size() - 1));
 
         printer.println().print('<').print(tag);
         column.accept(this);
@@ -352,24 +367,28 @@ public class ToAsciiDocSerializer implements Visitor {
         }
     }
 
+    @Deprecated
     protected void printTag(TextNode node, String tag) {
         printer.print('<').print(tag).print('>');
         printer.printEncoded(node.getText());
         printer.print('<').print('/').print(tag).print('>');
     }
 
+    @Deprecated
     protected void printTag(SuperNode node, String tag) {
         printer.print('<').print(tag).print('>');
         visitChildren(node);
         printer.print('<').print('/').print(tag).print('>');
     }
 
+    @Deprecated
     protected void printIndentedTag(SuperNode node, String tag) {
         printer.println().print('<').print(tag).print('>').indent(+2);
         visitChildren(node);
         printer.indent(-2).println().print('<').print('/').print(tag).print('>');
     }
 
+    @Deprecated
     protected void printImageTag(LinkRenderer.Rendering rendering) {
         printer.print("<img");
         printAttribute("src", rendering.href);
@@ -380,6 +399,7 @@ public class ToAsciiDocSerializer implements Visitor {
         printer.print("\"/>");
     }
 
+    @Deprecated
     protected void printLink(LinkRenderer.Rendering rendering) {
         printer.print('<').print('a');
         printAttribute("href", rendering.href);
@@ -389,6 +409,7 @@ public class ToAsciiDocSerializer implements Visitor {
         printer.print('>').print(rendering.text).print("</a>");
     }
 
+    @Deprecated
     private void printAttribute(String name, String value) {
         printer.print(' ').print(name).print('=').print('"').print(value).print('"');
     }
@@ -406,7 +427,7 @@ public class ToAsciiDocSerializer implements Visitor {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < string.length(); i++) {
             char c = string.charAt(i);
-            switch(c) {
+            switch (c) {
                 case ' ':
                 case '\n':
                 case '\t':
