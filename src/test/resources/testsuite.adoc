@@ -55,109 +55,133 @@ This is * an asterisk which should stay as is.
 \ backslash ` backtick * asterisk _ underscore {} curly braces [] square brackets () parentheses # hash mark + plus sign - minus sign (hyphen) . dot ! exclamation mark
 
 = blockquote-added-markup =
-<blockquote>
-  
-  = heading level 1 =
-  
-  paragraph
-</blockquote>
+====
+
+= heading level 1 =
+
+paragraph
+====
+
 
 = blockquote-line-2-paragraphs =
-<blockquote>
-  
-  A blockquote with a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long line.
-  
-  and a second very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long line.
-</blockquote>
+====
+
+A blockquote with a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long line.
+
+and a second very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long line.
+====
+
 
 = blockquote-line =
-<blockquote>
-  
-  This a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long paragraph in a blockquote.
-</blockquote>
+====
+
+This a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long paragraph in a blockquote.
+====
+
 
 = blockquote-multiline-1-space-begin =
-<blockquote>
-  
-  A blockquote on multiple lines like this.
-</blockquote>
+====
+
+A blockquote on multiple lines like this.
+====
+
 
 = blockquote-multiline-1-space-end =
-<blockquote>
-  
-  A blockquote on multiple lines like this. 
-</blockquote>
+====
+
+A blockquote on multiple lines like this. 
+====
+
 
 = blockquote-multiline-2-paragraphs =
-<blockquote>
-  
-  A blockquote on multiple lines like this.
-  
-  But it has two paragraphs.
-</blockquote>
+====
+
+A blockquote on multiple lines like this.
+
+But it has two paragraphs.
+====
+
 
 = blockquote-multiline =
-<blockquote>
-  
-  A blockquote on multiple lines like this
-</blockquote>
+====
+
+A blockquote on multiple lines like this
+====
+
 
 = blockquote-nested-multiplereturn-level1 =
-<blockquote>
-  
-  This is the first level of quoting.
-  <blockquote>
-    
-    This is nested blockquote.
-  </blockquote>
-  
-  Back to the first level.
-</blockquote>
+====
+
+This is the first level of quoting.
+====
+
+This is nested blockquote.
+====
+
+
+Back to the first level.
+====
+
 
 = blockquote-nested-multiplereturn =
-<blockquote>
-  
-  This is the first level of quoting.
-  <blockquote>
-    
-    This is nested blockquote.
-  </blockquote>
-</blockquote>
+====
+
+This is the first level of quoting.
+====
+
+This is nested blockquote.
+====
+
+====
+
 
 = blockquote-nested-return-level1 =
-<blockquote>
-  
-  This is the first level of quoting.
-  <blockquote>
-    
-    This is nested blockquote. Back to the first level.
-  </blockquote>
-</blockquote>
+====
+
+This is the first level of quoting.
+====
+
+This is nested blockquote. Back to the first level.
+====
+
+====
+
 
 = blockquote-nested =
-<blockquote>
-  
-  This is the first level of quoting.
-  <blockquote>
-    
-    This is nested blockquote.
-  </blockquote>
-</blockquote>
+====
+
+This is the first level of quoting.
+====
+
+This is nested blockquote.
+====
+
+====
+
 
 = code-1-tab =
-<pre><code>10 PRINT HELLO INFINITE
+----
+10 PRINT HELLO INFINITE
 20 GOTO 10
-</code></pre>
+
+----
+
 
 = code-4-spaces-escaping =
-<pre><code>10 PRINT &lt; &gt; &amp;
+----
+10 PRINT &lt; &gt; &amp;
 20 GOTO 10
-</code></pre>
+
+----
+
 
 = code-4-spaces =
-<pre><code>10 PRINT HELLO INFINITE
+----
+10 PRINT HELLO INFINITE
 20 GOTO 10
-</code></pre>
+
+----
+
 
 = em-middle-word =
 
@@ -274,15 +298,24 @@ A new paragraph.
 
 = inline-code-escaping-entities =
 
-We love <code>&lt;code&gt; and &amp;</code> for everything
+We love 
+----&lt;code&gt; and &amp;
+----
+ for everything
 
 = inline-code-with-visible-backtick =
 
-<code>We love `code` for everything</code>
+
+----We love `code` for everything
+----
+
 
 = inline-code =
 
-<code>We love `code` for everything</code>
+
+----We love `code` for everything
+----
+
 
 = line-break-2-spaces =
 
@@ -343,37 +376,44 @@ This is an automatic link <a href="http://www.w3.org/">http://www.w3.org/</a>
 <a href="http://www.w3.org/">World Wide Web Consortium</a>
 
 = list-blockquote =
-<ul>
+
   * 
   
   a list containing a blockquote
-  <blockquote>
-    
-    this the blockquote in the list
-  </blockquote>
-</ul>
+  ====
+  
+  this the blockquote in the list
+  ====
+  
+
 
 = list-code-1-space =
-<ul>
+
   * 
   
   a
-  <pre><code>b
-</code></pre>
-</ul>
+  ----
+  b
+
+  ----
+  
+
 
 = list-code =
-<ul>
+
   * 
   
   a list containing a block of code
-  <pre><code>10 PRINT HELLO INFINITE
+  ----
+  10 PRINT HELLO INFINITE
 20 GOTO 10
-</code></pre>
-</ul>
+
+  ----
+  
+
 
 = list-multiparagraphs-tab =
-<ul>
+
   * 
   
   This is a list item with two paragraphs. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
@@ -382,10 +422,10 @@ This is an automatic link <a href="http://www.w3.org/">http://www.w3.org/</a>
   * 
   
   Suspendisse id sem consectetuer libero luctus adipiscing.
-</ul>
+
 
 = list-multiparagraphs =
-<ul>
+
   * 
   
   This is a list item with two paragraphs. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
@@ -394,7 +434,7 @@ This is an automatic link <a href="http://www.w3.org/">http://www.w3.org/</a>
   * 
   
   Suspendisse id sem consectetuer libero luctus adipiscing.
-</ul>
+
 
 = ordered-list-escaped =
 
@@ -405,9 +445,9 @@ This is an automatic link <a href="http://www.w3.org/">http://www.w3.org/</a>
   * 
   
   1
-  <ul>
+  
     * inner par list
-  </ul>
+  
   * 
   
   2
@@ -472,74 +512,77 @@ as**te**risks
 <strong>double underscores</strong>
 
 = unordered-list-items-asterisk =
-<ul>
+
   * list item 1
   * list item 2
   * list item 3
-</ul>
+
 
 = unordered-list-items-dashsign =
-<ul>
+
   * list item 1
   * list item 2
   * list item 3
-</ul>
+
 
 = unordered-list-items-leading-1space =
-<ul>
+
   * list item 1
   * list item 2
   * list item 3
-</ul>
+
 
 = unordered-list-items-leading-2spaces =
-<ul>
+
   * list item 1
   * list item 2
   * list item 3
-</ul>
+
 
 = unordered-list-items-leading-3spaces =
-<ul>
+
   * list item 1
   * list item 2
   * list item 3
-</ul>
+
 
 = unordered-list-items-plussign =
-<ul>
+
   * list item 1
   * list item 2
   * list item 3
-</ul>
+
 
 = unordered-list-paragraphs =
-<ul>
+
   * 
   
   list item in paragraph
   * 
   
   another list item in paragraph
-</ul>
+
 
 = unordered-list-unindented-content =
-<ul>
+
   * This a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long paragraph in a list.
   * and yet another long long long long long long long long long long long long long long long long long long long long long long line.
-</ul>
+
 
 = unordered-list-with-indented-content =
-<ul>
+
   * This is a list item with the content on multiline and indented.
   * And this another list item with the same principle.
-</ul>
+
 
 = fenced-code-block =
 
-<code>
+
+----
 a
-</code>
+
+----
+
 
 = link-idref-implicit-no-bracket =
 
@@ -555,9 +598,12 @@ http://a.com
 
 = fenced-code-block =
 
-<code>
+
+----
 a
-</code>
+
+----
+
 
 = link-idref-implicit-no-bracket =
 
@@ -577,9 +623,12 @@ a
 
 = fenced-code-block =
 
-<code>
+
+----
 a
-</code>
+
+----
+
 
 = link-idref-implicit-no-bracket =
 
@@ -591,9 +640,12 @@ a
 
 = fenced-code-block =
 
-<code>
+
+----
 a
-</code>
+
+----
+
 
 = link-idref-implicit-no-bracket =
 
@@ -605,9 +657,12 @@ a
 
 = fenced-code-block =
 
-<code>
+
+----
 a
-</code>
+
+----
+
 
 = utf8 =
 
@@ -619,9 +674,12 @@ http://a.com
 
 = fenced-code-block =
 
-<code>
+
+----
 a
-</code>
+
+----
+
 
 = link-idref-implicit-no-bracket =
 
@@ -633,9 +691,12 @@ a
 
 = fenced-code-block =
 
-<code>
+
+----
 a
-</code>
+
+----
+
 
 = link-idref-implicit-no-bracket =
 
@@ -647,9 +708,12 @@ a
 
 = fenced-code-block =
 
-<code>
+
+----
 a
-</code>
+
+----
+
 
 = link-idref-implicit-no-bracket =
 
@@ -661,9 +725,12 @@ a
 
 = fenced-code-block =
 
-<code>
+
+----
 a
-</code>
+
+----
+
 
 = link-idref-implicit-no-bracket =
 
@@ -675,9 +742,12 @@ a
 
 = fenced-code-block =
 
-<code>
+
+----
 a
-</code>
+
+----
+
 
 = link-idref-implicit-no-bracket =
 
@@ -689,9 +759,12 @@ a
 
 = fenced-code-block =
 
-<code>
+
+----
 a
-</code>
+
+----
+
 
 = link-idref-implicit-no-bracket =
 
@@ -703,9 +776,12 @@ a
 
 = fenced-code-block =
 
-<code>
+
+----
 a
-</code>
+
+----
+
 
 = link-idref-implicit-no-bracket =
 
@@ -717,9 +793,12 @@ a
 
 = fenced-code-block =
 
-<code>
+
+----
 a
-</code>
+
+----
+
 
 = link-idref-implicit-no-bracket =
 
@@ -731,9 +810,12 @@ a
 
 = fenced-code-block =
 
-<code>
+
+----
 a
-</code>
+
+----
+
 
 = link-idref-implicit-no-bracket =
 

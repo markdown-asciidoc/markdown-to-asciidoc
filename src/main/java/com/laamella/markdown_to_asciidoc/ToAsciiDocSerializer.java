@@ -1,14 +1,14 @@
 package com.laamella.markdown_to_asciidoc;
 
 import org.parboiled.common.StringUtils;
-import org.pegdown.DefaultVerbatimSerializer;
 import org.pegdown.LinkRenderer;
 import org.pegdown.Printer;
-import org.pegdown.VerbatimSerializer;
 import org.pegdown.ast.*;
-import org.pegdown.plugins.ToHtmlSerializerPlugin;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import static org.parboiled.common.Preconditions.checkArgNotNull;
 
@@ -16,37 +16,11 @@ public class ToAsciiDocSerializer implements Visitor {
     protected Printer printer = new Printer();
     protected final Map<String, ReferenceNode> references = new HashMap<String, ReferenceNode>();
     protected final Map<String, String> abbreviations = new HashMap<String, String>();
-    protected final LinkRenderer linkRenderer;
-    protected final List<ToHtmlSerializerPlugin> plugins;
+    protected final LinkRenderer linkRenderer = new LinkRenderer();
 
     protected TableNode currentTableNode;
     protected int currentTableColumn;
     protected boolean inTableHeader;
-
-    protected Map<String, VerbatimSerializer> verbatimSerializers;
-
-    public ToAsciiDocSerializer(LinkRenderer linkRenderer) {
-        this(linkRenderer, Collections.<ToHtmlSerializerPlugin>emptyList());
-    }
-
-    public ToAsciiDocSerializer(LinkRenderer linkRenderer, List<ToHtmlSerializerPlugin> plugins) {
-        this.linkRenderer = linkRenderer;
-        this.plugins = plugins;
-        this.verbatimSerializers = Collections.<String, VerbatimSerializer>singletonMap(VerbatimSerializer.DEFAULT, DefaultVerbatimSerializer.INSTANCE);
-    }
-
-    public ToAsciiDocSerializer(final LinkRenderer linkRenderer, final Map<String, VerbatimSerializer> verbatimSerializers) {
-        this(linkRenderer, verbatimSerializers, Collections.<ToHtmlSerializerPlugin>emptyList());
-    }
-
-    public ToAsciiDocSerializer(final LinkRenderer linkRenderer, final Map<String, VerbatimSerializer> verbatimSerializers, final List<ToHtmlSerializerPlugin> plugins) {
-        this.linkRenderer = linkRenderer;
-        this.verbatimSerializers = new HashMap<String, VerbatimSerializer>(verbatimSerializers);
-        if (!this.verbatimSerializers.containsKey(VerbatimSerializer.DEFAULT)) {
-            this.verbatimSerializers.put(VerbatimSerializer.DEFAULT, DefaultVerbatimSerializer.INSTANCE);
-        }
-        this.plugins = plugins;
-    }
 
     public String toAsciiDoc(RootNode astRoot) {
         checkArgNotNull(astRoot, "astRoot");
@@ -80,15 +54,25 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(BlockQuoteNode node) {
-        printIndentedTag(node, "blockquote");
+        printer.println();
+        repeat('=', 4);
+        visitChildren(node);
+        printer.println();
+        repeat('=', 4);
+        printer.println();
     }
 
     public void visit(BulletListNode node) {
-        printIndentedTag(node, "ul");
+        visitChildrenIndented(node);
     }
 
     public void visit(CodeNode node) {
-        printTag(node, "code");
+        printer.println();
+        repeat('-', 4);
+        printer.printEncoded(node.getText());
+        printer.println();
+        repeat('-', 4);
+        printer.println();
     }
 
     public void visit(DefinitionListNode node) {
@@ -317,16 +301,13 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(VerbatimNode node) {
-        VerbatimSerializer serializer = lookupSerializer(node.getType());
-        serializer.serialize(node, printer);
-    }
-
-    private VerbatimSerializer lookupSerializer(final String type) {
-        if (type != null && verbatimSerializers.containsKey(type)) {
-            return verbatimSerializers.get(type);
-        } else {
-            return verbatimSerializers.get(VerbatimSerializer.DEFAULT);
-        }
+        printer.println();
+        repeat('-', 4);
+        printer.println();
+        printer.printEncoded(node.getText());
+        printer.println();
+        repeat('-', 4);
+        printer.println();
     }
 
     public void visit(WikiLinkNode node) {
@@ -350,12 +331,6 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(Node node) {
-        for (ToHtmlSerializerPlugin plugin : plugins) {
-            if (plugin.visit(node, this, printer)) {
-                return;
-            }
-        }
-        // override this method for processing custom Node implementations
         throw new RuntimeException("Don't know how to handle node " + node);
     }
 
@@ -386,6 +361,12 @@ public class ToAsciiDocSerializer implements Visitor {
         printer.println().print('<').print(tag).print('>').indent(+2);
         visitChildren(node);
         printer.indent(-2).println().print('<').print('/').print(tag).print('>');
+    }
+
+    protected void visitChildrenIndented(SuperNode node) {
+        printer.println().indent(+2);
+        visitChildren(node);
+        printer.indent(-2).println();
     }
 
     @Deprecated

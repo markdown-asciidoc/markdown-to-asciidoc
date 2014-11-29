@@ -21,7 +21,7 @@ public class TestSuite {
         PegDownProcessor processor = new PegDownProcessor();
         char[] markDown = readToCharArray("testsuite.md");
         RootNode rootNode = processor.parseMarkdown(markDown);
-        String asciiDoc = new ToAsciiDocSerializer(new LinkRenderer()).toAsciiDoc(rootNode);
+        String asciiDoc = new ToAsciiDocSerializer().toAsciiDoc(rootNode);
         assertEquals(readToString("testsuite.adoc"), asciiDoc);
     }
 
