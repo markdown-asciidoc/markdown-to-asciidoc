@@ -81,13 +81,22 @@ public class BasicFormattingTest {
         assertEquals("'''", convertMarkdownToAsciiDoc("* * *"));
     }
 
-    @Ignore
+    @Test
     public void testUnorderLists() {
-        assertEquals("", convertMarkdownToAsciiDoc("* Item 1\n* Item 2\n  * Item 2a\n  * Item 2b"));
+        assertEquals("Test:\n" +
+                "\n" +
+                "* Item 1\n" +
+                "* Item 2\n" +
+                "* Item 3", convertMarkdownToAsciiDoc("Test:\n\n* Item 1\n* Item 2\n* Item 3"));
+        assertEquals("* Item 1\n" +
+                "* Item 2\n" +
+                "  * Item 2a\n" +
+                "  * Item 2b", convertMarkdownToAsciiDoc("* Item 1\n* Item 2\n  * Item 2a\n  * Item 2b"));
     }
 
-    @Ignore
+    @Test
     public void testOrderedLists() {
+        assertEquals("", convertMarkdownToAsciiDoc("Test:\n\n1. Item 1"));
         assertEquals("", convertMarkdownToAsciiDoc("1. Item 1\n2. Item 2\n3. Item 3\n   * Item 3a\n   * Item 3b"));
     }
 

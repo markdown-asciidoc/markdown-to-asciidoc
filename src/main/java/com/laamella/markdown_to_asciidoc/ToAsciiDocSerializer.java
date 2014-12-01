@@ -63,7 +63,8 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(BulletListNode node) {
-        visitChildrenIndented(node);
+        printer.println();
+        visitChildren(node);
     }
 
     public void visit(CodeNode node) {
@@ -130,6 +131,8 @@ public class ToAsciiDocSerializer implements Visitor {
     public void visit(OrderedListNode node) {
         printIndentedTag(node, "ol");
     }
+
+
 
     public void visit(ParaNode node) {
         printer.println().println();
