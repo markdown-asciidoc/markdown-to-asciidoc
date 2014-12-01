@@ -138,11 +138,6 @@ public class BasicFormattingTest {
                 "```"));
     }
 
-    @Ignore
-    public void testInlineRCode() {
-        assertEquals("", convertMarkdownToAsciiDoc("There were `r nrow(cars)` cars studied"));
-    }
-
     @Test
     public void testInlineCode() {
         assertEquals("We defined the `add` function to", convertMarkdownToAsciiDoc("We defined the `add` function to"));
@@ -150,16 +145,6 @@ public class BasicFormattingTest {
 
     @Ignore
     public void testPlainTextBlocks() {
-        assertEquals("", convertMarkdownToAsciiDoc(""));
-    }
-
-    @Ignore
-    public void testLaTeXEquations() {
-        assertEquals("", convertMarkdownToAsciiDoc(""));
-    }
-
-    @Ignore
-    public void testEquations() {
         assertEquals("", convertMarkdownToAsciiDoc(""));
     }
 
