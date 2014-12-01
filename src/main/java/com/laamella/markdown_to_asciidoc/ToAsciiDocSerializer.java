@@ -309,11 +309,12 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(VerbatimNode node) {
+        printer.print("[source]");
         printer.println();
         repeat('-', 4);
         printer.println();
         printer.printEncoded(node.getText());
-        printer.println();
+//        printer.println();
         repeat('-', 4);
         printer.println();
     }
@@ -378,13 +379,12 @@ public class ToAsciiDocSerializer implements Visitor {
         printer.indent(-2).println().print('<').print('/').print(tag).print('>');
     }
 
-    protected void visitChildrenIndented(SuperNode node) {
-        printer.println().indent(+2);
-        visitChildren(node);
-        printer.indent(-2).println();
-    }
+//    protected void visitChildrenIndented(SuperNode node) {
+//        printer.println().indent(+2);
+//        visitChildren(node);
+//        printer.indent(-2).println();
+//    }
 
-    @Deprecated
     protected void printImageTag(LinkRenderer.Rendering rendering) {
         printer.print("image:");
         printer.print(rendering.href);
@@ -394,7 +394,6 @@ public class ToAsciiDocSerializer implements Visitor {
         printer.print('[').print(rendering.text).print(']');
     }
 
-    @Deprecated
     protected void printLink(LinkRenderer.Rendering rendering) {
         printer.print(rendering.href);
         for (LinkRenderer.Attribute attr : rendering.attributes) {
@@ -403,7 +402,6 @@ public class ToAsciiDocSerializer implements Visitor {
         printer.print('[').print(rendering.text).print("]");
     }
 
-    @Deprecated
     private void printAttribute(String name, String value) {
         printer.print(' ').print(name).print('=').print('"').print(value).print('"');
     }

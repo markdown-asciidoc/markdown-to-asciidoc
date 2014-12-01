@@ -1,6 +1,7 @@
-Inline-style:
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
-
+```
+summary(cars$dist)
+summary(cars$speed)
+```
 
 # 2-paragraphs-hard-return-spaces
 

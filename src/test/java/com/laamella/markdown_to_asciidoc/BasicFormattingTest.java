@@ -130,9 +130,12 @@ public class BasicFormattingTest {
         assertEquals("image:images/icons/home.png?width=100[Alt text]", convertMarkdownToAsciiDoc("![Alt text](images/icons/home.png?width=100)"));
     }
 
-    @Ignore
+    @Test
     public void testCodeBlocks() {
-        assertEquals("", convertMarkdownToAsciiDoc(""));
+        assertEquals("[source]\n----\nsummary(cars$dist)\nsummary(cars$speed)\n----\n", convertMarkdownToAsciiDoc("```{r}\n" +
+                "summary(cars$dist)\n" +
+                "summary(cars$speed)\n" +
+                "```"));
     }
 
     @Ignore
