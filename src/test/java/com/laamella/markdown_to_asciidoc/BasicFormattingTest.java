@@ -24,4 +24,25 @@ public class BasicFormattingTest {
         assertEquals("== This is an H2", convertMarkdownToAsciiDoc("## This is an H2 #######"));
         assertEquals("== This is an H2", convertMarkdownToAsciiDoc("This is an H2\n-------------"));
     }
+
+    @Test
+    public void testHeader3() {
+        assertEquals("=== This is an H3", convertMarkdownToAsciiDoc("### This is an H3"));
+    }
+
+    @Test
+    public void testHeader4() {
+        assertEquals("==== This is an H4", convertMarkdownToAsciiDoc("#### This is an H4"));
+    }
+
+    @Test
+    public void testHeader5() {
+        assertEquals("===== This is an H5", convertMarkdownToAsciiDoc("##### This is an H5"));
+    }
+
+    @Test
+    public void testHeader6() {
+        assertEquals("====== This is an H6", convertMarkdownToAsciiDoc("###### This is an H6"));
+    }
+
 }
