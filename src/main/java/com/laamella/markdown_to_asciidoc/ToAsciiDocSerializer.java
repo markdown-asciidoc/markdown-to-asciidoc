@@ -21,6 +21,8 @@ public class ToAsciiDocSerializer implements Visitor {
     protected TableNode currentTableNode;
     protected int currentTableColumn;
     protected boolean inTableHeader;
+    protected boolean inOrderedList;
+
 
     public String toAsciiDoc(RootNode astRoot) {
         checkArgNotNull(astRoot, "astRoot");
@@ -120,7 +122,12 @@ public class ToAsciiDocSerializer implements Visitor {
 
     public void visit(ListItemNode node) {
         printer.println();
-        printer.print("* ");
+
+        if(inOrderedList) {
+            printer.print("1. ");
+        } else {
+            printer.print("* ");
+        }
         visitChildren(node);
     }
 
@@ -129,10 +136,13 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(OrderedListNode node) {
-        printIndentedTag(node, "ol");
+        inOrderedList = true;
+
+        printer.println();
+        visitChildren(node);
+
+        inOrderedList = false;
     }
-
-
 
     public void visit(ParaNode node) {
         printer.println().println();

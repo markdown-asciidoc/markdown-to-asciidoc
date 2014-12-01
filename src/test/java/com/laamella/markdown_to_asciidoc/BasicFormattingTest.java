@@ -96,8 +96,22 @@ public class BasicFormattingTest {
 
     @Test
     public void testOrderedLists() {
-        assertEquals("", convertMarkdownToAsciiDoc("Test:\n\n1. Item 1"));
-        assertEquals("", convertMarkdownToAsciiDoc("1. Item 1\n2. Item 2\n3. Item 3\n   * Item 3a\n   * Item 3b"));
+        assertEquals("Test:\n\n1. Item 1", convertMarkdownToAsciiDoc("Test:\n\n1. Item 1"));
+        assertEquals("Test:\n" +
+                "\n" +
+                "1. Item 1\n" +
+                "1. Item 2\n" +
+                "1. Item 3", convertMarkdownToAsciiDoc("Test:\n\n1. Item 1\n2. Item 2\n3. Item 3"));
+        assertEquals("Test:\n" +
+                "\n" +
+                "1. Item 1\n" +
+                "1. Item 2\n" +
+                "1. Item 3", convertMarkdownToAsciiDoc("Test:\n\n1. Item 1\n1. Item 2\n1. Item 3"));
+        assertEquals("1. Item 1\n" +
+                "1. Item 2\n" +
+                "1. Item 3\n" +
+                "   * Item 3a\n" +
+                "   * Item 3b", convertMarkdownToAsciiDoc("1. Item 1\n2. Item 2\n3. Item 3\n   * Item 3a\n   * Item 3b"));
     }
 
     @Ignore
