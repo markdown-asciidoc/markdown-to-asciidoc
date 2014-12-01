@@ -45,4 +45,13 @@ public class BasicFormattingTest {
         assertEquals("====== This is an H6", convertMarkdownToAsciiDoc("###### This is an H6"));
     }
 
+    @Test
+    public void testBold() {
+        assertEquals("*This text will be bold*", convertMarkdownToAsciiDoc("**This text will be bold**"));
+    }
+    @Test
+    public void testItalic() {
+        assertEquals("_This text will be italic_", convertMarkdownToAsciiDoc("*This text will be italic*"));
+    }
+
 }

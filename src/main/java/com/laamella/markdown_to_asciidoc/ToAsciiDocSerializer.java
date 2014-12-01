@@ -221,10 +221,11 @@ public class ToAsciiDocSerializer implements Visitor {
 
     public void visit(StrongEmphSuperNode node) {
         if (node.isClosed()) {
-            if (node.isStrong())
-                printTag(node, "strong");
-            else
-                printTag(node, "em");
+            if (node.isStrong()) {
+                printNode(node, "*");
+            } else {
+                printNode(node, "_");
+            }
         } else {
             //sequence was not closed, treat open chars as ordinary chars
             printer.print(node.getChars());
@@ -345,6 +346,13 @@ public class ToAsciiDocSerializer implements Visitor {
         printer.printEncoded(node.getText());
         printer.print('<').print('/').print(tag).print('>');
     }
+
+    protected void printNode(SuperNode node, String token) {
+        printer.print(token);
+        visitChildren(node);
+        printer.print(token);
+    }
+
 
     @Deprecated
     protected void printTag(SuperNode node, String tag) {
