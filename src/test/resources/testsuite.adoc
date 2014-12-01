@@ -1,1 +1,19 @@
-There were `r nrow(cars)` cars studied
+= Table 1
+
+
+[options="header"]
+|=======================
+|Col 1|Col 2      |Col 3
+|1    |Item 1     |a
+|2    |Item 2     |b
+|3    |Item 3     |c
+|6    |Three items|d
+|=======================
+
+= Table 2
+
+|===
+|Name of Column 1 |Name of Column 2
+|Cell in column 1, row 1 |Cell in column 2, row 1
+|Cell in column 1, row 2 |Cell in column 2, row 2
+|===

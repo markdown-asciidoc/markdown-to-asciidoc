@@ -155,12 +155,19 @@ public class BasicFormattingTest {
                 "[id]: http://example.com/ \"Title\""));
     }
 
-    @Ignore
+    @Test
     public void testTables() {
-        assertEquals("", convertMarkdownToAsciiDoc("First Header  | Second Header\n" +
-                "‐‐‐‐‐‐‐‐‐‐‐‐‐ | ‐‐‐‐‐‐‐‐‐‐‐‐‐ \n" +
-                "Content Cell  | Content Cell\n" +
-                "Content Cell  | Content Cell"));
+        String asciiDocTable = "|===\n" +
+                "|Name of Column 1 |Name of Column 2 \n" +
+                "\n" +
+                "|Cell in column 1, row 1 |Cell in column 2, row 1 \n" +
+                "|Cell in column 1, row 2 |Cell in column 2, row 2 \n" +
+                "|===";
+
+        assertEquals(asciiDocTable, convertMarkdownToAsciiDoc("| Name of Column 1 | Name of Column 2 |\n" +
+                "| ---- | ----- |\n" +
+                "| Cell in column 1, row 1 | Cell in column 2, row 1 |\n" +
+                "| Cell in column 1, row 2 | Cell in column 2, row 2 |"));
     }
 
     @Test

@@ -248,7 +248,8 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(TableBodyNode node) {
-        printIndentedTag(node, "tbody");
+//        printIndentedTag(node, "tbody");
+        visitChildren(node);
     }
 
     @Override
@@ -259,16 +260,17 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(TableCellNode node) {
-        String tag = inTableHeader ? "th" : "td";
+//        String tag = inTableHeader ? "th" : "td";
         List<TableColumnNode> columns = currentTableNode.getColumns();
         TableColumnNode column = columns.get(Math.min(currentTableColumn, columns.size() - 1));
 
-        printer.println().print('<').print(tag);
+//        printer.println().print('<').print(tag);
+        printer.print("|");
         column.accept(this);
         if (node.getColSpan() > 1) printer.print(" colspan=\"").print(Integer.toString(node.getColSpan())).print('"');
-        printer.print('>');
+//        printer.print('>');
         visitChildren(node);
-        printer.print('<').print('/').print(tag).print('>');
+//        printer.print('<').print('/').print(tag).print('>');
 
         currentTableColumn += node.getColSpan();
     }
@@ -293,19 +295,45 @@ public class ToAsciiDocSerializer implements Visitor {
 
     public void visit(TableHeaderNode node) {
         inTableHeader = true;
-        printIndentedTag(node, "thead");
+//        printIndentedTag(node, "thead");
+
+        visitChildren(node);
+
         inTableHeader = false;
     }
 
     public void visit(TableNode node) {
         currentTableNode = node;
-        printIndentedTag(node, "table");
+
+        printer.print("|===");
+        visitChildren(node);
+        printer.println();
+        printer.print("|===");
+
+
+//        printNode(node, "|===");
+
+//        printer.print("|===");
+//        printer.println();
+//        printIndentedTag(node, "table");
         currentTableNode = null;
     }
 
     public void visit(TableRowNode node) {
         currentTableColumn = 0;
-        printIndentedTag(node, "tr");
+
+        printer.println();
+
+
+
+        visitChildren(node);
+//        printIndentedTag(node, "tr");
+
+        if(inTableHeader) {
+            printer.println();
+        }
+
+
     }
 
     public void visit(VerbatimNode node) {
@@ -351,12 +379,12 @@ public class ToAsciiDocSerializer implements Visitor {
         }
     }
 
-    @Deprecated
-    protected void printTag(TextNode node, String tag) {
-        printer.print('<').print(tag).print('>');
-        printer.printEncoded(node.getText());
-        printer.print('<').print('/').print(tag).print('>');
-    }
+//    @Deprecated
+//    protected void printTag(TextNode node, String tag) {
+//        printer.print('<').print(tag).print('>');
+//        printer.printEncoded(node.getText());
+//        printer.print('<').print('/').print(tag).print('>');
+//    }
 
     protected void printNode(AbstractNode node, String token) {
         printer.print(token);
