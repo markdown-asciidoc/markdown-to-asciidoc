@@ -206,7 +206,7 @@ public class ToAsciiDocSerializer implements Visitor {
                 printer.print("&ndash;");
                 break;
             case HRule:
-                printer.println().print("<hr/>");
+                printer.println().print("'''");
                 break;
             case Linebreak:
                 printer.print("<br/>");

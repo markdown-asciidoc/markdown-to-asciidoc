@@ -1,11 +1,15 @@
 package com.laamella.markdown_to_asciidoc;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.Test;
 
 import static com.laamella.markdown_to_asciidoc.AsciiDocProcessor.convertMarkdownToAsciiDoc;
 import static org.junit.Assert.assertEquals;
 
 /**
+ * See:
+ *   http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#horizontal-rules-and-page-breaks
+ *
  * Created by erikp on 01/12/14.
  */
 public class BasicFormattingTest {
@@ -52,6 +56,11 @@ public class BasicFormattingTest {
         assertEquals("====== This is an H6", convertMarkdownToAsciiDoc("###### This is an H6"));
     }
 
+    @Ignore
+    public void testBlockquotes() {
+        assertEquals("???", convertMarkdownToAsciiDoc("> This is a blockquote"));
+    }
+
     @Test
     public void testBold() {
         assertEquals("*This text will be bold*", convertMarkdownToAsciiDoc("**This text will be bold**"));
@@ -61,4 +70,11 @@ public class BasicFormattingTest {
         assertEquals("_This text will be italic_", convertMarkdownToAsciiDoc("*This text will be italic*"));
     }
 
+    @Test
+    public void testHorizontalLine() {
+        assertEquals("'''", convertMarkdownToAsciiDoc("---"));
+        assertEquals("'''", convertMarkdownToAsciiDoc("- - -"));
+        assertEquals("'''", convertMarkdownToAsciiDoc("***"));
+        assertEquals("'''", convertMarkdownToAsciiDoc("* * *"));
+    }
 }
