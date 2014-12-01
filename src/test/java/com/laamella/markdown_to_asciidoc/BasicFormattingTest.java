@@ -11,6 +11,13 @@ import static org.junit.Assert.assertEquals;
 public class BasicFormattingTest {
 
     @Test
+    public void testParagraph() {
+        assertEquals("Hello world", convertMarkdownToAsciiDoc("Hello world"));
+        assertEquals("Hello world Hello world", convertMarkdownToAsciiDoc("Hello world\nHello world"));
+        assertEquals("Hello world\n\nHello world", convertMarkdownToAsciiDoc("Hello world\n\nHello world"));
+    }
+
+    @Test
     public void testHeader1() {
         assertEquals("= This is an H1", convertMarkdownToAsciiDoc("# This is an H1"));
         assertEquals("= This is an H1", convertMarkdownToAsciiDoc("# This is an H1 #"));
