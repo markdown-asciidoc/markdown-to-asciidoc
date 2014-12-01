@@ -10,6 +10,7 @@ import static org.junit.Assert.assertEquals;
  * See:
  *   http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#horizontal-rules-and-page-breaks
  *   http://geog.uoregon.edu/bartlein/courses/geog607/Rmd/MDquick-refcard.pdf
+ *   https://github.com/sirthias/pegdown/tree/master/src/test/resources/MarkdownTest103
  *
  * Created by erikp on 01/12/14.
  */
@@ -18,7 +19,7 @@ public class BasicFormattingTest {
     @Test
     public void testParagraph() {
         assertEquals("Hello world", convertMarkdownToAsciiDoc("Hello world"));
-        assertEquals("Hello world Hello world", convertMarkdownToAsciiDoc("Hello world\nHello world"));
+        assertEquals("Hello world\nHello world", convertMarkdownToAsciiDoc("Hello world\nHello world"));
         assertEquals("Hello world\n\nHello world", convertMarkdownToAsciiDoc("Hello world\n\nHello world"));
     }
 
@@ -145,21 +146,18 @@ public class BasicFormattingTest {
                 "Content Cell  | Content Cell"));
     }
 
-    @Ignore
+    @Test
     public void testSuperScript() {
-        assertEquals("", convertMarkdownToAsciiDoc("superscript^2"));
+        assertEquals("superscript^2^", convertMarkdownToAsciiDoc("superscript^2^"));
     }
 
-    @Ignore
+    @Test
+    public void testSubScript() {
+        assertEquals("CO~2~", convertMarkdownToAsciiDoc("CO~2~"));
+    }
+
+    @Test
     public void testStrikeThrough() {
-        assertEquals("", convertMarkdownToAsciiDoc("~~strikethrough~~"));
+        // asciidoc doesn't support strike-through: http://asciidoc.googlecode.com/hg-history/8.2.6/doc/faq.txt
     }
-
-
-
-
-
-
-
-
 }

@@ -1,3 +1,9 @@
+hello
+a small
+test here
+
+superscript^2^
+
 = 2-paragraphs-hard-return-spaces
 
 This is a first paragraph, on multiple lines.
