@@ -1,69 +1,69 @@
-= 2-paragraphs-hard-return-spaces =
+= 2-paragraphs-hard-return-spaces
 
 This is a first paragraph, on multiple lines.
 
 This is a second paragraph. There are spaces in between the two.
 
-= 2-paragraphs-hard-return =
+= 2-paragraphs-hard-return
 
 This is a first paragraph, on multiple lines.
 
 This is a second paragraph which has multiple lines too.
 
-= 2-paragraphs-line-returns =
+= 2-paragraphs-line-returns
 
 A first paragraph.
 
 A second paragraph after 3 CR (carriage return).
 
-= 2-paragraphs-line-spaces =
+= 2-paragraphs-line-spaces
 
 This a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long paragraph on 1 line.
 
 A few spaces and a new long long long long long long long long long long long long long long long long paragraph on 1 line.
 
-= 2-paragraphs-line-tab =
+= 2-paragraphs-line-tab
 
 This a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long paragraph on 1 line.
 
 1 tab to separate them and a new long long long long long long long long long long long long long long long long paragraph on 1 line.
 
-= 2-paragraphs-line =
+= 2-paragraphs-line
 
 This a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long paragraph on 1 line.
 
 A new long long long long long long long long long long long long long long long long paragraph on 1 line.
 
-= ampersand-text-flow =
+= ampersand-text-flow
 
 An ampersand &amp; in the text flow is escaped as an html entity.
 
-= ampersand-uri =
+= ampersand-uri
 
 There is an <a href="http://validator.w3.org/check?uri=http://www.w3.org/&verbose=1">ampersand</a> in the URI.
 
-= asterisk-near-text =
+= asterisk-near-text
 
 This is *an asterisk which should stay as is.
 
-= asterisk =
+= asterisk
 
 This is * an asterisk which should stay as is.
 
-= backslash-escape =
+= backslash-escape
 
 \ backslash ` backtick * asterisk _ underscore {} curly braces [] square brackets () parentheses # hash mark + plus sign - minus sign (hyphen) . dot ! exclamation mark
 
-= blockquote-added-markup =
+= blockquote-added-markup
 ====
 
-= heading level 1 =
+= heading level 1
 
 paragraph
 ====
 
 
-= blockquote-line-2-paragraphs =
+= blockquote-line-2-paragraphs
 ====
 
 A blockquote with a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long line.
@@ -72,28 +72,28 @@ and a second very long long long long long long long long long long long long lo
 ====
 
 
-= blockquote-line =
+= blockquote-line
 ====
 
 This a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long paragraph in a blockquote.
 ====
 
 
-= blockquote-multiline-1-space-begin =
+= blockquote-multiline-1-space-begin
 ====
 
 A blockquote on multiple lines like this.
 ====
 
 
-= blockquote-multiline-1-space-end =
+= blockquote-multiline-1-space-end
 ====
 
 A blockquote on multiple lines like this. 
 ====
 
 
-= blockquote-multiline-2-paragraphs =
+= blockquote-multiline-2-paragraphs
 ====
 
 A blockquote on multiple lines like this.
@@ -102,14 +102,14 @@ But it has two paragraphs.
 ====
 
 
-= blockquote-multiline =
+= blockquote-multiline
 ====
 
 A blockquote on multiple lines like this
 ====
 
 
-= blockquote-nested-multiplereturn-level1 =
+= blockquote-nested-multiplereturn-level1
 ====
 
 This is the first level of quoting.
@@ -123,7 +123,7 @@ Back to the first level.
 ====
 
 
-= blockquote-nested-multiplereturn =
+= blockquote-nested-multiplereturn
 ====
 
 This is the first level of quoting.
@@ -135,7 +135,7 @@ This is nested blockquote.
 ====
 
 
-= blockquote-nested-return-level1 =
+= blockquote-nested-return-level1
 ====
 
 This is the first level of quoting.
@@ -147,7 +147,7 @@ This is nested blockquote. Back to the first level.
 ====
 
 
-= blockquote-nested =
+= blockquote-nested
 ====
 
 This is the first level of quoting.
@@ -159,7 +159,7 @@ This is nested blockquote.
 ====
 
 
-= code-1-tab =
+= code-1-tab
 ----
 10 PRINT HELLO INFINITE
 20 GOTO 10
@@ -167,7 +167,7 @@ This is nested blockquote.
 ----
 
 
-= code-4-spaces-escaping =
+= code-4-spaces-escaping
 ----
 10 PRINT &lt; &gt; &amp;
 20 GOTO 10
@@ -175,7 +175,7 @@ This is nested blockquote.
 ----
 
 
-= code-4-spaces =
+= code-4-spaces
 ----
 10 PRINT HELLO INFINITE
 20 GOTO 10
@@ -183,199 +183,199 @@ This is nested blockquote.
 ----
 
 
-= em-middle-word =
+= em-middle-word
 
 as*te*risks
 
-= em-star =
+= em-star
 
 <em>single asterisks</em>
 
-= em-underscore =
+= em-underscore
 
 <em>single underscores</em>
 
-= entities-text-flow =
+= entities-text-flow
 
 HTML entities are written using ampersand notation: &copy;
 
-= header-level1-equal-underlined =
+= header-level1-equal-underlined
 
-= This is an H1 =
+= This is an H1
 
-= header-level1-hash-sign-closed =
+= header-level1-hash-sign-closed
 
-= This is an H1 =
+= This is an H1
 
-= header-level1-hash-sign-trailing-1-space =
+= header-level1-hash-sign-trailing-1-space
 
 # This is an H1
 
-= header-level1-hash-sign-trailing-2-spaces =
+= header-level1-hash-sign-trailing-2-spaces
 
-= this is an h1 with two trailing spaces =
+= this is an h1 with two trailing spaces
 
 A new paragraph.
 
-= header-level1-hash-sign =
+= header-level1-hash-sign
 
-= This is an H1 =
+= This is an H1
 
-= header-level2-dash-underlined =
+= header-level2-dash-underlined
 
-== This is an H2 ==
+== This is an H2
 
-= header-level2-hash-sign-closed =
+= header-level2-hash-sign-closed
 
-== This is an H2 ==
+== This is an H2
 
-= header-level2-hash-sign =
+= header-level2-hash-sign
 
-== This is an H2 ==
+== This is an H2
 
-= header-level3-hash-sign-closed =
+= header-level3-hash-sign-closed
 
-=== This is an H3 ===
+=== This is an H3
 
-= header-level3-hash-sign =
+= header-level3-hash-sign
 
-=== This is an H3 ===
+=== This is an H3
 
-= header-level4-hash-sign-closed =
+= header-level4-hash-sign-closed
 
-==== This is an H4 ====
+==== This is an H4
 
-= header-level4-hash-sign =
+= header-level4-hash-sign
 
-==== This is an H4 ====
+==== This is an H4
 
-= header-level5-hash-sign-closed =
+= header-level5-hash-sign-closed
 
-===== This is an H5 =====
+===== This is an H5
 
-= header-level5-hash-sign =
+= header-level5-hash-sign
 
-===== This is an H5 =====
+===== This is an H5
 
-= header-level6-hash-sign-closed =
+= header-level6-hash-sign-closed
 
-====== This is an H6 ======
+====== This is an H6
 
-= header-level6-hash-sign =
+= header-level6-hash-sign
 
-====== This is an H6 ======
+====== This is an H6
 
-= horizontal-rule-3-dashes-spaces =
+= horizontal-rule-3-dashes-spaces
 <hr/>
 
-= horizontal-rule-3-dashes =
+= horizontal-rule-3-dashes
 <hr/>
 
-= horizontal-rule-3-stars =
+= horizontal-rule-3-stars
 <hr/>
 
-= horizontal-rule-3-underscores =
+= horizontal-rule-3-underscores
 <hr/>
 
-= horizontal-rule-7-dashes =
+= horizontal-rule-7-dashes
 <hr/>
 
-= img-idref-title =
+= img-idref-title
 
 <img src="http://www.w3.org/html/logo/img/mark-word-icon.png" alt="HTML5""/>
 
-= img-idref =
+= img-idref
 
 <img src="http://www.w3.org/html/logo/img/mark-word-icon.png" alt="HTML5""/>
 
-= img-title =
+= img-title
 
 <img src="http://www.w3.org/html/logo/img/mark-word-icon.png" alt="HTML5" title="HTML5 logo for everyone""/>
 
-= img =
+= img
 
 <img src="http://www.w3.org/html/logo/img/mark-word-icon.png" alt="HTML5""/>
 
-= inline-code-escaping-entities =
+= inline-code-escaping-entities
 
 We love 
 ----&lt;code&gt; and &amp;
 ----
  for everything
 
-= inline-code-with-visible-backtick =
+= inline-code-with-visible-backtick
 
 
 ----We love `code` for everything
 ----
 
 
-= inline-code =
+= inline-code
 
 
 ----We love `code` for everything
 ----
 
 
-= line-break-2-spaces =
+= line-break-2-spaces
 
 A first sentence<br/>and a line break.
 
-= line-break-5-spaces =
+= line-break-5-spaces
 
 A first sentence<br/>and a line break.
 
-= link-automatic =
+= link-automatic
 
 This is an automatic link <a href="http://www.w3.org/">http://www.w3.org/</a>
 
-= link-bracket-paranthesis-title =
+= link-bracket-paranthesis-title
 
 <a href="http://www.w3.org/" title="Discover w3c">W3C</a>
 
-= link-bracket-paranthesis =
+= link-bracket-paranthesis
 
 <a href="http://www.w3.org/">W3C</a>
 
-= link-idref-angle-bracket =
+= link-idref-angle-bracket
 
 <a href="http://www.w3.org/">World Wide Web Consortium</a>
 
-= link-idref-implicit-spaces =
+= link-idref-implicit-spaces
 
 <a href="http://www.w3.org/">World Wide Web Consortium</a>
 
-= link-idref-implicit =
+= link-idref-implicit
 
 <a href="http://www.w3.org/">w3c</a>
 
-= link-idref-space =
+= link-idref-space
 
 <a href="http://www.w3.org/">World Wide Web Consortium</a>
 
-= link-idref-title-next-line =
+= link-idref-title-next-line
 
 <a href="http://www.w3.org/">World Wide Web Consortium</a>
 
 "Discover W3C"
 
-= link-idref-title-paranthesis =
+= link-idref-title-paranthesis
 
 <a href="http://www.w3.org/">World Wide Web Consortium</a>
 
-= link-idref-title-single-quote =
+= link-idref-title-single-quote
 
 <a href="http://www.w3.org/">World Wide Web Consortium</a>
 
-= link-idref-title =
+= link-idref-title
 
 <a href="http://www.w3.org/">World Wide Web Consortium</a>
 
-= link-idref =
+= link-idref
 
 <a href="http://www.w3.org/">World Wide Web Consortium</a>
 
-= list-blockquote =
+= list-blockquote
 
   * 
   
@@ -387,7 +387,7 @@ This is an automatic link <a href="http://www.w3.org/">http://www.w3.org/</a>
   
 
 
-= list-code-1-space =
+= list-code-1-space
 
   * 
   
@@ -399,7 +399,7 @@ This is an automatic link <a href="http://www.w3.org/">http://www.w3.org/</a>
   
 
 
-= list-code =
+= list-code
 
   * 
   
@@ -412,7 +412,7 @@ This is an automatic link <a href="http://www.w3.org/">http://www.w3.org/</a>
   
 
 
-= list-multiparagraphs-tab =
+= list-multiparagraphs-tab
 
   * 
   
@@ -424,7 +424,7 @@ This is an automatic link <a href="http://www.w3.org/">http://www.w3.org/</a>
   Suspendisse id sem consectetuer libero luctus adipiscing.
 
 
-= list-multiparagraphs =
+= list-multiparagraphs
 
   * 
   
@@ -436,11 +436,11 @@ This is an automatic link <a href="http://www.w3.org/">http://www.w3.org/</a>
   Suspendisse id sem consectetuer libero luctus adipiscing.
 
 
-= ordered-list-escaped =
+= ordered-list-escaped
 
 1. ordered list escape
 
-= ordered-list-inner-par-list =
+= ordered-list-inner-par-list
 <ol>
   * 
   
@@ -453,107 +453,107 @@ This is an automatic link <a href="http://www.w3.org/">http://www.w3.org/</a>
   2
 </ol>
 
-= ordered-list-items-random-number =
+= ordered-list-items-random-number
 <ol>
   * list item 1
   * list item 2
   * list item 3
 </ol>
 
-= ordered-list-items =
+= ordered-list-items
 <ol>
   * list item 1
   * list item 2
   * list item 3
 </ol>
 
-= paragraph-hard-return =
+= paragraph-hard-return
 
 This is a paragraph on multiple lines with hard return.
 
-= paragraph-line =
+= paragraph-line
 
 This a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long paragraph on 1 line.
 
-= paragraph-trailing-leading-spaces =
+= paragraph-trailing-leading-spaces
 
 This is a paragraph with a trailing and leading space. 
 
-= paragraph-trailing-tab =
+= paragraph-trailing-tab
 
 This is a paragraph with 1 trailing tab. 
 
-= paragraphs-2-leading-spaces =
+= paragraphs-2-leading-spaces
 
 This is a paragraph with 2 leading spaces.
 
-= paragraphs-3-leading-spaces =
+= paragraphs-3-leading-spaces
 
 This is a paragraph with 3 leading spaces.
 
-= paragraphs-leading-space =
+= paragraphs-leading-space
 
 This is a paragraph with 1 leading space.
 
-= paragraphs-trailing-spaces =
+= paragraphs-trailing-spaces
 
 This is a paragraph with a trailing space. 
 
-= strong-middle-word =
+= strong-middle-word
 
 as**te**risks
 
-= strong-star =
+= strong-star
 
 <strong>double asterisks</strong>
 
-= strong-underscore =
+= strong-underscore
 
 <strong>double underscores</strong>
 
-= unordered-list-items-asterisk =
+= unordered-list-items-asterisk
 
   * list item 1
   * list item 2
   * list item 3
 
 
-= unordered-list-items-dashsign =
+= unordered-list-items-dashsign
 
   * list item 1
   * list item 2
   * list item 3
 
 
-= unordered-list-items-leading-1space =
+= unordered-list-items-leading-1space
 
   * list item 1
   * list item 2
   * list item 3
 
 
-= unordered-list-items-leading-2spaces =
+= unordered-list-items-leading-2spaces
 
   * list item 1
   * list item 2
   * list item 3
 
 
-= unordered-list-items-leading-3spaces =
+= unordered-list-items-leading-3spaces
 
   * list item 1
   * list item 2
   * list item 3
 
 
-= unordered-list-items-plussign =
+= unordered-list-items-plussign
 
   * list item 1
   * list item 2
   * list item 3
 
 
-= unordered-list-paragraphs =
+= unordered-list-paragraphs
 
   * 
   
@@ -563,19 +563,19 @@ as**te**risks
   another list item in paragraph
 
 
-= unordered-list-unindented-content =
+= unordered-list-unindented-content
 
   * This a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long paragraph in a list.
   * and yet another long long long long long long long long long long long long long long long long long long long long long long line.
 
 
-= unordered-list-with-indented-content =
+= unordered-list-with-indented-content
 
   * This is a list item with the content on multiline and indented.
   * And this another list item with the same principle.
 
 
-= fenced-code-block =
+= fenced-code-block
 
 
 ----
@@ -584,19 +584,19 @@ a
 ----
 
 
-= link-idref-implicit-no-bracket =
+= link-idref-implicit-no-bracket
 
 <a href="b">a</a>
 
-= utf8 =
+= utf8
 
 €
 
-= autolink-no-bracket =
+= autolink-no-bracket
 
 http://a.com
 
-= fenced-code-block =
+= fenced-code-block
 
 
 ----
@@ -605,23 +605,23 @@ a
 ----
 
 
-= link-idref-implicit-no-bracket =
+= link-idref-implicit-no-bracket
 
 <a href="b">a</a>
 
-= utf8 =
+= utf8
 
 €
 
-= link-idref-implicit-no-bracket =
+= link-idref-implicit-no-bracket
 
 <a href="b">a</a>
 
-= utf8 =
+= utf8
 
 €
 
-= fenced-code-block =
+= fenced-code-block
 
 
 ----
@@ -630,15 +630,15 @@ a
 ----
 
 
-= link-idref-implicit-no-bracket =
+= link-idref-implicit-no-bracket
 
 <a href="b">a</a>
 
-= utf8 =
+= utf8
 
 €
 
-= fenced-code-block =
+= fenced-code-block
 
 
 ----
@@ -647,15 +647,15 @@ a
 ----
 
 
-= link-idref-implicit-no-bracket =
+= link-idref-implicit-no-bracket
 
 <a href="b">a</a>
 
-= utf8 =
+= utf8
 
 €
 
-= fenced-code-block =
+= fenced-code-block
 
 
 ----
@@ -664,15 +664,15 @@ a
 ----
 
 
-= utf8 =
+= utf8
 
 €
 
-= autolink-no-bracket =
+= autolink-no-bracket
 
 http://a.com
 
-= fenced-code-block =
+= fenced-code-block
 
 
 ----
@@ -681,15 +681,15 @@ a
 ----
 
 
-= link-idref-implicit-no-bracket =
+= link-idref-implicit-no-bracket
 
 <a href="b">a</a>
 
-= utf8 =
+= utf8
 
 €
 
-= fenced-code-block =
+= fenced-code-block
 
 
 ----
@@ -698,15 +698,15 @@ a
 ----
 
 
-= link-idref-implicit-no-bracket =
+= link-idref-implicit-no-bracket
 
 <a href="b">a</a>
 
-= utf8 =
+= utf8
 
 €
 
-= fenced-code-block =
+= fenced-code-block
 
 
 ----
@@ -715,15 +715,15 @@ a
 ----
 
 
-= link-idref-implicit-no-bracket =
+= link-idref-implicit-no-bracket
 
 <a href="b">a</a>
 
-= utf8 =
+= utf8
 
 €
 
-= fenced-code-block =
+= fenced-code-block
 
 
 ----
@@ -732,15 +732,15 @@ a
 ----
 
 
-= link-idref-implicit-no-bracket =
+= link-idref-implicit-no-bracket
 
 <a href="b">a</a>
 
-= utf8 =
+= utf8
 
 €
 
-= fenced-code-block =
+= fenced-code-block
 
 
 ----
@@ -749,15 +749,15 @@ a
 ----
 
 
-= link-idref-implicit-no-bracket =
+= link-idref-implicit-no-bracket
 
 <a href="b">a</a>
 
-= utf8 =
+= utf8
 
 €
 
-= fenced-code-block =
+= fenced-code-block
 
 
 ----
@@ -766,15 +766,15 @@ a
 ----
 
 
-= link-idref-implicit-no-bracket =
+= link-idref-implicit-no-bracket
 
 <a href="b">a</a>
 
-= utf8 =
+= utf8
 
 €
 
-= fenced-code-block =
+= fenced-code-block
 
 
 ----
@@ -783,15 +783,15 @@ a
 ----
 
 
-= link-idref-implicit-no-bracket =
+= link-idref-implicit-no-bracket
 
 <a href="b">a</a>
 
-= utf8 =
+= utf8
 
 €
 
-= fenced-code-block =
+= fenced-code-block
 
 
 ----
@@ -800,15 +800,15 @@ a
 ----
 
 
-= link-idref-implicit-no-bracket =
+= link-idref-implicit-no-bracket
 
 <a href="b">a</a>
 
-= utf8 =
+= utf8
 
 €
 
-= fenced-code-block =
+= fenced-code-block
 
 
 ----
@@ -817,10 +817,10 @@ a
 ----
 
 
-= link-idref-implicit-no-bracket =
+= link-idref-implicit-no-bracket
 
 <a href="b">a</a>
 
-= utf8 =
+= utf8
 
 €

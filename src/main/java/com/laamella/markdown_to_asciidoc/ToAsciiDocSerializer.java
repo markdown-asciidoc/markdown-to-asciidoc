@@ -102,9 +102,6 @@ public class ToAsciiDocSerializer implements Visitor {
         repeat('=', node.getLevel());
         printer.print(' ');
         visitChildren(node);
-        printer.print(' ');
-        repeat('=', node.getLevel());
-
     }
 
     private void repeat(char c, int times) {
