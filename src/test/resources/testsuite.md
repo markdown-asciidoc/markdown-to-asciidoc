@@ -1,11 +1,4 @@
-hello
-a small
-test here
-
-superscript^2^
-
-E=mc^2^ for superscript
-
+This is [an example](http://example.com/) inline link.
 
 # 2-paragraphs-hard-return-spaces
 

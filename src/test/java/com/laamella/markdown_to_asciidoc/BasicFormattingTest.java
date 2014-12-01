@@ -114,9 +114,9 @@ public class BasicFormattingTest {
                 "   * Item 3b", convertMarkdownToAsciiDoc("1. Item 1\n2. Item 2\n3. Item 3\n   * Item 3a\n   * Item 3b"));
     }
 
-    @Ignore
+    @Test
     public void testLinks() {
-        assertEquals("", convertMarkdownToAsciiDoc(""));
+        assertEquals("This is http://example.com/[an example] inline link.", convertMarkdownToAsciiDoc("This is [an example](http://example.com/) inline link."));
     }
 
     @Ignore
