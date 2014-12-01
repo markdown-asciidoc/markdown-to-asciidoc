@@ -189,11 +189,11 @@ as*te*risks
 
 = em-star
 
-<em>single asterisks</em>
+_single asterisks_
 
 = em-underscore
 
-<em>single underscores</em>
+_single underscores_
 
 = entities-text-flow
 
@@ -266,19 +266,19 @@ A new paragraph.
 ====== This is an H6
 
 = horizontal-rule-3-dashes-spaces
-<hr/>
+'''
 
 = horizontal-rule-3-dashes
-<hr/>
+'''
 
 = horizontal-rule-3-stars
-<hr/>
+'''
 
 = horizontal-rule-3-underscores
-<hr/>
+'''
 
 = horizontal-rule-7-dashes
-<hr/>
+'''
 
 = img-idref-title
 
@@ -298,24 +298,15 @@ A new paragraph.
 
 = inline-code-escaping-entities
 
-We love 
-----&lt;code&gt; and &amp;
-----
- for everything
+We love `&lt;code&gt; and &amp;` for everything
 
 = inline-code-with-visible-backtick
 
-
-----We love `code` for everything
-----
-
+`We love `code` for everything`
 
 = inline-code
 
-
-----We love `code` for everything
-----
-
+`We love `code` for everything`
 
 = line-break-2-spaces
 
@@ -505,11 +496,11 @@ as**te**risks
 
 = strong-star
 
-<strong>double asterisks</strong>
+*double asterisks*
 
 = strong-underscore
 
-<strong>double underscores</strong>
+*double underscores*
 
 = unordered-list-items-asterisk
 
@@ -577,12 +568,9 @@ as**te**risks
 
 = fenced-code-block
 
-
-----
+`
 a
-
-----
-
+`
 
 = link-idref-implicit-no-bracket
 
@@ -598,12 +586,9 @@ http://a.com
 
 = fenced-code-block
 
-
-----
+`
 a
-
-----
-
+`
 
 = link-idref-implicit-no-bracket
 
@@ -623,12 +608,9 @@ a
 
 = fenced-code-block
 
-
-----
+`
 a
-
-----
-
+`
 
 = link-idref-implicit-no-bracket
 
@@ -640,12 +622,9 @@ a
 
 = fenced-code-block
 
-
-----
+`
 a
-
-----
-
+`
 
 = link-idref-implicit-no-bracket
 
@@ -657,12 +636,9 @@ a
 
 = fenced-code-block
 
-
-----
+`
 a
-
-----
-
+`
 
 = utf8
 
@@ -674,12 +650,9 @@ http://a.com
 
 = fenced-code-block
 
-
-----
+`
 a
-
-----
-
+`
 
 = link-idref-implicit-no-bracket
 
@@ -691,12 +664,9 @@ a
 
 = fenced-code-block
 
-
-----
+`
 a
-
-----
-
+`
 
 = link-idref-implicit-no-bracket
 
@@ -708,12 +678,9 @@ a
 
 = fenced-code-block
 
-
-----
+`
 a
-
-----
-
+`
 
 = link-idref-implicit-no-bracket
 
@@ -725,12 +692,9 @@ a
 
 = fenced-code-block
 
-
-----
+`
 a
-
-----
-
+`
 
 = link-idref-implicit-no-bracket
 
@@ -742,12 +706,9 @@ a
 
 = fenced-code-block
 
-
-----
+`
 a
-
-----
-
+`
 
 = link-idref-implicit-no-bracket
 
@@ -759,12 +720,9 @@ a
 
 = fenced-code-block
 
-
-----
+`
 a
-
-----
-
+`
 
 = link-idref-implicit-no-bracket
 
@@ -776,12 +734,9 @@ a
 
 = fenced-code-block
 
-
-----
+`
 a
-
-----
-
+`
 
 = link-idref-implicit-no-bracket
 
@@ -793,12 +748,9 @@ a
 
 = fenced-code-block
 
-
-----
+`
 a
-
-----
-
+`
 
 = link-idref-implicit-no-bracket
 
@@ -810,12 +762,9 @@ a
 
 = fenced-code-block
 
-
-----
+`
 a
-
-----
-
+`
 
 = link-idref-implicit-no-bracket
 

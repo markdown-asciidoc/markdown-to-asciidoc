@@ -67,12 +67,9 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(CodeNode node) {
-        printer.println();
-        repeat('-', 4);
+        printer.print('`');
         printer.printEncoded(node.getText());
-        printer.println();
-        repeat('-', 4);
-        printer.println();
+        printer.print('`');
     }
 
     public void visit(DefinitionListNode node) {
@@ -334,7 +331,7 @@ public class ToAsciiDocSerializer implements Visitor {
 
     // helpers
 
-    protected void visitChildren(SuperNode node) {
+    protected void visitChildren(AbstractNode node) {
         for (Node child : node.getChildren()) {
             child.accept(this);
         }
@@ -347,7 +344,7 @@ public class ToAsciiDocSerializer implements Visitor {
         printer.print('<').print('/').print(tag).print('>');
     }
 
-    protected void printNode(SuperNode node, String token) {
+    protected void printNode(AbstractNode node, String token) {
         printer.print(token);
         visitChildren(node);
         printer.print(token);
