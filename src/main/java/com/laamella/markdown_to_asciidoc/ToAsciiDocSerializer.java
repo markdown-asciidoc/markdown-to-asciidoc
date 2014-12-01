@@ -386,19 +386,16 @@ public class ToAsciiDocSerializer implements Visitor {
 
     @Deprecated
     protected void printImageTag(LinkRenderer.Rendering rendering) {
-        printer.print("<img");
-        printAttribute("src", rendering.href);
-        printAttribute("alt", rendering.text);
+        printer.print("image:");
+        printer.print(rendering.href);
         for (LinkRenderer.Attribute attr : rendering.attributes) {
             printAttribute(attr.name, attr.value);
         }
-        printer.print("\"/>");
+        printer.print('[').print(rendering.text).print(']');
     }
 
     @Deprecated
     protected void printLink(LinkRenderer.Rendering rendering) {
-//        printer.print('<').print('a');
-//        printAttribute("href", rendering.href);
         printer.print(rendering.href);
         for (LinkRenderer.Attribute attr : rendering.attributes) {
             printAttribute(attr.name, attr.value);

@@ -124,9 +124,10 @@ public class BasicFormattingTest {
         assertEquals("This is http://example.com?name=asciidoc&features=all[an example] inline link.", convertMarkdownToAsciiDoc("This is [an example](http://example.com?name=asciidoc&features=all) inline link."));
     }
 
-    @Ignore
-    public void testImages() {
-        assertEquals("", convertMarkdownToAsciiDoc(""));
+    @Test
+    public void testImage() {
+        assertEquals("image:images/icons/home.png[Alt text]", convertMarkdownToAsciiDoc("![Alt text](images/icons/home.png)"));
+        assertEquals("image:images/icons/home.png?width=100[Alt text]", convertMarkdownToAsciiDoc("![Alt text](images/icons/home.png?width=100)"));
     }
 
     @Ignore
