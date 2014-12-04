@@ -204,16 +204,16 @@ public class ToAsciiDocSerializer implements Visitor {
     public void visit(SimpleNode node) {
         switch (node.getType()) {
             case Apostrophe:
-                printer.print("&rsquo;");
+                printer.print("’");
                 break;
             case Ellipsis:
-                printer.print("&hellip;");
+                printer.print("…");
                 break;
             case Emdash:
-                printer.print("&mdash;");
+                printer.print("—");
                 break;
             case Endash:
-                printer.print("&ndash;");
+                printer.print("–");
                 break;
             case HRule:
                 printer.println().print("'''");
@@ -222,7 +222,7 @@ public class ToAsciiDocSerializer implements Visitor {
                 printer.print("\n");
                 break;
             case Nbsp:
-                printer.print("&nbsp;");
+                printer.print("{nbsp}");
                 break;
             default:
                 throw new IllegalStateException();

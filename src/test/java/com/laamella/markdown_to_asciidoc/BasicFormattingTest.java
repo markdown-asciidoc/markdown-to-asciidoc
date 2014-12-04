@@ -196,6 +196,32 @@ public class BasicFormattingTest {
     }
 
     @Test
+    public void testApostroph() {
+        assertEquals("a’a", convertMarkdownToAsciiDoc("a\'a"));
+    }
+
+    @Test
+    public void testEllipsis() {
+        assertEquals("a…a", convertMarkdownToAsciiDoc("a...a"));
+        assertEquals("a…a", convertMarkdownToAsciiDoc("a. . .a"));
+    }
+
+    @Test
+    public void testEmDash() {
+        assertEquals("a—a", convertMarkdownToAsciiDoc("a---a"));
+    }
+
+    @Test
+    public void testEnDash() {
+        assertEquals("a–a", convertMarkdownToAsciiDoc("a--a"));
+    }
+
+    @Test
+    public void testNbsp() {
+        assertEquals("«{nbsp}a a{nbsp}»", convertMarkdownToAsciiDoc("<< a a >>"));
+    }
+
+    @Test
     public void testStrikeThrough() {
         // asciidoc doesn't support strike-through: http://asciidoc.googlecode.com/hg-history/8.2.6/doc/faq.txt
     }
