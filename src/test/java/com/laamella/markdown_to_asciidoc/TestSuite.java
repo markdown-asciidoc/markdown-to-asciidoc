@@ -1,6 +1,7 @@
 package com.laamella.markdown_to_asciidoc;
 
 import org.apache.commons.io.IOUtils;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.pegdown.LinkRenderer;
 import org.pegdown.PegDownProcessor;
@@ -16,6 +17,7 @@ import static org.junit.Assert.fail;
  * Converts the testsuite from https://github.com/karlcow/markdown-testsuite (run cat-all.py) to asciidoc, checks the output
  */
 public class TestSuite {
+    @Ignore
     @Test
     public void test() {
         PegDownProcessor processor = new PegDownProcessor();

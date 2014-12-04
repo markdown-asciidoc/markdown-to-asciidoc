@@ -181,6 +181,21 @@ public class BasicFormattingTest {
     }
 
     @Test
+    public void testDoubleAngleBracketQuoting() {
+        assertEquals("«hello»", convertMarkdownToAsciiDoc("<<hello>>"));
+    }
+
+    @Test
+    public void testDoubleQuoting() {
+        assertEquals("“hello”", convertMarkdownToAsciiDoc("\"hello\""));
+    }
+
+    @Test
+    public void testSingleQuoting() {
+        assertEquals("‘hello’", convertMarkdownToAsciiDoc("'hello'"));
+    }
+
+    @Test
     public void testStrikeThrough() {
         // asciidoc doesn't support strike-through: http://asciidoc.googlecode.com/hg-history/8.2.6/doc/faq.txt
     }

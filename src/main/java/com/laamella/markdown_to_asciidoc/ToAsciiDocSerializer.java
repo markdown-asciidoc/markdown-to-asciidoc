@@ -152,19 +152,19 @@ public class ToAsciiDocSerializer implements Visitor {
     public void visit(QuotedNode node) {
         switch (node.getType()) {
             case DoubleAngle:
-                printer.print("&laquo;");
+                printer.print("«");
                 visitChildren(node);
-                printer.print("&raquo;");
+                printer.print("»");
                 break;
             case Double:
-                printer.print("&ldquo;");
+                printer.print("“");
                 visitChildren(node);
-                printer.print("&rdquo;");
+                printer.print("”");
                 break;
             case Single:
-                printer.print("&lsquo;");
+                printer.print("‘");
                 visitChildren(node);
-                printer.print("&rsquo;");
+                printer.print("’");
                 break;
         }
     }
