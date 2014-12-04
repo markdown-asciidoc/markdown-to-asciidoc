@@ -76,15 +76,16 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(DefinitionListNode node) {
-        printIndentedTag(node, "dl");
+        visitChildren(node);
+        printer.print("::").println();
     }
 
     public void visit(DefinitionNode node) {
-        printTag(node, "dd");
+        visitChildrenIndented(node);
     }
 
     public void visit(DefinitionTermNode node) {
-        printTag(node, "dt");
+        visitChildren(node);
     }
 
     public void visit(ExpImageNode node) {
@@ -232,9 +233,9 @@ public class ToAsciiDocSerializer implements Visitor {
     public void visit(StrongEmphSuperNode node) {
         if (node.isClosed()) {
             if (node.isStrong()) {
-                printNode(node, "*");
+                printNodeSurroundedBy(node, "*");
             } else {
-                printNode(node, "_");
+                printNodeSurroundedBy(node, "_");
             }
         } else {
             //sequence was not closed, treat open chars as ordinary chars
@@ -244,7 +245,7 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(StrikeNode node) {
-        printTag(node, "del");
+
     }
 
     public void visit(TableBodyNode node) {
@@ -311,7 +312,7 @@ public class ToAsciiDocSerializer implements Visitor {
         printer.print("|===");
 
 
-//        printNode(node, "|===");
+//        printNodeSurroundedBy(node, "|===");
 
 //        printer.print("|===");
 //        printer.println();
@@ -379,39 +380,17 @@ public class ToAsciiDocSerializer implements Visitor {
         }
     }
 
-//    @Deprecated
-//    protected void printTag(TextNode node, String tag) {
-//        printer.print('<').print(tag).print('>');
-//        printer.printEncoded(node.getText());
-//        printer.print('<').print('/').print(tag).print('>');
-//    }
+    protected void visitChildrenIndented(SuperNode node) {
+        printer.println().indent(+2);
+        visitChildren(node);
+        printer.indent(-2).println();
+    }
 
-    protected void printNode(AbstractNode node, String token) {
+    protected void printNodeSurroundedBy(AbstractNode node, String token) {
         printer.print(token);
         visitChildren(node);
         printer.print(token);
     }
-
-
-    @Deprecated
-    protected void printTag(SuperNode node, String tag) {
-        printer.print('<').print(tag).print('>');
-        visitChildren(node);
-        printer.print('<').print('/').print(tag).print('>');
-    }
-
-    @Deprecated
-    protected void printIndentedTag(SuperNode node, String tag) {
-        printer.println().print('<').print(tag).print('>').indent(+2);
-        visitChildren(node);
-        printer.indent(-2).println().print('<').print('/').print(tag).print('>');
-    }
-
-//    protected void visitChildrenIndented(SuperNode node) {
-//        printer.println().indent(+2);
-//        visitChildren(node);
-//        printer.indent(-2).println();
-//    }
 
     protected void printImageTag(LinkRenderer.Rendering rendering) {
         printer.print("image:");

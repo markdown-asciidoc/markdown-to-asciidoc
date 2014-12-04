@@ -222,7 +222,14 @@ public class BasicFormattingTest {
     }
 
     @Test
+    public void testDefinitionList() {
+        // TODO figure out what the Markdown syntax is.
+        assertEquals("", convertMarkdownToAsciiDoc(""));
+    }
+
+    @Test
     public void testStrikeThrough() {
         // asciidoc doesn't support strike-through: http://asciidoc.googlecode.com/hg-history/8.2.6/doc/faq.txt
+        assertEquals("", convertMarkdownToAsciiDoc("~~strike~~"));
     }
 }
