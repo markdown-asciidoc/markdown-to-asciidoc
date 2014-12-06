@@ -1,3 +1,10 @@
-https://github.com/cucumber/cucumber-java-skeleton
+== Links
 
+https://github.com/cucumber/cucumber-java-skeleton
 https://github.com/asciidoctor/asciidoctor/blob/master/features/open_block.feature
+
+== Tips
+
+To run only a specific test, add this to IntelliJ:
+
+-Dcucumber.options="--tags @tables"

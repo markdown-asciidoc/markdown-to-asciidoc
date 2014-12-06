@@ -59,6 +59,28 @@ Feature: Markup
     This is *_bold and italic_* text
     """
 
+  Scenario: Superscript
+    Given the Markdown source
+    """
+    superscript^2^
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    superscript^2^
+    """
+
+  Scenario: Subscript
+    Given the Markdown source
+    """
+    CO~2~
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    CO~2~
+    """
+
   Scenario: Double angle bracket quoting
     Given the Markdown source
     """
