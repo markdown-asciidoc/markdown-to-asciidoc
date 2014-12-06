@@ -1,0 +1,2 @@
+rm *.adoc
+rm *.html
