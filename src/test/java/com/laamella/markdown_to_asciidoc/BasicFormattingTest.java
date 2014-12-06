@@ -98,7 +98,7 @@ public class BasicFormattingTest {
     @Test
     public void moreLinks() {
         assertEquals("The link:/projects/markdown/syntax[syntax page] provides complete, detailed documentation for",
-                convertMarkdownToAsciiDoc("The [syntax page] [s] provides complete, detailed documentation for\n\n  [s]: /projects/markdown/syntax  \"Markdown Syntax\""));
+                convertMarkdownToAsciiDoc(""));
     }
 
     @Test

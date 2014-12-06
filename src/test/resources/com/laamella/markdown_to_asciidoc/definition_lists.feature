@@ -1,5 +1,4 @@
 # language: en
-@erik
 Feature: Definition lists
   In order to group content
   As a writer
@@ -41,7 +40,7 @@ Feature: Definition lists
     the family Rosaceae.
     Orange::
         The fruit of an evergreen tree of the genus Citrus.
-    
+
     """
 
 
