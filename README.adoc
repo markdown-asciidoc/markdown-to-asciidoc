@@ -1,3 +1,18 @@
 = Markdown to AsciiDoc converter
 
-A small, lightweight converter for Markdown to AsciiDoc written in Java, and based on http://pegdown.org[Pegdown].
+A small, lightweight converter for Markdown to http://www.asciidoc.org[AsciiDoc] written in Java, and based on http://pegdown.org[Pegdown].
+
+Uses https://github.com/bodiam/markdown-to-asciidoc/tree/master/src/test/resources/com/laamella/markdown_to_asciidoc[Cucumber tests] as a reusable
+set to test conversion between Markdown and AsciiDoc.
+
+== Uses
+
+Currently the conversion library is used in the https://plugins.jetbrains.com/plugin/7391[IntelliJ AsciiDoc Plugin] to seamlessly convert between
+from Markdown to AsciiDoc.
+
+If you know of any projects using the library, please let us know on Twitter:
+http://www.twitter.com/macumbamacaca[macumbamacaca] or http://www.twitter.com/epragt[epragt].
+
+== Bugs
+
+If you find a bug or a missing feature, please report it the https://github.com/bodiam/markdown-to-asciidoc/issues[Github Issue Tracker].
