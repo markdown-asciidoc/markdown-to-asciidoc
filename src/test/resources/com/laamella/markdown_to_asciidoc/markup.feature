@@ -150,3 +150,14 @@ Feature: Markup
     «{nbsp}a a{nbsp}»
     """
 
+  Scenario: Strikethrough
+    Given the Markdown source
+    """
+    ~~strike~~
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+
+    """
+

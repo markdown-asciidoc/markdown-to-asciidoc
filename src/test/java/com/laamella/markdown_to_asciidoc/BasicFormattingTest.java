@@ -16,48 +16,6 @@ import static org.junit.Assert.assertEquals;
  */
 public class BasicFormattingTest {
 
-    @Test
-    public void testParagraph() {
-        assertEquals("Hello world", convertMarkdownToAsciiDoc("Hello world"));
-        assertEquals("Hello world\nHello world", convertMarkdownToAsciiDoc("Hello world\nHello world"));
-        assertEquals("Hello world\n\nHello world", convertMarkdownToAsciiDoc("Hello world\n\nHello world"));
-    }
-
-    @Test
-    public void testHeader1() {
-        assertEquals("= This is an H1\n", convertMarkdownToAsciiDoc("# This is an H1"));
-        assertEquals("= This is an H1\n", convertMarkdownToAsciiDoc("# This is an H1 #"));
-        assertEquals("= This is an H1\n", convertMarkdownToAsciiDoc("This is an H1\n============="));
-    }
-
-    @Test
-    public void testHeader2() {
-        assertEquals("== This is an H2\n", convertMarkdownToAsciiDoc("## This is an H2"));
-        assertEquals("== This is an H2\n", convertMarkdownToAsciiDoc("## This is an H2 ##"));
-        assertEquals("== This is an H2\n", convertMarkdownToAsciiDoc("## This is an H2 #######"));
-        assertEquals("== This is an H2\n", convertMarkdownToAsciiDoc("This is an H2\n-------------"));
-    }
-
-    @Test
-    public void testHeader3() {
-        assertEquals("=== This is an H3\n", convertMarkdownToAsciiDoc("### This is an H3"));
-    }
-
-    @Test
-    public void testHeader4() {
-        assertEquals("==== This is an H4\n", convertMarkdownToAsciiDoc("#### This is an H4"));
-    }
-
-    @Test
-    public void testHeader5() {
-        assertEquals("===== This is an H5\n", convertMarkdownToAsciiDoc("##### This is an H5"));
-    }
-
-    @Test
-    public void testHeader6() {
-        assertEquals("====== This is an H6\n", convertMarkdownToAsciiDoc("###### This is an H6"));
-    }
-
     @Ignore // http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#paragraphs.
     // Not sure how this translates. A single space seems fine, ==== might be okay too. Ideas?
     public void testBlockquotes() {
@@ -75,14 +33,6 @@ public class BasicFormattingTest {
     @Test
     public void testMono() {
         assertEquals("+This text will be mono+", convertMarkdownToAsciiDoc("`This text will be mono`"));
-    }
-
-    @Test
-    public void testHorizontalLine() {
-        assertEquals("'''", convertMarkdownToAsciiDoc("---"));
-        assertEquals("'''", convertMarkdownToAsciiDoc("- - -"));
-        assertEquals("'''", convertMarkdownToAsciiDoc("***"));
-        assertEquals("'''", convertMarkdownToAsciiDoc("* * *"));
     }
 
     @Test
@@ -210,58 +160,5 @@ public class BasicFormattingTest {
     @Test
     public void testSubScript() {
         assertEquals("CO~2~", convertMarkdownToAsciiDoc("CO~2~"));
-    }
-
-    @Test
-    public void testDoubleAngleBracketQuoting() {
-        assertEquals("«hello»", convertMarkdownToAsciiDoc("<<hello>>"));
-    }
-
-    @Test
-    public void testDoubleQuoting() {
-        assertEquals("“hello”", convertMarkdownToAsciiDoc("\"hello\""));
-    }
-
-    @Test
-    public void testSingleQuoting() {
-        assertEquals("‘hello’", convertMarkdownToAsciiDoc("'hello'"));
-    }
-
-    @Test
-    public void testApostroph() {
-        assertEquals("a’a", convertMarkdownToAsciiDoc("a\'a"));
-    }
-
-    @Test
-    public void testEllipsis() {
-        assertEquals("a…a", convertMarkdownToAsciiDoc("a...a"));
-        assertEquals("a…a", convertMarkdownToAsciiDoc("a. . .a"));
-    }
-
-    @Test
-    public void testEmDash() {
-        assertEquals("a—a", convertMarkdownToAsciiDoc("a---a"));
-    }
-
-    @Test
-    public void testEnDash() {
-        assertEquals("a–a", convertMarkdownToAsciiDoc("a--a"));
-    }
-
-    @Test
-    public void testNbsp() {
-        assertEquals("«{nbsp}a a{nbsp}»", convertMarkdownToAsciiDoc("<< a a >>"));
-    }
-
-    @Test
-    public void testDefinitionList() {
-        // TODO figure out what the Markdown syntax is.
-        assertEquals("", convertMarkdownToAsciiDoc(""));
-    }
-
-    @Test
-    public void testStrikeThrough() {
-        // asciidoc doesn't support strike-through: http://asciidoc.googlecode.com/hg-history/8.2.6/doc/faq.txt
-        assertEquals("", convertMarkdownToAsciiDoc("~~strike~~"));
     }
 }
