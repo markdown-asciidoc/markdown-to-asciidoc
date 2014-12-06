@@ -100,7 +100,7 @@ Feature: Markup
     When it is converted to AsciiDoc
     Then the result should match the AsciiDoc source
     """
-    “hello”
+    "hello"
     """
 
 
@@ -112,7 +112,7 @@ Feature: Markup
     When it is converted to AsciiDoc
     Then the result should match the AsciiDoc source
     """
-    ‘hello’
+    'hello'
     """
 
   Scenario: Apostroph

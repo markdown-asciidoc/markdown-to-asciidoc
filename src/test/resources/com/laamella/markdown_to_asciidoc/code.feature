@@ -5,10 +5,10 @@ Feature: Code
   As a writer
   I want to be able to create code blocks
 
-  Scenario: Render a code block
+  Scenario: Render a code block without language
     Given the Markdown source
     """
-    ```{r}
+    ```
     summary(cars$dist)
     summary(cars$speed)
     ```

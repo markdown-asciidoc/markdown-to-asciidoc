@@ -169,14 +169,14 @@ public class ToAsciiDocSerializer implements Visitor {
                 printer.print("»");
                 break;
             case Double:
-                printer.print("“");
+                printer.print("\"");
                 visitChildren(node);
-                printer.print("”");
+                printer.print("\"");
                 break;
             case Single:
-                printer.print("‘");
+                printer.print("'");
                 visitChildren(node);
-                printer.print("’");
+                printer.print("'");
                 break;
         }
     }
