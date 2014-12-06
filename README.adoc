@@ -13,7 +13,7 @@ Currently the conversion library is used in the https://plugins.jetbrains.com/pl
 from Markdown to AsciiDoc.
 
 If you know of any projects using the library, please let us know on Twitter:
-http://www.twitter.com/macumbamacaca[macumbamacaca] or http://www.twitter.com/epragt[epragt].
+http://www.twitter.com/macumbamacaca[@macumbamacaca] or http://www.twitter.com/epragt[@epragt].
 
 == Bugs
 
