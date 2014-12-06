@@ -261,7 +261,6 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(TableBodyNode node) {
-//        printIndentedTag(node, "tbody");
         visitChildren(node);
     }
 
@@ -277,33 +276,16 @@ public class ToAsciiDocSerializer implements Visitor {
         List<TableColumnNode> columns = currentTableNode.getColumns();
         TableColumnNode column = columns.get(Math.min(currentTableColumn, columns.size() - 1));
 
-//        printer.println().print('<').print(tag);
         printer.print("|");
         column.accept(this);
         if (node.getColSpan() > 1) printer.print(" colspan=\"").print(Integer.toString(node.getColSpan())).print('"');
-//        printer.print('>');
         visitChildren(node);
-//        printer.print('<').print('/').print(tag).print('>');
 
         currentTableColumn += node.getColSpan();
     }
 
     public void visit(TableColumnNode node) {
-//        switch (node.getAlignment()) {
-//            case None:
-//                break;
-//            case Left:
-//                printer.print("<");
-//                break;
-//            case Right:
-//                printer.print(">");
-//                break;
-//            case Center:
-//                printer.print("^");
-//                break;
-//            default:
-//                throw new IllegalStateException();
-//        }
+        // nothing here yet
     }
 
     public void visit(TableHeaderNode node) {
@@ -446,9 +428,6 @@ public class ToAsciiDocSerializer implements Visitor {
     protected void printImageTag(LinkRenderer.Rendering rendering) {
         printer.print("image:");
         printer.print(rendering.href);
-//        for (LinkRenderer.Attribute attr : rendering.attributes) {
-//            printAttribute(attr.name, attr.value);
-//        }
         printer.print('[').print(rendering.text).print(']');
     }
 
@@ -461,15 +440,7 @@ public class ToAsciiDocSerializer implements Visitor {
         }
 
         printer.print(link);
-
-//        for (LinkRenderer.Attribute attr : rendering.attributes) {
-//            printAttribute(attr.name, attr.value);
-//        }
         printer.print('[').print(rendering.text).print("]");
-    }
-
-    private void printAttribute(String name, String value) {
-        printer.print(' ').print(name).print('=').print('"').print(value).print('"');
     }
 
     protected String printChildrenToString(SuperNode node) {
