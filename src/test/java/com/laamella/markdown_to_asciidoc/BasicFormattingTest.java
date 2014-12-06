@@ -1,6 +1,6 @@
 package com.laamella.markdown_to_asciidoc;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static com.laamella.markdown_to_asciidoc.Converter.convertMarkdownToAsciiDoc;
