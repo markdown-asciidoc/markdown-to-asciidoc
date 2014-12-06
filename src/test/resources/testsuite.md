@@ -3,6 +3,20 @@ summary(cars$dist)
 summary(cars$speed)
 ```
 
+* item 1
+    * item 1.1
+    * item 1.2
+        * item 1.2.1
+        * item 1.2.2
+        * item 1.2.3
+* item 2
+
+Test:
+
+* Item 1
+* Item 2
+* Item 3
+
 # 2-paragraphs-hard-return-spaces
 
 This is a first paragraph,

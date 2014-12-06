@@ -3,7 +3,7 @@ package com.laamella.markdown_to_asciidoc;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.Test;
 
-import static com.laamella.markdown_to_asciidoc.AsciiDocProcessor.convertMarkdownToAsciiDoc;
+import static com.laamella.markdown_to_asciidoc.Converter.convertMarkdownToAsciiDoc;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -25,37 +25,37 @@ public class BasicFormattingTest {
 
     @Test
     public void testHeader1() {
-        assertEquals("= This is an H1", convertMarkdownToAsciiDoc("# This is an H1"));
-        assertEquals("= This is an H1", convertMarkdownToAsciiDoc("# This is an H1 #"));
-        assertEquals("= This is an H1", convertMarkdownToAsciiDoc("This is an H1\n============="));
+        assertEquals("= This is an H1\n", convertMarkdownToAsciiDoc("# This is an H1"));
+        assertEquals("= This is an H1\n", convertMarkdownToAsciiDoc("# This is an H1 #"));
+        assertEquals("= This is an H1\n", convertMarkdownToAsciiDoc("This is an H1\n============="));
     }
 
     @Test
     public void testHeader2() {
-        assertEquals("== This is an H2", convertMarkdownToAsciiDoc("## This is an H2"));
-        assertEquals("== This is an H2", convertMarkdownToAsciiDoc("## This is an H2 ##"));
-        assertEquals("== This is an H2", convertMarkdownToAsciiDoc("## This is an H2 #######"));
-        assertEquals("== This is an H2", convertMarkdownToAsciiDoc("This is an H2\n-------------"));
+        assertEquals("== This is an H2\n", convertMarkdownToAsciiDoc("## This is an H2"));
+        assertEquals("== This is an H2\n", convertMarkdownToAsciiDoc("## This is an H2 ##"));
+        assertEquals("== This is an H2\n", convertMarkdownToAsciiDoc("## This is an H2 #######"));
+        assertEquals("== This is an H2\n", convertMarkdownToAsciiDoc("This is an H2\n-------------"));
     }
 
     @Test
     public void testHeader3() {
-        assertEquals("=== This is an H3", convertMarkdownToAsciiDoc("### This is an H3"));
+        assertEquals("=== This is an H3\n", convertMarkdownToAsciiDoc("### This is an H3"));
     }
 
     @Test
     public void testHeader4() {
-        assertEquals("==== This is an H4", convertMarkdownToAsciiDoc("#### This is an H4"));
+        assertEquals("==== This is an H4\n", convertMarkdownToAsciiDoc("#### This is an H4"));
     }
 
     @Test
     public void testHeader5() {
-        assertEquals("===== This is an H5", convertMarkdownToAsciiDoc("##### This is an H5"));
+        assertEquals("===== This is an H5\n", convertMarkdownToAsciiDoc("##### This is an H5"));
     }
 
     @Test
     public void testHeader6() {
-        assertEquals("====== This is an H6", convertMarkdownToAsciiDoc("###### This is an H6"));
+        assertEquals("====== This is an H6\n", convertMarkdownToAsciiDoc("###### This is an H6"));
     }
 
     @Ignore // http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#paragraphs.
@@ -71,6 +71,10 @@ public class BasicFormattingTest {
     @Test
     public void testItalic() {
         assertEquals("_This text will be italic_", convertMarkdownToAsciiDoc("*This text will be italic*"));
+    }
+    @Test
+    public void testMono() {
+        assertEquals("+This text will be mono+", convertMarkdownToAsciiDoc("`This text will be mono`"));
     }
 
     @Test
@@ -88,10 +92,32 @@ public class BasicFormattingTest {
                 "* Item 1\n" +
                 "* Item 2\n" +
                 "* Item 3", convertMarkdownToAsciiDoc("Test:\n\n* Item 1\n* Item 2\n* Item 3"));
-        assertEquals("* Item 1\n" +
-                "* Item 2\n" +
-                "  * Item 2a\n" +
-                "  * Item 2b", convertMarkdownToAsciiDoc("* Item 1\n* Item 2\n  * Item 2a\n  * Item 2b"));
+//        assertEquals("* Item 1\n" +
+//                "* Item 2\n" +
+//                "  * Item 2a\n" +
+//                "  * Item 2b", convertMarkdownToAsciiDoc("* Item 1\n* Item 2\n    * Item 2a\n    * Item 2b"));
+    }
+
+    @Ignore
+    public void testNestedLists() {
+        String markdown = "* Item 1\n" +
+                "    * Item 1.1\n" +
+                "    * Item 1.2\n" +
+                "        * Item 1.2.1\n" +
+                "        * Item 1.2.2\n" +
+                "        * Item 1.2.3\n" +
+                "* Item 2\n" ;
+        String asciidoc = "* Item 1\n" +
+                "** Item 1.1\n" +
+                "** Item 1.2\n" +
+                "*** Item 1.2.1\n" +
+                "*** Item 1.2.2\n" +
+                "*** Item 1.2.3\n" +
+                "* Item 2" ;
+
+        assertEquals(asciidoc, convertMarkdownToAsciiDoc(markdown));
+
+
     }
 
     @Test
@@ -120,6 +146,12 @@ public class BasicFormattingTest {
     }
 
     @Test
+    public void moreLinks() {
+        assertEquals("The link:/projects/markdown/syntax[syntax page] provides complete, detailed documentation for",
+                convertMarkdownToAsciiDoc("The [syntax page] [s] provides complete, detailed documentation for\n\n  [s]: /projects/markdown/syntax  \"Markdown Syntax\""));
+    }
+
+    @Test
     public void testLinksWithParameters() {
         assertEquals("This is http://example.com?name=asciidoc&features=all[an example] inline link.", convertMarkdownToAsciiDoc("This is [an example](http://example.com?name=asciidoc&features=all) inline link."));
     }
@@ -140,7 +172,7 @@ public class BasicFormattingTest {
 
     @Test
     public void testInlineCode() {
-        assertEquals("We defined the `add` function to", convertMarkdownToAsciiDoc("We defined the `add` function to"));
+        assertEquals("We defined the +add+ function to", convertMarkdownToAsciiDoc("We defined the `add` function to"));
     }
 
     @Ignore

@@ -21,7 +21,9 @@ public class ToAsciiDocSerializer implements Visitor {
     protected TableNode currentTableNode;
     protected int currentTableColumn;
     protected boolean inTableHeader;
+
     protected boolean inOrderedList;
+    protected int bulletListLevel = 0;
 
 
     public String toAsciiDoc(RootNode astRoot) {
@@ -66,13 +68,16 @@ public class ToAsciiDocSerializer implements Visitor {
 
     public void visit(BulletListNode node) {
         printer.println();
+
+        bulletListLevel = bulletListLevel + 1;
         visitChildren(node);
+        bulletListLevel = bulletListLevel - 1;
     }
 
     public void visit(CodeNode node) {
-        printer.print('`');
+        printer.print('+');
         printer.printEncoded(node.getText());
-        printer.print('`');
+        printer.print('+');
     }
 
     public void visit(DefinitionListNode node) {
@@ -103,6 +108,7 @@ public class ToAsciiDocSerializer implements Visitor {
         repeat('=', node.getLevel());
         printer.print(' ');
         visitChildren(node);
+        printer.println();
     }
 
     private void repeat(char c, int times) {
@@ -123,11 +129,12 @@ public class ToAsciiDocSerializer implements Visitor {
 
     public void visit(ListItemNode node) {
         printer.println();
-
         if(inOrderedList) {
             printer.print("1. ");
         } else {
-            printer.print("* ");
+            repeat('*', bulletListLevel);
+            printer.print(" ");
+
         }
         visitChildren(node);
     }
@@ -338,6 +345,7 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(VerbatimNode node) {
+        printer.println();
         printer.print("[source]");
         printer.println();
         repeat('-', 4);
@@ -395,17 +403,25 @@ public class ToAsciiDocSerializer implements Visitor {
     protected void printImageTag(LinkRenderer.Rendering rendering) {
         printer.print("image:");
         printer.print(rendering.href);
-        for (LinkRenderer.Attribute attr : rendering.attributes) {
-            printAttribute(attr.name, attr.value);
-        }
+//        for (LinkRenderer.Attribute attr : rendering.attributes) {
+//            printAttribute(attr.name, attr.value);
+//        }
         printer.print('[').print(rendering.text).print(']');
     }
 
     protected void printLink(LinkRenderer.Rendering rendering) {
-        printer.print(rendering.href);
-        for (LinkRenderer.Attribute attr : rendering.attributes) {
-            printAttribute(attr.name, attr.value);
+
+        String link = rendering.href;
+
+        if(!link.contains("://")) {
+            link = "link:" + link;
         }
+
+        printer.print(link);
+
+//        for (LinkRenderer.Attribute attr : rendering.attributes) {
+//            printAttribute(attr.name, attr.value);
+//        }
         printer.print('[').print(rendering.text).print("]");
     }
 
