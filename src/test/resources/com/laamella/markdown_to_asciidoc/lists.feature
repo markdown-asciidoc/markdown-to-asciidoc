@@ -20,21 +20,20 @@ Feature: Lists
     * Item 3
     """
 
-#  Scenario: Render an unordered nested list
-#    Given the Markdown source
-#    """
-#    * Item 1
-#        * Item 2
-#        * Item 3
-#    """
-#    When it is converted to AsciiDoc
-#    Then the result should match the AsciiDoc source
-#    """
-#    * Item 1
-#    * Item 2
-#    ** Item 2a
-#    ** Item 2b
-#    """
+  Scenario: Render an unordered nested list
+    Given the Markdown source
+    """
+    * Item 1
+        * Item 1_1
+        * Item 1_2
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    * Item 1
+    ** Item 1_1
+    ** Item 1_2
+    """
 
   Scenario: Render an ordered list
     Given the Markdown source

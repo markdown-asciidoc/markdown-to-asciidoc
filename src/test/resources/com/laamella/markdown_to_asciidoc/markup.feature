@@ -132,7 +132,6 @@ Feature: Markup
     Like what?
     ________
 
-
     * Blockquotes
     * Headings
     * Fenced code blocks

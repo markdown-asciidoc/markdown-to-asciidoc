@@ -72,7 +72,7 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(BulletListNode node) {
-        printer.println();
+//        printer.println();
 
         bulletListLevel = bulletListLevel + 1;
         visitChildren(node);
