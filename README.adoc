@@ -18,11 +18,12 @@ Currently, the following are supported by the Markdown to AsciiDoc converter:
 * Links
 * Lists
 * Basic markup (bold, italic, monospaced, etc)
-* Tables
+* Tables (including alignments)
 
 Also, currently known *not* supported items are:
 
 * Nested lists
+* Table cell spanning
 
 == Uses
 

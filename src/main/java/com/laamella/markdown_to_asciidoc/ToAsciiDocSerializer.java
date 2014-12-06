@@ -57,10 +57,10 @@ public class ToAsciiDocSerializer implements Visitor {
 
     public void visit(BlockQuoteNode node) {
         printer.println();
-        repeat('=', 4);
+        repeat('_', 4);
         visitChildren(node);
         printer.println();
-        repeat('=', 4);
+        repeat('_', 4);
         printer.println();
     }
 
@@ -156,7 +156,7 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(ParaNode node) {
-        printer.println().println();
+        printer.println();
         visitChildren(node);
     }
 
@@ -215,7 +215,7 @@ public class ToAsciiDocSerializer implements Visitor {
     public void visit(SimpleNode node) {
         switch (node.getType()) {
             case Apostrophe:
-                printer.print("’");
+                printer.print("'");
                 break;
             case Ellipsis:
                 printer.print("…");
@@ -361,18 +361,11 @@ public class ToAsciiDocSerializer implements Visitor {
             printer.println();
         }
 
-
         printer.print("|===");
         visitChildren(node);
         printer.println();
         printer.print("|===");
 
-
-//        printNodeSurroundedBy(node, "|===");
-
-//        printer.print("|===");
-//        printer.println();
-//        printIndentedTag(node, "table");
         currentTableNode = null;
     }
 

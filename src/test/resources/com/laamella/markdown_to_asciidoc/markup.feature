@@ -16,14 +16,28 @@ Feature: Markup
     Normal text
     """
 
+#  @fixme
+#  Scenario: Escaped characters
+#    Given the Markdown source
+#    """
+#    \*this text is surrounded by literal asterisks\*
+#    """
+#    When it is converted to AsciiDoc
+#    Then the result should match the AsciiDoc source
+#    """
+#    +++*this text is surrounded by literal asterisks*+++
+#    """
+
   Scenario: Make text bold
     Given the Markdown source
     """
     **Bold text**
+    __Bold text__
     """
     When it is converted to AsciiDoc
     Then the result should match the AsciiDoc source
     """
+    *Bold text*
     *Bold text*
     """
 
@@ -31,10 +45,12 @@ Feature: Markup
     Given the Markdown source
     """
     *Italic text*
+    _Italic text_
     """
     When it is converted to AsciiDoc
     Then the result should match the AsciiDoc source
     """
+    _Italic text_
     _Italic text_
     """
 
@@ -59,6 +75,55 @@ Feature: Markup
     """
     This is *_bold and italic_* text
     """
+
+  @blockquotes
+  Scenario: Blockquotes
+    Given the Markdown source
+    """
+    > Blockquotes are very handy in email to emulate reply text.
+    > This line is part of the same quote.
+
+    Quote break.
+
+    > This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote.
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    ____
+    Blockquotes are very handy in email to emulate reply text.
+    This line is part of the same quote.
+    ____
+
+    Quote break.
+    ____
+    This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can _put_ *Markdown* into a blockquote.
+    ____
+
+    """
+
+#  Scenario: Nested Blockquotes
+#    Given the Markdown source
+#    """
+#    > > What's new?
+#    >
+#    > I've got Markdown in my AsciiDoc!
+#    >
+#    > > Like what?
+#    >
+#    > * Blockquotes
+#    > * Headings
+#    > * Fenced code blocks
+#    >
+#    > > Is there more?
+#    >
+#    > Yep. AsciiDoc and Markdown share a lot of common syntax already.
+#    """
+#    When it is converted to AsciiDoc
+#    Then the result should match the AsciiDoc source
+#    """
+#    xxxx
+#    """
 
   Scenario: Superscript
     Given the Markdown source
@@ -124,7 +189,7 @@ Feature: Markup
     When it is converted to AsciiDoc
     Then the result should match the AsciiDoc source
     """
-    a’a
+    a'a
     """
 
   Scenario: Ellipsis two
