@@ -24,3 +24,25 @@ Feature: Tables
     |===
     """
 
+  Scenario: Render a table with left, center and right align columns
+    Given the Markdown source
+    """
+    | Tables        | Are           |  Cool|
+    | ------------- |:-------------:| ----:|
+    | col 3 is      | right-aligned | $1600|
+    | col 2 is      | centered      |   $12|
+    | zebra stripes | are neat      |    $1|
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    [cols="<,^,>"]
+    |===
+    |Tables |Are |Cool
+
+    |col 3 is |right-aligned |$1600
+    |col 2 is |centered |$12
+    |zebra stripes |are neat |$1
+    |===
+    """
+

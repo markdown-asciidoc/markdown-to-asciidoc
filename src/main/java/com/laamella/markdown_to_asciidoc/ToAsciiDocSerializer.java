@@ -5,11 +5,9 @@ import org.pegdown.LinkRenderer;
 import org.pegdown.Printer;
 import org.pegdown.ast.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
+import static com.laamella.markdown_to_asciidoc.util.Joiner.join;
 import static org.parboiled.common.Preconditions.checkArgNotNull;
 
 public class ToAsciiDocSerializer implements Visitor {
@@ -291,21 +289,21 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(TableColumnNode node) {
-        switch (node.getAlignment()) {
-            case None:
-                break;
-            case Left:
-                printer.print(" align=\"left\"");
-                break;
-            case Right:
-                printer.print(" align=\"right\"");
-                break;
-            case Center:
-                printer.print(" align=\"center\"");
-                break;
-            default:
-                throw new IllegalStateException();
-        }
+//        switch (node.getAlignment()) {
+//            case None:
+//                break;
+//            case Left:
+//                printer.print("<");
+//                break;
+//            case Right:
+//                printer.print(">");
+//                break;
+//            case Center:
+//                printer.print("^");
+//                break;
+//            default:
+//                throw new IllegalStateException();
+//        }
     }
 
     public void visit(TableHeaderNode node) {
@@ -317,8 +315,52 @@ public class ToAsciiDocSerializer implements Visitor {
         inTableHeader = false;
     }
 
+    private boolean ifColumnsHaveAlignmentSpecified(List<TableColumnNode> columns) {
+        for (TableColumnNode column : columns) {
+            if(column.getAlignment() != TableColumnNode.Alignment.None) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private String getColumnAlignment(List<TableColumnNode> columns) {
+
+        List<String> result = new ArrayList<String>();
+
+        for (TableColumnNode column : columns) {
+            switch (column.getAlignment()) {
+                case None:
+                case Left:
+                    result.add("<");
+                    break;
+                case Right:
+                    result.add(">");
+                    break;
+                case Center:
+                    result.add("^");
+                    break;
+                default:
+                    throw new IllegalStateException();
+            }
+        }
+
+        return join(result, ",");
+    }
+
+
     public void visit(TableNode node) {
         currentTableNode = node;
+
+        List<TableColumnNode> columns = node.getColumns();
+
+        if(ifColumnsHaveAlignmentSpecified(columns)) {
+            printer.print("[cols=\"");
+            printer.print(getColumnAlignment(columns));
+            printer.print("\"]");
+            printer.println();
+        }
+
 
         printer.print("|===");
         visitChildren(node);
