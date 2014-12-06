@@ -59,3 +59,94 @@ Feature: Markup
     This is *_bold and italic_* text
     """
 
+  Scenario: Double angle bracket quoting
+    Given the Markdown source
+    """
+    <<hello>>
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    «hello»
+    """
+
+  Scenario: Double quoting
+    Given the Markdown source
+    """
+    "hello"
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    “hello”
+    """
+
+
+  Scenario: Single quoting
+    Given the Markdown source
+    """
+    'hello'
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    ‘hello’
+    """
+
+  Scenario: Apostroph
+    Given the Markdown source
+    """
+    a'a
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    a’a
+    """
+
+  Scenario: Ellipsis two
+    Given the Markdown source
+    """
+    a...a
+    a. . .a
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    a…a
+    a…a
+    """
+
+  Scenario: Em Dash
+    Given the Markdown source
+    """
+    a---a
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    a—a
+    """
+
+  Scenario: En Dash
+    Given the Markdown source
+    """
+    a--a
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    a–a
+    """
+
+  Scenario: Nbsp
+    Given the Markdown source
+    """
+    << a a >>
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    «{nbsp}a a{nbsp}»
+    """
+
