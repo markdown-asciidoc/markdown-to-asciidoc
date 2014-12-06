@@ -256,7 +256,9 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(StrikeNode node) {
-
+        printer.print("[line-through]").print('#');
+        visitChildren(node);
+        printer.print('#');
     }
 
     public void visit(TableBodyNode node) {
@@ -336,16 +338,12 @@ public class ToAsciiDocSerializer implements Visitor {
 
         printer.println();
 
-
-
         visitChildren(node);
 //        printIndentedTag(node, "tr");
 
         if(inTableHeader) {
             printer.println();
         }
-
-
     }
 
     public void visit(VerbatimNode node) {
@@ -355,7 +353,6 @@ public class ToAsciiDocSerializer implements Visitor {
         repeat('-', 4);
         printer.println();
         printer.printEncoded(node.getText());
-//        printer.println();
         repeat('-', 4);
         printer.println();
     }

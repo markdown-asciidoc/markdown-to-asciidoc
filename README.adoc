@@ -7,6 +7,23 @@ A small, lightweight converter for Markdown to http://www.asciidoc.org[AsciiDoc]
 Uses https://github.com/bodiam/markdown-to-asciidoc/tree/master/src/test/resources/com/laamella/markdown_to_asciidoc[Cucumber tests] as a reusable
 set to test conversion between Markdown and AsciiDoc.
 
+== Features
+
+Currently, the following are supported by the Markdown to AsciiDoc converter:
+
+* Code blocks
+* Definition lists
+* Headings
+* Lines
+* Links
+* Lists
+* Basic markup (bold, italic, monospaced, etc)
+* Tables
+
+Also, currently known *not* supported items are:
+
+* Nested lists
+
 == Uses
 
 Currently the conversion library is used in the https://plugins.jetbrains.com/plugin/7391[IntelliJ AsciiDoc Plugin] to seamlessly convert between

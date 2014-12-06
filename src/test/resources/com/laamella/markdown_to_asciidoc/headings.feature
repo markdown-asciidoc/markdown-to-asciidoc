@@ -16,6 +16,19 @@ Feature: Headings
 
     """
 
+  Scenario: Render a level 1 underscored heading
+    Given the Markdown source
+    """
+    Title
+    =====
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    = Title
+
+    """
+
   Scenario: Render a level 2 heading
     Given the Markdown source
     """
@@ -27,7 +40,20 @@ Feature: Headings
     == Title
 
     """
-    
+
+  Scenario: Render a level 2 underscored heading
+    Given the Markdown source
+    """
+    Title
+    -----
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    == Title
+
+    """
+
   Scenario: Render a level 3 heading
     Given the Markdown source
     """

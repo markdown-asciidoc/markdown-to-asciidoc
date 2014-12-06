@@ -175,11 +175,11 @@ Feature: Markup
   Scenario: Strikethrough
     Given the Markdown source
     """
-    ~~strike~~
+    This is ~~striked~~ text
     """
     When it is converted to AsciiDoc
     Then the result should match the AsciiDoc source
     """
-
+    This is [line-through]#striked# text
     """
 
