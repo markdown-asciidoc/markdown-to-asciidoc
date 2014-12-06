@@ -1,4 +1,5 @@
 # language: en
+@headings
 Feature: Headings
   In order to group content
   As a writer

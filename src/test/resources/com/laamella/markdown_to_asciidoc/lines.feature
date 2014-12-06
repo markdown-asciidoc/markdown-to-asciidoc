@@ -1,4 +1,5 @@
 # language: en
+@lines
 Feature: Lines
   In order to group content
   As a writer

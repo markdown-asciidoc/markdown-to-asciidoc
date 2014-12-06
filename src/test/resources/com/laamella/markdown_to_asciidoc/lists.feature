@@ -1,4 +1,5 @@
 # language: en
+@lists
 Feature: Lists
   In order to group content
   As a writer

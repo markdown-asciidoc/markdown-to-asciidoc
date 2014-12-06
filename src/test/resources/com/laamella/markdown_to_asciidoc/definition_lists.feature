@@ -1,4 +1,5 @@
 # language: en
+@definitionlists
 Feature: Definition lists
   In order to group content
   As a writer

@@ -76,6 +76,7 @@ public class ToAsciiDocSerializer implements Visitor {
 
     public void visit(CodeNode node) {
         printer.print('+');
+//        printer.printEncoded(node.getText());
         printer.printEncoded(node.getText());
         printer.print('+');
     }
@@ -348,11 +349,17 @@ public class ToAsciiDocSerializer implements Visitor {
 
     public void visit(VerbatimNode node) {
         printer.println();
-        printer.print("[source]");
+        String type = node.getType();
+        if(type.isEmpty()) {
+            printer.print("[source]");
+        } else {
+            printer.print("[source," + type + "]");
+        }
+
         printer.println();
         repeat('-', 4);
         printer.println();
-        printer.printEncoded(node.getText());
+        printer.print(node.getText());
         repeat('-', 4);
         printer.println();
     }

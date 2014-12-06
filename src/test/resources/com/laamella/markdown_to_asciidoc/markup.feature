@@ -1,4 +1,5 @@
 # language: en
+@markup
 Feature: Markup
   In order to group content
   As a writer
