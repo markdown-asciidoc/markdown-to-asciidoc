@@ -87,10 +87,8 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(DefinitionNode node) {
-
-        printer.print("    ");
+        repeat(' ', 4);
         visitChildren(node);
-//        printer.indent(-4);
         printer.println();
     }
 
