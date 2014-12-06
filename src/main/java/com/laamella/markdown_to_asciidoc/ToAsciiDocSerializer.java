@@ -81,16 +81,22 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(DefinitionListNode node) {
+        printer.print("[glossary]").println();
+
         visitChildren(node);
-        printer.print("::").println();
     }
 
     public void visit(DefinitionNode node) {
-        visitChildrenIndented(node);
+
+        printer.print("    ");
+        visitChildren(node);
+//        printer.indent(-4);
+        printer.println();
     }
 
     public void visit(DefinitionTermNode node) {
         visitChildren(node);
+        printer.print("::").println();
     }
 
     public void visit(ExpImageNode node) {
