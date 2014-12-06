@@ -17,24 +17,12 @@ import static org.junit.Assert.fail;
  * Converts the testsuite from https://github.com/karlcow/markdown-testsuite (run cat-all.py) to asciidoc, checks the output
  */
 public class TestSuite {
-    @Ignore
+//    @Ignore
     @Test
     public void test() {
-        PegDownProcessor processor = new PegDownProcessor();
-        char[] markDown = readToCharArray("testsuite.md");
-        RootNode rootNode = processor.parseMarkdown(markDown);
-        String asciiDoc = new ToAsciiDocSerializer().toAsciiDoc(rootNode);
+        String markDown = readToString("testsuite.md");
+        String asciiDoc = Converter.convertMarkdownToAsciiDoc(markDown);
         assertEquals(readToString("testsuite.adoc"), asciiDoc);
-    }
-
-    private char[] readToCharArray(String resourceName) {
-        URL url = getClass().getResource("/" + resourceName);
-        try {
-            return IOUtils.toCharArray(url.openStream());
-        } catch (IOException e) {
-            fail();
-            return null;
-        }
     }
 
     private String readToString(String resourceName) {

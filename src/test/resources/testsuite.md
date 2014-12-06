@@ -3,25 +3,11 @@ summary(cars$dist)
 summary(cars$speed)
 ```
 
-* item 1
-    * item 1.1
-    * item 1.2
-        * item 1.2.1
-        * item 1.2.2
-        * item 1.2.3
-* item 2
-
-Test:
-
-* Item 1
-* Item 2
-* Item 3
-
 # 2-paragraphs-hard-return-spaces
 
 This is a first paragraph,
 on multiple lines.
-     
+
 This is a second paragraph.
 There are spaces in between the two.
 
@@ -44,13 +30,13 @@ A second paragraph after 3 CR (carriage return).
 # 2-paragraphs-line-spaces
 
 This a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long paragraph on 1 line.
-     
+
 A few spaces and a new long long long long long long long long long long long long long long long long paragraph on 1 line.
 
 # 2-paragraphs-line-tab
 
 This a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long paragraph on 1 line.
-	
+
 1 tab to separate them and a new long long long long long long long long long long long long long long long long paragraph on 1 line.
 
 # 2-paragraphs-line
@@ -93,7 +79,7 @@ This is * an asterisk which should stay as is.
 # blockquote-added-markup
 
 > # heading level 1
-> 
+>
 > paragraph
 
 # blockquote-line-2-paragraphs
@@ -114,9 +100,9 @@ This is * an asterisk which should stay as is.
 
 # blockquote-multiline-1-space-end
 
->A blockquote 
->on multiple lines 
->like this. 
+>A blockquote
+>on multiple lines
+>like this.
 
 # blockquote-multiline-2-paragraphs
 
@@ -207,7 +193,7 @@ This is an H1
 
 # header-level1-hash-sign-trailing-2-spaces
 
-# this is an h1 with two trailing spaces  
+# this is an h1 with two trailing spaces
 A new paragraph.
 
 # header-level1-hash-sign
@@ -313,12 +299,12 @@ We love `<code> and &` for everything
 
 # line-break-2-spaces
 
-A first sentence  
+A first sentence
 and a line break.
 
 # line-break-5-spaces
 
-A first sentence     
+A first sentence
 and a line break.
 
 # link-automatic
@@ -469,11 +455,11 @@ This a very long long long long long long long long long long long long long lon
 
 # paragraph-trailing-leading-spaces
 
- This is a paragraph with a trailing and leading space. 
+ This is a paragraph with a trailing and leading space.
 
 # paragraph-trailing-tab
 
-This is a paragraph with 1 trailing tab.	
+This is a paragraph with 1 trailing tab.
 
 # paragraphs-2-leading-spaces
 
@@ -489,7 +475,7 @@ This is a paragraph with 1 trailing tab.
 
 # paragraphs-trailing-spaces
 
-This is a paragraph with a trailing space. 
+This is a paragraph with a trailing space.
 
 # strong-middle-word
 
