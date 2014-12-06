@@ -76,7 +76,6 @@ Feature: Markup
     This is *_bold and italic_* text
     """
 
-  @blockquotes
   Scenario: Blockquotes
     Given the Markdown source
     """
@@ -102,28 +101,49 @@ Feature: Markup
 
     """
 
-#  Scenario: Nested Blockquotes
-#    Given the Markdown source
-#    """
-#    > > What's new?
-#    >
-#    > I've got Markdown in my AsciiDoc!
-#    >
-#    > > Like what?
-#    >
-#    > * Blockquotes
-#    > * Headings
-#    > * Fenced code blocks
-#    >
-#    > > Is there more?
-#    >
-#    > Yep. AsciiDoc and Markdown share a lot of common syntax already.
-#    """
-#    When it is converted to AsciiDoc
-#    Then the result should match the AsciiDoc source
-#    """
-#    xxxx
-#    """
+  @blockquotes
+  Scenario: Nested Blockquotes
+    Given the Markdown source
+    """
+    > > What's new?
+    >
+    > I've got Markdown in my AsciiDoc!
+    >
+    > > Like what?
+    >
+    > * Blockquotes
+    > * Headings
+    > * Fenced code blocks
+    >
+    > > Is there more?
+    >
+    > Yep. AsciiDoc and Markdown share a lot of common syntax already.
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    ____
+    ________
+    What's new?
+    ________
+
+    I've got Markdown in my AsciiDoc!
+    ________
+    Like what?
+    ________
+
+
+    * Blockquotes
+    * Headings
+    * Fenced code blocks
+    ________
+    Is there more?
+    ________
+
+    Yep. AsciiDoc and Markdown share a lot of common syntax already.
+    ____
+
+    """
 
   Scenario: Superscript
     Given the Markdown source

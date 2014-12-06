@@ -22,6 +22,7 @@ public class ToAsciiDocSerializer implements Visitor {
 
     protected boolean inOrderedList;
     protected int bulletListLevel = 0;
+    protected int blockQuoteLevel = 0;
 
 
     public String toAsciiDoc(RootNode astRoot) {
@@ -57,10 +58,16 @@ public class ToAsciiDocSerializer implements Visitor {
 
     public void visit(BlockQuoteNode node) {
         printer.println();
-        repeat('_', 4);
+
+        blockQuoteLevel += 4;
+
+        repeat('_', blockQuoteLevel);
         visitChildren(node);
         printer.println();
-        repeat('_', 4);
+        repeat('_', blockQuoteLevel);
+
+        blockQuoteLevel -= 4;
+
         printer.println();
     }
 
