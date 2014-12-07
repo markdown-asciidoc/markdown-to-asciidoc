@@ -1,22 +1,41 @@
 apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'maven'
 
 group = 'com.laamella.markdown_to_asciidoc'
-version = '1.0-SNAPSHOT'
-
-description = """Markdown to AsciiDoc converter"""
-
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
+sourceCompatibility = targetCompatibility = 1.6
+defaultTasks 'check'
 
 repositories {
-        
-     maven { url "http://repo.maven.apache.org/maven2" }
+  if (project.hasProperty('useMavenLocal') && project.useMavenLocal.toBoolean()) {
+    mavenLocal()
+  }
+  mavenCentral()
 }
-dependencies {
-    compile group: 'org.pegdown', name: 'pegdown', version:'1.4.2'
 
-    testCompile group: 'info.cukes', name: 'cucumber-picocontainer', version:'1.1.8'
-    testCompile group: 'info.cukes', name: 'cucumber-junit', version:'1.1.8'
-    testCompile group: 'junit', name: 'junit', version:'4.12'
-    testCompile group: 'org.apache.commons', name: 'commons-io', version:'1.3.2'
+dependencies {
+  compile 'org.pegdown:pegdown:1.4.2'
+  testCompile 'info.cukes:cucumber-picocontainer:1.1.8'
+  testCompile 'info.cukes:cucumber-junit:1.1.8'
+  testCompile 'junit:junit:4.12'
+  testCompile 'org.apache.commons:commons-io:1.3.2'
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+  from sourceSets.main.allSource
+  classifier 'sources'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+  from javadoc.destinationDir
+  classifier 'javadoc'
+}
+
+startScripts {
+  applicationName = rootProject.name
+  mainClassName = 'com.laamella.markdown_to_asciidoc.Converter'
+}
+
+artifacts {
+  archives sourcesJar, javadocJar, distZip
 }
