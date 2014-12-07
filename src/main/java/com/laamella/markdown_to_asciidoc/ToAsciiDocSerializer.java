@@ -420,12 +420,6 @@ public class ToAsciiDocSerializer implements Visitor {
         }
     }
 
-    protected void visitChildrenIndented(SuperNode node) {
-        printer.println().indent(+2);
-        visitChildren(node);
-        printer.indent(-2).println();
-    }
-
     protected void printNodeSurroundedBy(AbstractNode node, String token) {
         printer.print(token);
         visitChildren(node);
