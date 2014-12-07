@@ -46,3 +46,27 @@ Feature: Tables
     |===
     """
 
+#    @table
+#  Scenario: Render a table with left, center and right align columns
+#    Given the Markdown source
+#    """
+#    |              | Grouping                    ||
+#    | First Header | Second Header | Third Header |
+#    | ------------ | :-----------: | -----------: |
+#    | Content      | *Long Cell*                 ||
+#    | Content      | **Cell**      | Cell         |
+#    | New section  | More          | Data         |
+#    """
+#    When it is converted to AsciiDoc
+#    Then the result should match the AsciiDoc source
+#    """
+#    [cols="<,^,>"]
+#    |===
+#    |  2+| Grouping
+#
+#    | Content 2+| _Long Cell_
+#    | Content   | *Cell* | Cell
+#    | New section | More | Data
+#    |===
+#    """
+
