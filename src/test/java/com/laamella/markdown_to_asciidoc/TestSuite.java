@@ -1,11 +1,7 @@
 package com.laamella.markdown_to_asciidoc;
 
 import org.apache.commons.io.IOUtils;
-import org.junit.Ignore;
 import org.junit.Test;
-import org.pegdown.LinkRenderer;
-import org.pegdown.PegDownProcessor;
-import org.pegdown.ast.RootNode;
 
 import java.io.IOException;
 import java.net.URL;
