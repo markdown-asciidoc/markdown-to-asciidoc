@@ -127,6 +127,11 @@ public class ToAsciiDocSerializer implements Visitor {
     public void visit(HtmlBlockNode node) {
         String text = node.getText();
         if (text.length() > 0) printer.println();
+
+        if(text.startsWith("<table")) {
+            // todo: convert html table to asciidoc table here.
+        }
+
         printer.print(text);
     }
 

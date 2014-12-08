@@ -46,6 +46,35 @@ Feature: Tables
     |===
     """
 
+#  @fixme @bug
+#  Scenario: Render a markdown HTML table
+#    Given the Markdown source
+#    """
+#    Care must be taken with slashes when specifying both the base URL and the relative URL as trailing and leading slashes have significant meaning. The following table illustrates the resolution of different types of URLs.
+#
+#    <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+#        <tr><th>Base</th><th>Navigating To</th><th>Result</th></tr>
+#        <tr><td>http://myapp.com/</td><td>abc</td><td>http://myapp.com/abc</td></tr>
+#        <tr><td>http://myapp.com</td><td>abc</td><td>http://myapp.comabc</td></tr>
+#    </table>
+#
+#    It is usually most desirable to define your base urls with trailing slashes and not to use leading slashes on relative URLs.
+#    """
+#    When it is converted to AsciiDoc
+#    Then the result should match the AsciiDoc source
+#    """
+#    Care must be taken with slashes when specifying both the base URL and the relative URL as trailing and leading slashes have significant meaning. The following table illustrates the resolution of different types of URLs.
+#
+#    |===
+#    |Base |Navigating To |Result
+#
+#    |http://myapp.com/ | abc | http://myapp.com/abc
+#    |http://myapp.com | abc | http://myapp.comabc
+#    |===
+#
+#    It is usually most desirable to define your base urls with trailing slashes and not to use leading slashes on relative URLs.
+#    """
+
 #    @table
 #  Scenario: Render a table with left, center and right align columns
 #    Given the Markdown source
