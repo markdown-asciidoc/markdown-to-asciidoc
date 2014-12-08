@@ -355,15 +355,15 @@ image:http://www.w3.org/html/logo/img/mark-word-icon.png[HTML5]
 
 = inline-code-escaping-entities
 
-We love +&lt;code&gt; and &amp;+ for everything
+We love `&lt;code&gt; and &amp;` for everything
 
 = inline-code-with-visible-backtick
 
-+We love `code` for everything+
+`We love `code` for everything`
 
 = inline-code
 
-+We love `code` for everything+
+`We love `code` for everything`
 
 = line-break-2-spaces
 
