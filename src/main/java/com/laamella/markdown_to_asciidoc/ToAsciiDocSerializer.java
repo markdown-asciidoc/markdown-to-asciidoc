@@ -78,9 +78,9 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(CodeNode node) {
-        printer.print('+');
+        printer.print('`');
         printer.printEncoded(node.getText());
-        printer.print('+');
+        printer.print('`');
     }
 
     public void visit(DefinitionListNode node) {

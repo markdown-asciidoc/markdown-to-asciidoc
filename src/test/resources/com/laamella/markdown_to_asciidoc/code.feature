@@ -89,6 +89,6 @@ Feature: Code
     When it is converted to AsciiDoc
     Then the result should match the AsciiDoc source
     """
-    We defined the +add+ function to
+    We defined the `add` function to
     """
 

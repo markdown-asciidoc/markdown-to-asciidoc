@@ -62,7 +62,7 @@ Feature: Markup
     When it is converted to AsciiDoc
     Then the result should match the AsciiDoc source
     """
-    +Mono text+
+    `Mono text`
     """
 
   Scenario: Make text bold and italic
