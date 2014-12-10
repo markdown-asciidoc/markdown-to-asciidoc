@@ -85,10 +85,12 @@ Feature: Code
     Given the Markdown source
     """
     We defined the `add` function to
+
     """
     When it is converted to AsciiDoc
     Then the result should match the AsciiDoc source
     """
     We defined the `add` function to
+
     """
 

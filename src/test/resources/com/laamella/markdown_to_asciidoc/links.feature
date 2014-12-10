@@ -9,11 +9,13 @@ Feature: Links
     Given the Markdown source
     """
     This is [an example](http://example.com/) inline link.
+
     """
     When it is converted to AsciiDoc
     Then the result should match the AsciiDoc source
     """
     This is http://example.com/[an example] inline link.
+
     """
 
   Scenario: Render a reference style link with link definition
@@ -27,6 +29,7 @@ Feature: Links
     Then the result should match the AsciiDoc source
     """
     The link:/projects/markdown/syntax[syntax page] provides complete, detailed documentation for
+
     """
 
   Scenario: Render a reference style link with link text
@@ -40,6 +43,7 @@ Feature: Links
     Then the result should match the AsciiDoc source
     """
     The http://www.syntaxpage.com[syntax page] provides complete, detailed documentation for
+
     """
 
   Scenario: Render an reference style image
@@ -53,17 +57,22 @@ Feature: Links
     Then the result should match the AsciiDoc source
     """
     image:images/icons/home.png[Alt text]
+
     """
 
   Scenario: Render an inline image with parameters
     Given the Markdown source
     """
     ![Alt text](images/icons/home.png)
+
     ![Alt text](images/icons/home.png?width=100)
+
     """
     When it is converted to AsciiDoc
     Then the result should match the AsciiDoc source
     """
     image:images/icons/home.png[Alt text]
+
     image:images/icons/home.png?width=100[Alt text]
+
     """

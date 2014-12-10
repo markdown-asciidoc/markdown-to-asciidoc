@@ -49,3 +49,55 @@ Feature: Lists
     1. Item 2
     1. Item 3
     """
+
+  Scenario: Render an unorder list with a link
+    Given the Markdown source
+    """
+    There is a Maven example project available.
+
+    * [http://github.com/geb/geb-example-maven](https://github.com/geb/geb-example-maven)
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    There is a Maven example project available.
+
+    * https://github.com/geb/geb-example-maven[http://github.com/geb/geb-example-maven]
+    """
+
+#  @bug
+#  Scenario: Render 4 numbered items with a code block
+#    Given the Markdown source
+#    """
+#    1. Use the `browser` object explicitly (made available by the testing adapters)
+#    2. Use the page instance returned by the `to()` and `at()` methods instead of calling through the browser
+#    3. Use methods on the `Page` classes instead of the `content {}` block and dynamic properties
+#    4. If you need to use content definition options like `required:` and `wait:` then you can still reference content elements defined using the DSL in methods on `Page` and `Module` classes as usual, e.g.:
+#
+#        static content = {
+#            async(wait: true) { $(".async") }
+#        }
+#
+#        String asyncText() {
+#            async.text() // Wait here for the async definition to return a non-empty Navigator...
+#        }
+#    Using this “typed” style is not an all or nothing proposition.
+#    """
+#    When it is converted to AsciiDoc
+#    Then the result should match the AsciiDoc source
+#    """
+#    1. Use the `browser` object explicitly (made available by the testing adapters)
+#    1. Use the page instance returned by the `to()` and `at()` methods instead of calling through the browser
+#    1. Use methods on the `Page` classes instead of the `content {}` block and dynamic properties
+#    1. If you need to use content definition options like `required:` and `wait:` then you can still reference content elements defined using the DSL in methods on `Page` and `Module` classes as usual, e.g.:
+#
+#        static content = {
+#            async(wait: true) { $(".async") }
+#        }
+#
+#        String asyncText() {
+#            async.text() // Wait here for the async definition to return a non-empty Navigator...
+#        }
+#
+#    Using this “typed” style is not an all or nothing proposition.
+#    """

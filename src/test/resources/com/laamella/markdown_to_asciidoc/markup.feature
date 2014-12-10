@@ -14,7 +14,64 @@ Feature: Markup
     Then the result should match the AsciiDoc source
     """
     Normal text
+
     """
+
+  Scenario: Don't apply formatting for one line over multiple lines
+    Given the Markdown source
+    """
+    Normal text
+    Normal text
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    Normal text
+    Normal text
+
+    """
+
+  Scenario: Don't apply formatting for multiple lines
+    Given the Markdown source
+    """
+    Normal text
+
+    Normal text
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    Normal text
+
+    Normal text
+
+    """
+
+  Scenario: Don't apply formatting for multiple lines
+    Given the Markdown source
+    """
+    The support provides:
+
+    * Understanding of implicit browser methods (e.g. `to()`, `at()`) in test classes (e.g. `extends GebSpec`)
+    * Understanding of content defined via the Content DSL (within `Page` and `Module` classes only)
+    * Completion in `at {}` and `content {}` blocks
+
+    This effectively enables more authoring support with less explicit type information. The Geb development team would like to thank the good folks at JetBrains for adding this explicit support for Geb to IDEA.
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    The support provides:
+
+    * Understanding of implicit browser methods (e.g. `to()`, `at()`) in test classes (e.g. `extends GebSpec`)
+    * Understanding of content defined via the Content DSL (within `Page` and `Module` classes only)
+    * Completion in `at {}` and `content {}` blocks
+
+    This effectively enables more authoring support with less explicit type information. The Geb development team would like to thank the good folks at JetBrains for adding this explicit support for Geb to IDEA.
+
+    """
+
+
 
 #  @fixme
 #  Scenario: Escaped characters
@@ -39,6 +96,7 @@ Feature: Markup
     """
     *Bold text*
     *Bold text*
+
     """
 
   Scenario: Make text italic
@@ -52,6 +110,7 @@ Feature: Markup
     """
     _Italic text_
     _Italic text_
+
     """
 
   Scenario: Make text mono
@@ -63,6 +122,7 @@ Feature: Markup
     Then the result should match the AsciiDoc source
     """
     `Mono text`
+
     """
 
   Scenario: Make text bold and italic
@@ -74,6 +134,7 @@ Feature: Markup
     Then the result should match the AsciiDoc source
     """
     This is *_bold and italic_* text
+
     """
 
   Scenario: Blockquotes
@@ -90,13 +151,18 @@ Feature: Markup
     Then the result should match the AsciiDoc source
     """
     ____
+
     Blockquotes are very handy in email to emulate reply text.
     This line is part of the same quote.
+
     ____
 
     Quote break.
+
     ____
+
     This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can _put_ *Markdown* into a blockquote.
+
     ____
 
     """
@@ -124,22 +190,30 @@ Feature: Markup
     """
     ____
     ________
+
     What's new?
+
     ________
 
     I've got Markdown in my AsciiDoc!
+
     ________
+
     Like what?
+
     ________
 
     * Blockquotes
     * Headings
     * Fenced code blocks
     ________
+
     Is there more?
+
     ________
 
     Yep. AsciiDoc and Markdown share a lot of common syntax already.
+
     ____
 
     """
@@ -153,6 +227,7 @@ Feature: Markup
     Then the result should match the AsciiDoc source
     """
     superscript^2^
+
     """
 
   Scenario: Subscript
@@ -164,6 +239,7 @@ Feature: Markup
     Then the result should match the AsciiDoc source
     """
     CO~2~
+
     """
 
   Scenario: Double angle bracket quoting
@@ -175,6 +251,7 @@ Feature: Markup
     Then the result should match the AsciiDoc source
     """
     «hello»
+
     """
 
   Scenario: Double quoting
@@ -186,6 +263,7 @@ Feature: Markup
     Then the result should match the AsciiDoc source
     """
     "hello"
+
     """
 
 
@@ -198,6 +276,7 @@ Feature: Markup
     Then the result should match the AsciiDoc source
     """
     'hello'
+
     """
 
   Scenario: Apostroph
@@ -209,6 +288,7 @@ Feature: Markup
     Then the result should match the AsciiDoc source
     """
     a'a
+
     """
 
   Scenario: Ellipsis two
@@ -222,6 +302,7 @@ Feature: Markup
     """
     a…a
     a…a
+
     """
 
   Scenario: Em Dash
@@ -233,6 +314,7 @@ Feature: Markup
     Then the result should match the AsciiDoc source
     """
     a—a
+
     """
 
   Scenario: En Dash
@@ -244,6 +326,7 @@ Feature: Markup
     Then the result should match the AsciiDoc source
     """
     a–a
+
     """
 
   Scenario: Nbsp
@@ -255,6 +338,7 @@ Feature: Markup
     Then the result should match the AsciiDoc source
     """
     «{nbsp}a a{nbsp}»
+
     """
 
   Scenario: Strikethrough
@@ -266,5 +350,6 @@ Feature: Markup
     Then the result should match the AsciiDoc source
     """
     This is [line-through]#striked# text
+
     """
 

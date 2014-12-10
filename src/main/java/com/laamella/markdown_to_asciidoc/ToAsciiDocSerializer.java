@@ -1,5 +1,6 @@
 package com.laamella.markdown_to_asciidoc;
 
+import com.laamella.markdown_to_asciidoc.code.Linguist;
 import com.laamella.markdown_to_asciidoc.html.TableToAsciiDoc;
 import org.parboiled.common.StringUtils;
 import org.pegdown.LinkRenderer;
@@ -25,11 +26,19 @@ public class ToAsciiDocSerializer implements Visitor {
     protected int bulletListLevel = 0;
     protected int blockQuoteLevel = 0;
 
+    // Experimental feature.
+    protected boolean autoDetectLanguageType;
+    protected Linguist linguist = new Linguist();
+
+    public ToAsciiDocSerializer() {
+        this.linguist = new Linguist();
+        this.autoDetectLanguageType = false;
+    }
 
     public String toAsciiDoc(RootNode astRoot) {
         checkArgNotNull(astRoot, "astRoot");
         astRoot.accept(this);
-        return printer.getString();
+        return normalizeWhitelines(printer.getString());
     }
 
     public void visit(RootNode node) {
@@ -130,8 +139,8 @@ public class ToAsciiDocSerializer implements Visitor {
         if (text.length() > 0) printer.println();
 
         if(text.startsWith("<table")) {
-            printer.println();
             printer.print(TableToAsciiDoc.convert(text));
+//            printer.println();
         }
 
         //printer.print(text);
@@ -167,8 +176,9 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(ParaNode node) {
-        printer.println();
+        printer.println().println();
         visitChildren(node);
+        printer.println();
     }
 
     public void visit(QuotedNode node) {
@@ -358,6 +368,7 @@ public class ToAsciiDocSerializer implements Visitor {
         visitChildren(node);
         printer.println();
         printer.print("|===");
+        printer.println();
 
         currentTableNode = null;
     }
@@ -377,7 +388,14 @@ public class ToAsciiDocSerializer implements Visitor {
 
     public void visit(VerbatimNode node) {
         printer.println();
+
         String type = node.getType();
+        String text = node.getText();
+
+        if(autoDetectLanguageType) {
+            type = linguist.detectLanguage(text);
+        }
+
         if(type.isEmpty()) {
             printer.print("[source]");
         } else {
@@ -387,7 +405,7 @@ public class ToAsciiDocSerializer implements Visitor {
         printer.println();
         repeat('-', 4);
         printer.println();
-        printer.print(node.getText());
+        printer.print(text);
         repeat('-', 4);
         printer.println();
     }
@@ -470,6 +488,11 @@ public class ToAsciiDocSerializer implements Visitor {
             sb.append(Character.toLowerCase(c));
         }
         return sb.toString();
+    }
+
+    protected String normalizeWhitelines(String text) {
+        // replace all double or more empty lines with single empty lines
+        return text.replaceAll("(?m)^[ \t]*\r?\n{2,}", "\n");
     }
 
     protected void printWithAbbreviations(String string) {
