@@ -1,5 +1,6 @@
 package com.laamella.markdown_to_asciidoc;
 
+import com.laamella.markdown_to_asciidoc.html.TableToAsciiDoc;
 import org.parboiled.common.StringUtils;
 import org.pegdown.LinkRenderer;
 import org.pegdown.Printer;
@@ -129,10 +130,11 @@ public class ToAsciiDocSerializer implements Visitor {
         if (text.length() > 0) printer.println();
 
         if(text.startsWith("<table")) {
-            // todo: convert html table to asciidoc table here.
+            printer.println();
+            printer.print(TableToAsciiDoc.convert(text));
         }
 
-        printer.print(text);
+        //printer.print(text);
     }
 
     public void visit(InlineHtmlNode node) {
