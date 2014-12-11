@@ -19,7 +19,6 @@ Feature: Definition lists
     Apple::
         Pomaceous fruit of plants of the genus Malus in
     the family Rosaceae.
-
     """
 
   Scenario: Render a multiple definition lists
@@ -41,7 +40,6 @@ Feature: Definition lists
     the family Rosaceae.
     Orange::
         The fruit of an evergreen tree of the genus Citrus.
-
     """
 
 

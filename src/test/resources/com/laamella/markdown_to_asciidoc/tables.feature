@@ -22,7 +22,6 @@ Feature: Tables
     |Cell in column 1, row 1 |Cell in column 2, row 1
     |Cell in column 1, row 2 |Cell in column 2, row 2
     |===
-
     """
 
   Scenario: Render a table with left, center and right align columns
@@ -45,7 +44,6 @@ Feature: Tables
     |col 2 is |centered |$12
     |zebra stripes |are neat |$1
     |===
-
     """
 
   Scenario: Render a markdown HTML table
@@ -74,7 +72,6 @@ Feature: Tables
     |===
 
     It is usually most desirable to define your base urls with trailing slashes and not to use leading slashes on relative URLs.
-
     """
 
 #    @table

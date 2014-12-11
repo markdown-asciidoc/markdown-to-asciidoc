@@ -21,7 +21,6 @@ Feature: Code
     summary(cars$dist)
     summary(cars$speed)
     ----
-
     """
 
   Scenario: Render a code block without language with HTML
@@ -40,7 +39,6 @@ Feature: Code
     No language indicated, so no syntax highlighting.
     But let's throw in a <b>tag</b>.
     ----
-
     """
 
   Scenario: Render a javascript code block
@@ -59,7 +57,6 @@ Feature: Code
     var s = "JavaScript syntax highlighting";
     alert(s);
     ----
-
     """
 
   Scenario: Render a python code block
@@ -78,19 +75,16 @@ Feature: Code
     s = "Python syntax highlighting"
     print s
     ----
-
     """
 
   Scenario: Render inline code
     Given the Markdown source
     """
     We defined the `add` function to
-
     """
     When it is converted to AsciiDoc
     Then the result should match the AsciiDoc source
     """
     We defined the `add` function to
-
     """
 

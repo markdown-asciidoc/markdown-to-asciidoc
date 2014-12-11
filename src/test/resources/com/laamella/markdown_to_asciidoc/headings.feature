@@ -14,7 +14,6 @@ Feature: Headings
     Then the result should match the AsciiDoc source
     """
     = Title
-
     """
 
   Scenario: Render a level 1 underscored heading
@@ -27,7 +26,6 @@ Feature: Headings
     Then the result should match the AsciiDoc source
     """
     = Title
-
     """
 
   Scenario: Render a level 2 heading
@@ -39,7 +37,6 @@ Feature: Headings
     Then the result should match the AsciiDoc source
     """
     == Title
-
     """
 
   Scenario: Render a level 2 underscored heading
@@ -52,7 +49,6 @@ Feature: Headings
     Then the result should match the AsciiDoc source
     """
     == Title
-
     """
 
   Scenario: Render a level 3 heading
@@ -64,7 +60,6 @@ Feature: Headings
     Then the result should match the AsciiDoc source
     """
     == Title
-
     """
     
   Scenario: Render a level 4 heading
@@ -76,7 +71,6 @@ Feature: Headings
     Then the result should match the AsciiDoc source
     """
     ==== Title
-
     """
     
   Scenario: Render a level 5 heading
@@ -88,7 +82,6 @@ Feature: Headings
     Then the result should match the AsciiDoc source
     """
     ===== Title
-
     """
     
   Scenario: Render a level 6 heading
@@ -100,7 +93,6 @@ Feature: Headings
     Then the result should match the AsciiDoc source
     """
     ====== Title
-
     """
 
   Scenario: Render a heading with different styling
@@ -112,5 +104,4 @@ Feature: Headings
     Then the result should match the AsciiDoc source
     """
     = Title
-
     """

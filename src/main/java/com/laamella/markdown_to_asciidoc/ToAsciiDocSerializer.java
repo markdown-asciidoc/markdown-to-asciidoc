@@ -67,13 +67,14 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(BlockQuoteNode node) {
-        printer.println();
+        printer.println().println();
 
         blockQuoteLevel += 4;
 
         repeat('_', blockQuoteLevel);
-        visitChildren(node);
         printer.println();
+        visitChildren(node);
+        printer.println().println();
         repeat('_', blockQuoteLevel);
 
         blockQuoteLevel -= 4;
@@ -125,7 +126,7 @@ public class ToAsciiDocSerializer implements Visitor {
         repeat('=', node.getLevel());
         printer.print(' ');
         visitChildren(node);
-        printer.println();
+        printer.println().println();
     }
 
     private void repeat(char c, int times) {
@@ -140,7 +141,7 @@ public class ToAsciiDocSerializer implements Visitor {
 
         if(text.startsWith("<table")) {
             printer.print(TableToAsciiDoc.convert(text));
-//            printer.println();
+            printer.println();
         }
 
         //printer.print(text);
@@ -178,7 +179,7 @@ public class ToAsciiDocSerializer implements Visitor {
     public void visit(ParaNode node) {
         printer.println().println();
         visitChildren(node);
-        printer.println();
+        printer.println().println();
     }
 
     public void visit(QuotedNode node) {
@@ -407,7 +408,7 @@ public class ToAsciiDocSerializer implements Visitor {
         printer.println();
         printer.print(text);
         repeat('-', 4);
-        printer.println();
+        printer.println().println();
     }
 
     public void visit(WikiLinkNode node) {
@@ -492,7 +493,7 @@ public class ToAsciiDocSerializer implements Visitor {
 
     protected String normalizeWhitelines(String text) {
         // replace all double or more empty lines with single empty lines
-        return text.replaceAll("(?m)^[ \t]*\r?\n{2,}", "\n");
+        return text.replaceAll("(?m)^[ \t]*\r?\n{2,}", "\n").trim();
     }
 
     protected void printWithAbbreviations(String string) {
