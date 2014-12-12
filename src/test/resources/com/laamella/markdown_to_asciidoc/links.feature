@@ -69,3 +69,26 @@ Feature: Links
 
     image:images/icons/home.png?width=100[Alt text]
     """
+
+  Scenario: Render a hyperlinked inline image with alt text
+    Given the Markdown source
+    """
+    [![Build Status](https://travis-ci.org/asciidoctor/asciidoctor.png)](https://travis-ci.org/asciidoctor/asciidoctor)
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    image:https://travis-ci.org/asciidoctor/asciidoctor.png[Build Status,link=https://travis-ci.org/asciidoctor/asciidoctor]
+    """
+
+  #failing
+  #Scenario: Render a hyperlinked inline image with no alt text
+  #  Given the Markdown source
+  #  """
+  #  [![](https://travis-ci.org/asciidoctor/asciidoctor.png)](https://travis-ci.org/asciidoctor/asciidoctor)
+  #  """
+  #  When it is converted to AsciiDoc
+  #  Then the result should match the AsciiDoc source
+  #  """
+  #  image:https://travis-ci.org/asciidoctor/asciidoctor.png[link=https://travis-ci.org/asciidoctor/asciidoctor]
+  #  """
