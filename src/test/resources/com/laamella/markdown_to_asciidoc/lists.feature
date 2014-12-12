@@ -45,9 +45,9 @@ Feature: Lists
     When it is converted to AsciiDoc
     Then the result should match the AsciiDoc source
     """
-    1. Item 1
-    1. Item 2
-    1. Item 3
+    . Item 1
+    . Item 2
+    . Item 3
     """
 
   Scenario: Render an unorder list with a link
@@ -86,10 +86,10 @@ Feature: Lists
 #    When it is converted to AsciiDoc
 #    Then the result should match the AsciiDoc source
 #    """
-#    1. Use the `browser` object explicitly (made available by the testing adapters)
-#    1. Use the page instance returned by the `to()` and `at()` methods instead of calling through the browser
-#    1. Use methods on the `Page` classes instead of the `content {}` block and dynamic properties
-#    1. If you need to use content definition options like `required:` and `wait:` then you can still reference content elements defined using the DSL in methods on `Page` and `Module` classes as usual, e.g.:
+#    . Use the `browser` object explicitly (made available by the testing adapters)
+#    . Use the page instance returned by the `to()` and `at()` methods instead of calling through the browser
+#    . Use methods on the `Page` classes instead of the `content {}` block and dynamic properties
+#    . If you need to use content definition options like `required:` and `wait:` then you can still reference content elements defined using the DSL in methods on `Page` and `Module` classes as usual, e.g.:
 #
 #        static content = {
 #            async(wait: true) { $(".async") }

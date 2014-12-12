@@ -154,7 +154,7 @@ public class ToAsciiDocSerializer implements Visitor {
     public void visit(ListItemNode node) {
         printer.println();
         if(inOrderedList) {
-            printer.print("1. ");
+            printer.print(". ");
         } else {
             repeat('*', bulletListLevel);
             printer.print(" ");
