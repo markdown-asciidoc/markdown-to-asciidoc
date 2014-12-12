@@ -298,7 +298,18 @@ public class ToAsciiDocSerializer implements Visitor {
         List<TableColumnNode> columns = currentTableNode.getColumns();
         TableColumnNode column = columns.get(Math.min(currentTableColumn, columns.size() - 1));
 
-        printer.print("|");
+        String pstr = printer.getString();
+        if (pstr.length() > 0) {
+            if (pstr.endsWith("\n") || pstr.endsWith(" ")) {
+                printer.print("|");
+            }
+            else {
+                printer.print(" |");
+            }
+        }
+        else {
+            printer.print("|");
+        }
         column.accept(this);
         if (node.getColSpan() > 1) printer.print(" colspan=\"").print(Integer.toString(node.getColSpan())).print('"');
         visitChildren(node);
