@@ -50,7 +50,22 @@ Feature: Lists
     . Item 3
     """
 
-  Scenario: Render an unorder list with a link
+  Scenario: Render a nested ordered list
+    Given the Markdown source
+    """
+    1. Item 1
+        1. Item 1.1
+        1. Item 1.2
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    . Item 1
+    .. Item 1.1
+    .. Item 1.2
+    """
+
+  Scenario: Render an unordered list with a link
     Given the Markdown source
     """
     There is a Maven example project available.

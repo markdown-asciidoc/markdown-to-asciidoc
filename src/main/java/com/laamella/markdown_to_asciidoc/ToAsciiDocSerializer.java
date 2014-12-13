@@ -24,6 +24,7 @@ public class ToAsciiDocSerializer implements Visitor {
 
     protected boolean inOrderedList;
     protected int bulletListLevel = 0;
+    protected int orderedListLevel = 0;
     protected int blockQuoteLevel = 0;
 
     // Experimental feature.
@@ -165,7 +166,8 @@ public class ToAsciiDocSerializer implements Visitor {
     public void visit(ListItemNode node) {
         printer.println();
         if(inOrderedList) {
-            printer.print(". ");
+            repeat('.', orderedListLevel);
+            printer.print(" ");
         } else {
             repeat('*', bulletListLevel);
             printer.print(" ");
@@ -181,8 +183,9 @@ public class ToAsciiDocSerializer implements Visitor {
     public void visit(OrderedListNode node) {
         inOrderedList = true;
 
-        printer.println();
+        orderedListLevel = orderedListLevel + 1;
         visitChildren(node);
+        orderedListLevel = orderedListLevel - 1;
 
         inOrderedList = false;
     }
