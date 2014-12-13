@@ -24,6 +24,24 @@ Feature: Tables
     |===
     """
 
+  # NOTE we are still getting trailing space at the end of lines
+  Scenario: Leave a trailing space at the end of each adjacent cell
+    Given the Markdown source
+    """
+    | Browser | Tablet |  Smartphone |
+    | ------- | ------ | ---------- |
+    | Safari 5.1+| iPad 2+ |  iOS 6+ |
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    |===
+    |Browser |Tablet |Smartphone 
+
+    |Safari 5.1+ |iPad 2+ |iOS 6+ 
+    |===
+    """
+
   Scenario: Render a table with left, center and right align columns
     Given the Markdown source
     """
