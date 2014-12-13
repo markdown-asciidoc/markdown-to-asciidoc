@@ -22,7 +22,7 @@ public class ToAsciiDocSerializer implements Visitor {
     protected int currentTableColumn;
     protected boolean inTableHeader;
 
-    protected boolean inOrderedList;
+    protected char listToken;
     protected int listLevel = 0;
     protected int blockQuoteLevel = 0;
 
@@ -83,7 +83,7 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(BulletListNode node) {
-        inOrderedList = false;
+        listToken = '*';
         listLevel = listLevel + 1;
         visitChildren(node);
         listLevel = listLevel - 1;
@@ -165,14 +165,9 @@ public class ToAsciiDocSerializer implements Visitor {
 
     public void visit(ListItemNode node) {
         printer.println();
-        if(inOrderedList) {
-            repeat('.', listLevel);
-            printer.print(" ");
-        } else {
-            repeat('*', listLevel);
-            printer.print(" ");
+        repeat(listToken, listLevel);
+        printer.print(" ");
 
-        }
         visitChildren(node);
     }
 
@@ -181,7 +176,7 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(OrderedListNode node) {
-        inOrderedList = true;
+        listToken = '.';
 
         listLevel = listLevel + 1;
         visitChildren(node);
