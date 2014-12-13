@@ -65,6 +65,32 @@ Feature: Lists
     .. Item 1.2
     """
 
+    @bug
+  Scenario: Render a nested ordered list combined with unordered list
+    Given the Markdown source
+    """
+    1. Item 1
+        1. Item 11
+            * bullet 111
+            * bullet 112
+                * bullet 1121
+                    1. Item 11211
+        1. Item 12
+    1. Item 2
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    . Item 1
+    .. Item 11
+    *** bullet 111
+    *** bullet 112
+    **** bullet 1121
+    ..... Item 11211
+    .. Item 12
+    . Item 2
+    """
+
   Scenario: Render an unordered list with a link
     Given the Markdown source
     """
