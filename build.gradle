@@ -41,3 +41,11 @@ startScripts {
 artifacts {
   archives sourcesJar, javadocJar, distZip
 }
+
+apply plugin: 'eclipse'
+
+eclipse {
+  classpath {
+    defaultOutputDir = file('build/eclipse')
+  }
+}
