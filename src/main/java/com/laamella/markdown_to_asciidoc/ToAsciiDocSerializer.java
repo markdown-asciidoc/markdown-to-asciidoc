@@ -474,15 +474,21 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     protected void printLink(LinkRenderer.Rendering rendering) {
+        String uri = rendering.href;
+        String text = rendering.text;
 
-        String link = rendering.href;
-
-        if(!link.contains("://")) {
-            link = "link:" + link;
+        if (uri.startsWith("#")) {
+            printer.print("<<").print(uri.substring(1)).print(',').print(text).print(">>");
         }
-
-        printer.print(link);
-        printer.print('[').print(rendering.text).print("]");
+        else {
+            if (!uri.contains("://")) {
+                uri = "link:" + uri;
+            }
+            printer.print(uri);
+            if (!uri.equals(text)) {
+                printer.print('[').print(text).print("]");
+            }
+        }
     }
 
     protected String printChildrenToString(SuperNode node) {

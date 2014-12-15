@@ -5,6 +5,17 @@ Feature: Links
   As a writer
   I want to be able to create links
 
+  Scenario: Render an implicit inline link
+    Given the Markdown source
+    """
+    Use [http://example.com](http://example.com) for sample links in documentation.
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    Use http://example.com for sample links in documentation.
+    """
+
   Scenario: Render an inline link
     Given the Markdown source
     """
@@ -40,6 +51,17 @@ Feature: Links
     Then the result should match the AsciiDoc source
     """
     The http://www.syntaxpage.com[syntax page] provides complete, detailed documentation for
+    """
+
+  Scenario: Render an internal link using the cross reference syntax
+    Given the Markdown source
+    """
+    Refer to [Quick start](#quick-start) to learn how to get started.
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    Refer to <<quick-start,Quick start>> to learn how to get started.
     """
 
   Scenario: Render an reference style image
