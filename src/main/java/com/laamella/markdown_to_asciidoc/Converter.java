@@ -42,6 +42,6 @@ public class Converter {
         PegDownProcessor processor = new PegDownProcessor(Extensions.ALL);
         char[] markDown = markdown.toCharArray();
         RootNode rootNode = processor.parseMarkdown(markDown);
-        return new ToAsciiDocSerializer(rootNode).toAsciiDoc();
+        return new ToAsciiDocSerializer(rootNode, markdown).toAsciiDoc();
     }
 }
