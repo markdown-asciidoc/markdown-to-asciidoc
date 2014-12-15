@@ -29,16 +29,23 @@ public class ToAsciiDocSerializer implements Visitor {
     // Experimental feature.
     protected boolean autoDetectLanguageType;
     protected Linguist linguist = new Linguist();
+    
+    protected RootNode rootNode;
 
-    public ToAsciiDocSerializer() {
+    public ToAsciiDocSerializer(RootNode rootNode) {
+    	this.printer = new Printer();
         this.linguist = new Linguist();
         this.autoDetectLanguageType = false;
+        checkArgNotNull(rootNode, "rootNode");
+        this.rootNode = rootNode;
     }
 
-    public String toAsciiDoc(RootNode astRoot) {
-        checkArgNotNull(astRoot, "astRoot");
-        astRoot.accept(this);
-        return normalizeWhitelines(printer.getString());
+    public String toAsciiDoc() {
+    	cleanAst(rootNode);
+        rootNode.accept(this);
+        String result = normalizeWhitelines(printer.getString());
+        printer.clear();
+        return result;
     }
 
     public void visit(RootNode node) {
@@ -115,23 +122,24 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(ExpImageNode node) {
-        String text = printChildrenToString(node);
-        printImageTag(linkRenderer.render(node, text));
+    	String text = printChildrenToString(node);
+    	LinkRenderer.Rendering imageRenderer = linkRenderer.render(node, text);
+    	Node linkNode;
+    	if ((linkNode = findParentNode(node, rootNode)) instanceof ExpLinkNode) {
+    		printImageTagWithLink(imageRenderer, linkRenderer.render((ExpLinkNode) linkNode, null));
+    	}
+    	else {
+          printImageTag(linkRenderer.render(node, text));
+    	}
     }
 
     public void visit(ExpLinkNode node) {
         String text = printChildrenToString(node);
-        LinkRenderer.Rendering link = linkRenderer.render(node, text);
         if (text.startsWith("image:")) {
-            if (text.endsWith("[]")) {
-                printer.print(text.substring(0, text.length() - 1) + "link=" + link.href + "]");
-            }
-            else {
-                printer.print(text.substring(0, text.length() - 1) + ",link=" + link.href + "]");
-            }
+        	printer.print(text);
         }
         else {
-            printLink(link);
+        	printLink(linkRenderer.render(node, text));
         }
     }
 
@@ -186,7 +194,9 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(ParaNode node) {
-        printer.println().println();
+    	if (!isListItemText(node)) {
+    		printer.println().println();
+    	}
         visitChildren(node);
         printer.println().println();
     }
@@ -460,6 +470,25 @@ public class ToAsciiDocSerializer implements Visitor {
             child.accept(this);
         }
     }
+    
+    
+    /**
+     * Removes superfluous nodes from the tree.
+     */
+    protected void cleanAst(Node node) {
+    	List<Node> children = node.getChildren();
+    	for (int i = 0, len = children.size(); i < len; i++) {
+    		Node c = children.get(i);
+    		if (c instanceof RootNode) {
+    			children.set(i, c.getChildren().get(0));
+    		}
+    		else if (c.getClass().equals(SuperNode.class) && c.getChildren().size() == 1) {
+    			children.set(i, c.getChildren().get(0));
+    		}
+    		
+    		cleanAst(c);
+    	}
+    }
 
     protected void printNodeSurroundedBy(AbstractNode node, String token) {
         printer.print(token);
@@ -470,7 +499,19 @@ public class ToAsciiDocSerializer implements Visitor {
     protected void printImageTag(LinkRenderer.Rendering rendering) {
         printer.print("image:");
         printer.print(rendering.href);
-        printer.print('[').print(rendering.text).print(']');
+        printer.print('[');
+        printTextWithQuotesIfNeeded(printer, rendering.text);
+        printer.print(']');
+    }
+    
+    protected void printImageTagWithLink(LinkRenderer.Rendering image, LinkRenderer.Rendering link) {
+    	printer.print("image:").print(image.href).print('[');
+    	if (image.text != null && !image.text.isEmpty()) {
+    		printTextWithQuotesIfNeeded(printer, image.text);
+	    	printer.print(',');
+    	}
+
+    	printer.print("link=").print(link.href).print(']');
     }
 
     protected void printLink(LinkRenderer.Rendering rendering) {
@@ -479,14 +520,15 @@ public class ToAsciiDocSerializer implements Visitor {
 
         if (uri.startsWith("#")) {
             printer.print("<<").print(uri.substring(1)).print(',').print(text).print(">>");
-        }
-        else {
+        } else {
             if (!uri.contains("://")) {
                 uri = "link:" + uri;
             }
             printer.print(uri);
             if (!uri.equals(text)) {
-                printer.print('[').print(text).print("]");
+                printer.print('[');
+                printTextWithQuotesIfNeeded(printer, rendering.text);
+                printer.print(']');
             }
         }
     }
@@ -518,6 +560,17 @@ public class ToAsciiDocSerializer implements Visitor {
     protected String normalizeWhitelines(String text) {
         // replace all double or more empty lines with single empty lines
         return text.replaceAll("(?m)^[ \t]*\r?\n{2,}", "\n").trim();
+    }
+    
+    protected void printTextWithQuotesIfNeeded(Printer p, String text) {
+    	if (text != null && !text.isEmpty()) {
+    		if (text.contains(",")) {
+    			p.print('"').print(text).print('"');
+    		}
+    		else {
+    			p.print(text);
+    		}
+    	}
     }
 
     protected void printWithAbbreviations(String string) {
@@ -571,5 +624,38 @@ public class ToAsciiDocSerializer implements Visitor {
         } else {
             printer.print(string);
         }
+    }
+ 
+    protected Node findParentNode(Node target, Node from) {
+    	if (target.equals(rootNode)) {
+    		return null;
+    	}
+    	
+    	Node candidate;
+    	
+    	for (Node c : from.getChildren()) {   		
+    		if (target.equals(c)) {
+    			return from;
+    		}
+    		else if ((candidate = findParentNode(target, c)) != null) {
+    			return candidate;
+    		}
+    	}
+    	
+    	return null;
+    }
+    
+    protected boolean isFirstChild(Node parent, Node child) {
+    	return child.equals(parent.getChildren().get(0));
+    }
+    
+    protected boolean isListItemText(Node node) {
+    	if (listLevel == 0) {
+    		return false;
+    	}
+    	else {
+    		Node parent = findParentNode(node, rootNode);
+    		return (parent instanceof ListItemNode && isFirstChild(parent, node));
+    	}
     }
 }

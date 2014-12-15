@@ -27,6 +27,17 @@ Feature: Links
     This is http://example.com/[an example] inline link.
     """
 
+  Scenario: Render linked text with comma
+    Given the Markdown source
+    """
+    This is [a very, very cool](http://example.com/) inline link.
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    This is http://example.com/["a very, very cool"] inline link.
+    """
+
   Scenario: Render a reference style link with link definition
     Given the Markdown source
     """
@@ -90,6 +101,17 @@ Feature: Links
     image:images/icons/home.png[Alt text]
 
     image:images/icons/home.png?width=100[Alt text]
+    """
+
+  Scenario: Render an inline image with comma in alt text
+    Given the Markdown source
+    """
+    ![Alt,text](images/icons/home.png)
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    image:images/icons/home.png["Alt,text"]
     """
 
   Scenario: Render a hyperlinked inline image with alt text

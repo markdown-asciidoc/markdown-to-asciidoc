@@ -20,6 +20,21 @@ Feature: Lists
     * Item 3
     """
 
+  Scenario: Render an unordered list of paragraphs
+    Given the Markdown source
+    """
+    * Paragraph 1
+
+    * Paragraph 2
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    * Paragraph 1
+
+    * Paragraph 2
+    """
+
   Scenario: Render an unordered nested list
     Given the Markdown source
     """
@@ -89,6 +104,21 @@ Feature: Lists
     ..... Item 11211
     .. Item 12
     . Item 2
+    """
+
+  Scenario: Render an ordered list of paragraphs
+    Given the Markdown source
+    """
+    . Paragraph 1
+
+    . Paragraph 2
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    . Paragraph 1
+
+    . Paragraph 2
     """
 
   Scenario: Render an unordered list with a link
