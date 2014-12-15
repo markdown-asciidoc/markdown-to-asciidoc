@@ -1,11 +1,11 @@
 # language: en
-@definitionlists
-Feature: Definition lists
-  In order to group content
+@descriptionlists
+Feature: Description lists
+  In order to describe terms
   As a writer
-  I want to be able to create definition lists
+  I want to be able to create description lists
 
-  Scenario: Render a definition list
+  Scenario: Render a description list
     Given the Markdown source
     """
     Apple
@@ -15,13 +15,12 @@ Feature: Definition lists
     When it is converted to AsciiDoc
     Then the result should match the AsciiDoc source
     """
-    [glossary]
     Apple::
-        Pomaceous fruit of plants of the genus Malus in
-    the family Rosaceae.
+      Pomaceous fruit of plants of the genus Malus in
+      the family Rosaceae.
     """
 
-  Scenario: Render a multiple definition lists
+  Scenario: Render a multiple description lists
     Given the Markdown source
     """
     Apple
@@ -34,13 +33,9 @@ Feature: Definition lists
     When it is converted to AsciiDoc
     Then the result should match the AsciiDoc source
     """
-    [glossary]
     Apple::
-        Pomaceous fruit of plants of the genus Malus in
-    the family Rosaceae.
+      Pomaceous fruit of plants of the genus Malus in
+      the family Rosaceae.
     Orange::
-        The fruit of an evergreen tree of the genus Citrus.
+      The fruit of an evergreen tree of the genus Citrus.
     """
-
-
-

@@ -103,20 +103,22 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(DefinitionListNode node) {
-        printer.print("[glossary]").println();
-
+        printer.println();
         visitChildren(node);
+    }
+    
+    public void visit(DefinitionTermNode node) {
+        visitChildren(node);
+        printer.indent(2);
+        printer.print("::").println();
     }
 
     public void visit(DefinitionNode node) {
-        repeat(' ', 4);
         visitChildren(node);
+        if (printer.indent > 0) {
+            printer.indent(-2);
+        }
         printer.println();
-    }
-
-    public void visit(DefinitionTermNode node) {
-        visitChildren(node);
-        printer.print("::").println();
     }
 
     public void visit(ExpImageNode node) {
@@ -269,7 +271,7 @@ public class ToAsciiDocSerializer implements Visitor {
                 printer.println().print("'''");
                 break;
             case Linebreak:
-                printer.print("\n");
+                printer.println();
                 break;
             case Nbsp:
                 printer.print("{nbsp}");
