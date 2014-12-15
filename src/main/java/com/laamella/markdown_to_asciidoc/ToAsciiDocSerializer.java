@@ -421,13 +421,11 @@ public class ToAsciiDocSerializer implements Visitor {
         String type = node.getType();
         String text = node.getText();
 
-        if(autoDetectLanguageType) {
+        if (autoDetectLanguageType) {
             type = linguist.detectLanguage(text);
         }
 
-        if(type.isEmpty()) {
-            printer.print("[source]");
-        } else {
+        if (!type.isEmpty()) {
             printer.print("[source," + type + "]");
         }
 

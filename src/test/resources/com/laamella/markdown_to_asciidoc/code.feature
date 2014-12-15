@@ -16,14 +16,13 @@ Feature: Code
     When it is converted to AsciiDoc
     Then the result should match the AsciiDoc source
     """
-    [source]
     ----
     summary(cars$dist)
     summary(cars$speed)
     ----
     """
 
-  Scenario: Render a code block without language with HTML
+  Scenario: Render a code block without language containing HTML
     Given the Markdown source
     """
     ```
@@ -34,7 +33,6 @@ Feature: Code
     When it is converted to AsciiDoc
     Then the result should match the AsciiDoc source
     """
-    [source]
     ----
     No language indicated, so no syntax highlighting.
     But let's throw in a <b>tag</b>.
@@ -74,6 +72,19 @@ Feature: Code
     ----
     s = "Python syntax highlighting"
     print s
+    ----
+    """
+
+  Scenario: Render an indented code block
+    Given the Markdown source
+    """
+        $ gem install asciidoctor
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    ----
+    $ gem install asciidoctor
     ----
     """
 
