@@ -46,6 +46,6 @@ public class Converter {
         }
         char[] markDown = markdown.toCharArray();
         RootNode rootNode = processor.parseMarkdown(markDown);
-        return new ToAsciiDocSerializer(rootNode).toAsciiDoc();
+        return new ToAsciiDocSerializer(rootNode, markdown).toAsciiDoc();
     }
 }

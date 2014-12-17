@@ -2,6 +2,7 @@ package com.laamella.markdown_to_asciidoc;
 
 import com.laamella.markdown_to_asciidoc.code.Linguist;
 import com.laamella.markdown_to_asciidoc.html.TableToAsciiDoc;
+
 import org.parboiled.common.StringUtils;
 import org.pegdown.LinkRenderer;
 import org.pegdown.Printer;
@@ -13,6 +14,8 @@ import static com.laamella.markdown_to_asciidoc.util.Joiner.join;
 import static org.parboiled.common.Preconditions.checkArgNotNull;
 
 public class ToAsciiDocSerializer implements Visitor {
+    public static final String HARD_LINE_BREAK_MARKDOWN = "  \n";
+    protected String source;
     protected Printer printer = new Printer();
     protected final Map<String, ReferenceNode> references = new HashMap<String, ReferenceNode>();
     protected final Map<String, String> abbreviations = new HashMap<String, String>();
@@ -33,11 +36,16 @@ public class ToAsciiDocSerializer implements Visitor {
     protected RootNode rootNode;
 
     public ToAsciiDocSerializer(RootNode rootNode) {
+        this(rootNode, null);
+    }
+
+    public ToAsciiDocSerializer(RootNode rootNode, String source) {
     	this.printer = new Printer();
         this.linguist = new Linguist();
         this.autoDetectLanguageType = false;
         checkArgNotNull(rootNode, "rootNode");
         this.rootNode = rootNode;
+        this.source = source;
     }
 
     public String toAsciiDoc() {
@@ -278,7 +286,15 @@ public class ToAsciiDocSerializer implements Visitor {
                 printer.println().print("'''");
                 break;
             case Linebreak:
-                printer.println();
+                // look for length of span to detect hard line break (2 trailing spaces plus endline)
+                // necessary because Pegdown doesn't distinguish between a hard line break and a normal line break
+                if (source != null && source.substring(node.getStartIndex(), node.getEndIndex()).startsWith(HARD_LINE_BREAK_MARKDOWN)) {
+                    printer.print(" +").println();
+                }
+                else {
+                    // QUESTION should we fold or preserve soft line breaks? (pandoc emits a space here)
+                    printer.println();
+                }
                 break;
             case Nbsp:
                 printer.print("{nbsp}");

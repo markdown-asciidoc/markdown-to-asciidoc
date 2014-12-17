@@ -322,6 +322,23 @@ Feature: Markup
     «{nbsp}a a{nbsp}»
     """
 
+  Scenario: Should recognize a hard line break
+    Given the Markdown source
+    """
+    Roses are red,{sp}{sp}
+    Violets are blue.{sp}
+    Sort of blue.
+    More like violet.
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    Roses are red, +
+    Violets are blue.
+    Sort of blue.
+    More like violet.
+    """
+
   Scenario: Strikethrough
     Given the Markdown source
     """

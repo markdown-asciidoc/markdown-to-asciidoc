@@ -13,7 +13,12 @@ public class Stepdefs {
 
     @Given("^the Markdown source$")
     public void the_markdown_source(String markdown) throws Throwable {
-        this.markdown = markdown;
+        if (markdown.contains("{sp}")) {
+            this.markdown = markdown.replaceAll("\\{sp\\}", " ");
+        }
+        else {
+            this.markdown = markdown;
+        }
     }
 
     @When("^it is converted to AsciiDoc")
