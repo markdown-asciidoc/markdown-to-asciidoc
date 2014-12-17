@@ -88,6 +88,27 @@ Feature: Code
     ----
     """
 
+  Scenario: Render code block adjacent to preceding paragraph
+    Given the Markdown source
+    """
+    Here's an example:
+    ```javascript
+    var s = "JavaScript syntax highlighting";
+    alert(s);
+    ```
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    Here's an example:
+
+    [source,javascript]
+    ----
+    var s = "JavaScript syntax highlighting";
+    alert(s);
+    ----
+    """
+
   Scenario: Render inline code
     Given the Markdown source
     """
