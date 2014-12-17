@@ -157,7 +157,7 @@ Feature: Lists
     * https://github.com/geb/geb-example-maven[http://github.com/geb/geb-example-maven]
     """
 
-# @@knownissue This doesn't work. Item 4 is recognized a paragraph insead of a list item node.This cause extra enters to be printed.
+#@@knownissue This doesn't work. Item 4 is contains 3 para nodes instead of a code block
 #  Scenario: Render 4 numbered items with a code block
 #    Given the Markdown source
 #    """

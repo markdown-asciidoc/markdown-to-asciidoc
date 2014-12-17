@@ -44,7 +44,6 @@ Feature: Markup
     Normal text
     """
 
-    @bug
   Scenario: Text, lists, text
     Given the Markdown source
     """
