@@ -1,5 +1,7 @@
 = Markdown to AsciiDoc converter
 
+image:https://badges.gitter.im/Join%20Chat.svg[link="https://gitter.im/bodiam/markdown-to-asciidoc?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"]
+
 image:https://travis-ci.org/bodiam/markdown-to-asciidoc.svg["Build Status", link="https://travis-ci.org/bodiam/markdown-to-asciidoc"]
 
 A small, lightweight converter for Markdown to http://www.asciidoc.org[AsciiDoc] written in Java, and based on http://pegdown.org[Pegdown].
