@@ -26,6 +26,14 @@ Also, currently known *not* supported items are:
 
 * Table cell spanning
 
+== Usage
+
+Using the library is simple. Just call the following code:
+
+`assertEquals("= Title", Converter.convertMarkdownToAsciiDoc("# Title");`
+
+
+
 == Uses
 
 Currently the conversion library is used in the https://plugins.jetbrains.com/plugin/7391[IntelliJ AsciiDoc Plugin] to seamlessly convert between
