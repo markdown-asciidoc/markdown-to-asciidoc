@@ -30,7 +30,7 @@ Also, currently known *not* supported items are:
 
 Using the library is simple. Just call the following code:
 
-`assertEquals("= Title", Converter.convertMarkdownToAsciiDoc("# Title");`
+`assertEquals("= Title", Converter.convertMarkdownToAsciiDoc("# Title"));`
 
 
 
