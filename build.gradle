@@ -2,7 +2,9 @@ apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'maven'
 
-group = 'com.laamella.markdown_to_asciidoc'
+group 'nl.jworks.markdown_to_asciidoc'
+version '1.0-SNAPSHOT'
+
 sourceCompatibility = targetCompatibility = 1.6
 defaultTasks 'check'
 
@@ -35,7 +37,7 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 
 startScripts {
   applicationName = rootProject.name
-  mainClassName = 'com.laamella.markdown_to_asciidoc.Converter'
+  mainClassName = 'nl.jworks.markdown_to_asciidoc.Converter'
 }
 
 artifacts {
