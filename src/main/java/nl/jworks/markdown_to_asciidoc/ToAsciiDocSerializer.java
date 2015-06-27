@@ -1,8 +1,9 @@
-package com.laamella.markdown_to_asciidoc;
+package nl.jworks.markdown_to_asciidoc;
 
-import com.laamella.markdown_to_asciidoc.code.Linguist;
-import com.laamella.markdown_to_asciidoc.html.TableToAsciiDoc;
+import nl.jworks.markdown_to_asciidoc.code.Linguist;
+import nl.jworks.markdown_to_asciidoc.html.TableToAsciiDoc;
 
+import nl.jworks.markdown_to_asciidoc.util.Joiner;
 import org.parboiled.common.StringUtils;
 import org.pegdown.LinkRenderer;
 import org.pegdown.Printer;
@@ -10,7 +11,6 @@ import org.pegdown.ast.*;
 
 import java.util.*;
 
-import static com.laamella.markdown_to_asciidoc.util.Joiner.join;
 import static org.parboiled.common.Preconditions.checkArgNotNull;
 
 public class ToAsciiDocSerializer implements Visitor {
@@ -402,7 +402,7 @@ public class ToAsciiDocSerializer implements Visitor {
             }
         }
 
-        return join(result, ",");
+        return Joiner.join(result, ",");
     }
 
 

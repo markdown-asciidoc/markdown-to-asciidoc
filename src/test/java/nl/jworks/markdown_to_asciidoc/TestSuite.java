@@ -1,4 +1,4 @@
-package com.laamella.markdown_to_asciidoc;
+package nl.jworks.markdown_to_asciidoc;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.Ignore;

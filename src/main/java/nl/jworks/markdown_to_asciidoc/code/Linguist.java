@@ -1,4 +1,4 @@
-package com.laamella.markdown_to_asciidoc.code;
+package nl.jworks.markdown_to_asciidoc.code;
 
 
 /**

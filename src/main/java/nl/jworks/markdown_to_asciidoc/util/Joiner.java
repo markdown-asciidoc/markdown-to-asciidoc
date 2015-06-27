@@ -1,4 +1,4 @@
-package com.laamella.markdown_to_asciidoc.util;
+package nl.jworks.markdown_to_asciidoc.util;
 
 import java.util.List;
 
