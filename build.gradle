@@ -1,18 +1,42 @@
+plugins {
+  id "com.jfrog.bintray" version "1.2"
+}
+
 apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'maven'
+apply plugin: 'maven-publish'
+apply plugin: 'eclipse'
 
 group 'nl.jworks.markdown_to_asciidoc'
-version '1.0-SNAPSHOT'
+version '1.0'
 
 sourceCompatibility = targetCompatibility = 1.6
 defaultTasks 'check'
 
 repositories {
+  jcenter()
+
+
   if (project.hasProperty('useMavenLocal') && project.useMavenLocal.toBoolean()) {
     mavenLocal()
   }
   mavenCentral()
+}
+
+publishing {
+  publications {
+    mavenJava(MavenPublication) {
+      if (plugins.hasPlugin('war')) {
+        from components.web
+      } else {
+        from components.java
+      }
+
+      artifact sourcesJar
+      artifact javadocJar
+    }
+  }
 }
 
 dependencies {
@@ -35,19 +59,66 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
   classifier 'javadoc'
 }
 
+artifacts {
+  archives sourcesJar, javadocJar, distZip
+}
+
 startScripts {
   applicationName = rootProject.name
   mainClassName = 'nl.jworks.markdown_to_asciidoc.Converter'
 }
 
-artifacts {
-  archives sourcesJar, javadocJar, distZip
-}
-
-apply plugin: 'eclipse'
-
 eclipse {
   classpath {
     defaultOutputDir = file('build/eclipse')
+  }
+}
+
+bintray {
+  user = bintray_user //this usually comes from gradle.properties file in ~/.gradle
+  key = bintray_api_key //this usually comes from gradle.properties file in ~/.gradle
+
+//        configurations = ['deployables'] //When uploading configuration files
+  // - OR -
+  publications = ['mavenJava'] //When uploading Maven-based publication files
+  // - AND/OR -
+//        filesSpec { //When uploading any arbitrary files ('filesSpec' is a standard Gradle CopySpec)
+//            from 'arbitrary-files'
+//            into 'standalone_files/level1'
+//            rename '(.+)\\.(.+)', '$1-suffix.$2'
+//        }
+  dryRun = false //Whether to run this as dry-run, without deploying
+  publish = true //If version should be auto published after an upload
+  pkg {
+//            repo = 'myrepo'
+    repo = 'maven'
+//            userOrg = 'myorg' //An optional organization name when the repo belongs to one of the user's orgs
+    name = 'markdown_to_asciidoc'
+    desc = 'Java Markdown to Asciidoc Converter'
+    websiteUrl = 'https://github.com/bodiam/markdown-to-asciidoc'
+    issueTrackerUrl = 'https://github.com/bodiam/markdown-to-asciidoc/issues'
+    vcsUrl = 'https://github.com/bodiam/markdown-to-asciidoc.git'
+    licenses = ['Apache-2.0']
+    labels = ['markdown', 'asciidoc', 'gradle', 'bintray']
+    publicDownloadNumbers = true
+//    attributes= ['a': ['ay1', 'ay2'], 'b': ['bee'], c: 'cee'] //Optional package-level attributes
+    //Optional version descriptor
+    version {
+      name = project.version //Bintray logical version name
+//      desc = 'optional, version-specific description'
+//                released  = 'optional, date of the version release' //2 possible values: date in the format of 'yyyy-MM-dd'T'HH:mm:ss.SSSZZ' OR a java.util.Date instance
+//                vcsTag = '1.3.0'
+//                attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin'] //Optional version-level attributes
+//                gpg {
+//                    sign = true //Determines whether to GPG sign the files. The default is false
+//                    passphrase = 'passphrase' //Optional. The passphrase for GPG signing'
+//                }
+//      mavenCentralSync {
+//        sync = false //Optional (true by default). Determines whether to sync the version to Maven Central.
+//        user = 'userToken' //OSS user token
+//        password = 'paasword' //OSS user password
+//        close = '1' //Optional property. By default the staging repository is closed and artifacts are released to Maven Central. You can optionally turn this behaviour off (by puting 0 as value) and release the version manually.
+//      }
+    }
   }
 }
