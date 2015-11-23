@@ -73,26 +73,3 @@ eclipse {
     defaultOutputDir = file('build/eclipse')
   }
 }
-
-bintray {
-  user = bintray_user //this usually comes from gradle.properties file in ~/.gradle
-  key = bintray_api_key //this usually comes from gradle.properties file in ~/.gradle
-  publications = ['mavenJava'] //When uploading Maven-based publication files
-  dryRun = false //Whether to run this as dry-run, without deploying
-  publish = true //If version should be auto published after an upload
-  pkg {
-    repo = 'maven'
-    name = 'markdown_to_asciidoc'
-    desc = 'Java Markdown to Asciidoc Converter'
-    websiteUrl = 'https://github.com/bodiam/markdown-to-asciidoc'
-    issueTrackerUrl = 'https://github.com/bodiam/markdown-to-asciidoc/issues'
-    vcsUrl = 'https://github.com/bodiam/markdown-to-asciidoc.git'
-    licenses = ['Apache-2.0']
-    labels = ['markdown', 'asciidoc', 'gradle', 'bintray']
-    publicDownloadNumbers = true
-    //Optional version descriptor
-    version {
-      name = project.version //Bintray logical version name
-    }
-  }
-}
