@@ -28,19 +28,22 @@ Also, currently known *not* supported items are:
 
 == Usage
 
-Using the library is simple. Just call the following code:
+Add the following dependency to your project:
+
+`nl.jworks.markdown_to_asciidoc:markdown_to_asciidoc:1.0`
+
+To use the library, call the following:
 
 `assertEquals("= Title", Converter.convertMarkdownToAsciiDoc("# Title"));`
 
-
+The Converter converts all Markdown input to AsciiDoc.
 
 == Uses
 
 Currently the conversion library is used in the https://plugins.jetbrains.com/plugin/7391[IntelliJ AsciiDoc Plugin] to seamlessly convert between
 from Markdown to AsciiDoc.
 
-If you know of any projects using the library, please let us know on Twitter:
-http://www.twitter.com/macumbamacaca[@macumbamacaca] or http://www.twitter.com/epragt[@epragt].
+If you know of any projects using the library, please let me know on Twitter: http://www.twitter.com/epragt[@epragt].
 
 == Bugs
 
