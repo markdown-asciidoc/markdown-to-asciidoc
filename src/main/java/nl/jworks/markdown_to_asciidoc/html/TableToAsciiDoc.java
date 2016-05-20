@@ -5,7 +5,12 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class TableToAsciiDoc {
+public final class TableToAsciiDoc {
+
+    private TableToAsciiDoc() throws InstantiationException {
+        throw new InstantiationException("This utility class is not created for instantiation");
+    }
+
     public static String convert(String html) {
         if(!html.startsWith("<table")) {
             throw new IllegalArgumentException("No table found in HTML: " + html);

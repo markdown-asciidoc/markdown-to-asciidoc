@@ -6,7 +6,12 @@ import org.pegdown.ast.RootNode;
 
 import java.io.*;
 
-public class Converter {
+public final class Converter {
+
+    private Converter() throws InstantiationException {
+        throw new InstantiationException("This utility class is not created for instantiation");
+    }
+
     public static void main(String[] args) throws IOException {
         if (args.length != 1) {
             System.err.println("markdown_to_asciidoc: Please specify a file to convert");
