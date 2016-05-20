@@ -2,7 +2,11 @@ package nl.jworks.markdown_to_asciidoc.util;
 
 import java.util.List;
 
-public class Joiner {
+public final class Joiner {
+
+    private Joiner() throws InstantiationException {
+        throw new InstantiationException("This utility class is not created for instantiation");
+    }
 
     public static String join(List<?> list, String delim) {
         int len = list.size();
