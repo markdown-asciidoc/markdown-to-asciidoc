@@ -1,12 +1,36 @@
+buildscript {
+    ext.kotlin_version = '1.1.4'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
 plugins {
-  id "com.jfrog.bintray" version "1.7.3"
+    id "com.jfrog.bintray" version "1.7.3"
 }
 
+
 apply plugin: 'java'
+apply plugin: 'kotlin'
 apply plugin: 'application'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'eclipse'
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+
 
 group 'nl.jworks.markdown_to_asciidoc'
 version '1.1'
@@ -87,6 +111,7 @@ dependencies {
   testCompile 'info.cukes:cucumber-junit:1.1.8'
   testCompile 'junit:junit:4.12'
   testCompile 'org.apache.commons:commons-io:1.3.2'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
