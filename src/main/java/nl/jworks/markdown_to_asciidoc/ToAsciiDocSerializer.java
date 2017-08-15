@@ -502,6 +502,8 @@ public class ToAsciiDocSerializer implements Visitor {
     
     /**
      * Removes superfluous nodes from the tree.
+     *
+     * @param node The node to clean.
      */
     protected void cleanAst(Node node) {
     	List<Node> children = node.getChildren();
