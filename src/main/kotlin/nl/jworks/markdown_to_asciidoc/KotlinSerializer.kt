@@ -15,22 +15,22 @@ import org.parboiled.common.Preconditions.checkArgNotNull
 
 class ToAsciiDocSerializerKt @JvmOverloads constructor(private var rootNode: RootNode, private var source: String) : Visitor {
 
-    protected var printer = Printer()
-    protected val references: MutableMap<String, ReferenceNode> = HashMap()
-    protected val abbreviations: MutableMap<String, String> = HashMap()
-    protected val linkRenderer = LinkRenderer()
+    private var printer = Printer()
+    private val references: MutableMap<String, ReferenceNode> = HashMap()
+    private val abbreviations: MutableMap<String, String> = HashMap()
+    private val linkRenderer = LinkRenderer()
 
-    protected var currentTableNode: TableNode? = null
-    protected var currentTableColumn: Int = 0
-    protected var inTableHeader: Boolean = false
+    private var currentTableNode: TableNode? = null
+    private var currentTableColumn: Int = 0
+    private var inTableHeader: Boolean = false
 
-    protected var listMarker: Char = ' '
-    protected var listLevel = 0
-    protected var blockQuoteLevel = 0
+    private var listMarker: Char = ' '
+    private var listLevel = 0
+    private var blockQuoteLevel = 0
 
     // Experimental feature.
-    protected var autoDetectLanguageType: Boolean = false
-    protected var linguist = Linguist()
+    private var autoDetectLanguageType: Boolean = false
+    private var linguist = Linguist()
 
     init {
         this.printer = Printer()
@@ -393,9 +393,10 @@ class ToAsciiDocSerializerKt @JvmOverloads constructor(private var rootNode: Roo
         }
     }
 
-    override fun visit(node: VerbatimNode) {
-        printer.println()
+    private fun visitWithPrinter(block: Printer.() -> Unit) = printer.block()
 
+    override fun visit(node: VerbatimNode) = visitWithPrinter {
+        println()
         var type = node.type
         val text = node.text
 
@@ -404,15 +405,15 @@ class ToAsciiDocSerializerKt @JvmOverloads constructor(private var rootNode: Roo
         }
 
         if (!type.isEmpty()) {
-            printer.print("[source,$type]")
+            print("[source,$type]")
         }
 
-        printer.println()
+        println()
         repeat('-', 4)
-        printer.println()
-        printer.print(text)
+        println()
+        print(text)
         repeat('-', 4)
-        printer.println().println()
+        println().println()
     }
 
     override fun visit(node: WikiLinkNode) = printLink(linkRenderer.render(node))
@@ -434,35 +435,30 @@ class ToAsciiDocSerializerKt @JvmOverloads constructor(private var rootNode: Roo
     override fun visit(node: Node) = throw RuntimeException("Don't know how to handle node " + node)
 
     // helpers
-    protected fun visitChildren(node: AbstractNode) = node.children.forEach { it.accept(this) }
+    private fun visitChildren(node: AbstractNode) = node.children.forEach { it.accept(this) }
 
     /**
      * Removes superfluous nodes from the tree.
      */
-    protected fun cleanAst(node: Node) {
+    private fun cleanAst(node: Node) {
         val children = node.children
-        var i = 0
-        val len = children.size
-        while (i < len) {
-            val c = children[i]
-            if (c is RootNode) {
-                children[i] = c.getChildren()[0]
-            } else if (c.javaClass == SuperNode::class.java && c.children.size == 1) {
-                children[i] = c.children[0]
+        for (c in children.withIndex()) {
+            val childNode = c.value
+            val singleSuperNode = (childNode.javaClass == SuperNode::class.java && childNode.children.size == 1)
+            if (childNode is RootNode || singleSuperNode) {
+                children[c.index] = childNode.children[0]
             }
-
-            cleanAst(c)
-            i++
+            cleanAst(childNode)
         }
     }
 
-    protected fun printNodeSurroundedBy(node: AbstractNode, token: String) {
+    private fun printNodeSurroundedBy(node: AbstractNode, token: String) {
         printer.print(token)
         visitChildren(node)
         printer.print(token)
     }
 
-    protected fun printImageTag(rendering: LinkRenderer.Rendering) {
+    private fun printImageTag(rendering: LinkRenderer.Rendering) {
         printer.print("image:")
         printer.print(rendering.href)
         printer.print('[')
@@ -470,7 +466,7 @@ class ToAsciiDocSerializerKt @JvmOverloads constructor(private var rootNode: Roo
         printer.print(']')
     }
 
-    protected fun printImageTagWithLink(image: LinkRenderer.Rendering, link: LinkRenderer.Rendering) {
+    private fun printImageTagWithLink(image: LinkRenderer.Rendering, link: LinkRenderer.Rendering) {
         printer.print("image:").print(image.href).print('[')
         if (image.text != null && !image.text.isEmpty()) {
             printTextWithQuotesIfNeeded(printer, image.text)
@@ -480,7 +476,7 @@ class ToAsciiDocSerializerKt @JvmOverloads constructor(private var rootNode: Roo
         printer.print("link=").print(link.href).print(']')
     }
 
-    protected fun printLink(rendering: LinkRenderer.Rendering) {
+    private fun printLink(rendering: LinkRenderer.Rendering) {
         var uri = rendering.href
         val text = rendering.text
 
@@ -499,7 +495,7 @@ class ToAsciiDocSerializerKt @JvmOverloads constructor(private var rootNode: Roo
         }
     }
 
-    protected fun printChildrenToString(node: SuperNode): String {
+    private fun printChildrenToString(node: SuperNode): String {
         val priorPrinter = printer
         printer = Printer()
         visitChildren(node)
@@ -508,7 +504,7 @@ class ToAsciiDocSerializerKt @JvmOverloads constructor(private var rootNode: Roo
         return result
     }
 
-    protected fun normalize(string: String): String {
+    private fun normalize(string: String): String {
         val sb = StringBuilder()
         loop@ for (i in 0 until string.length) {
             val c = string[i]
@@ -520,12 +516,12 @@ class ToAsciiDocSerializerKt @JvmOverloads constructor(private var rootNode: Roo
         return sb.toString()
     }
 
-    protected fun normalizeWhitelines(text: String): String {
+    private fun normalizeWhitelines(text: String): String {
         // replace all double or more empty lines with single empty lines
         return text.replace("(?m)^[ \t]*\r?\n{2,}".toRegex(), "\n").trim { it <= ' ' }
     }
 
-    protected fun printTextWithQuotesIfNeeded(p: Printer, text: String?) {
+    private fun printTextWithQuotesIfNeeded(p: Printer, text: String?) {
         if (text != null && !text.isEmpty()) {
             if (text.contains(",")) {
                 p.print('"').print(text).print('"')
@@ -535,7 +531,7 @@ class ToAsciiDocSerializerKt @JvmOverloads constructor(private var rootNode: Roo
         }
     }
 
-    protected fun printWithAbbreviations(string: String) {
+    private fun printWithAbbreviations(string: String) {
         var expansions: MutableMap<Int, Map.Entry<String, String>>? = null
 
         for (entry in abbreviations.entries) {
@@ -587,7 +583,7 @@ class ToAsciiDocSerializerKt @JvmOverloads constructor(private var rootNode: Roo
         }
     }
 
-    protected fun findParentNode(target: Node, from: Node): Node? {
+    private fun findParentNode(target: Node, from: Node): Node? {
         if (target == rootNode) {
             return null
         }
@@ -605,11 +601,11 @@ class ToAsciiDocSerializerKt @JvmOverloads constructor(private var rootNode: Roo
         return null
     }
 
-    protected fun isFirstChild(parent: Node, child: Node): Boolean {
+    private fun isFirstChild(parent: Node, child: Node): Boolean {
         return child == parent.children[0]
     }
 
-    protected fun isListItemText(node: Node): Boolean {
+    private fun isListItemText(node: Node): Boolean {
         return if (listLevel == 0) {
             false
         } else {
