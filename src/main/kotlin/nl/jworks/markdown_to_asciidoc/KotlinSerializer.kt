@@ -13,7 +13,7 @@ import java.util.*
 
 import org.parboiled.common.Preconditions.checkArgNotNull
 
-class ToAsciiDocSerializerKt @JvmOverloads constructor(private var rootNode: RootNode, protected var source: String? = null) : Visitor {
+class ToAsciiDocSerializerKt @JvmOverloads constructor(private var rootNode: RootNode, private var source: String) : Visitor {
 
     protected var printer = Printer()
     protected val references: MutableMap<String, ReferenceNode> = HashMap()
@@ -269,7 +269,7 @@ class ToAsciiDocSerializerKt @JvmOverloads constructor(private var rootNode: Roo
             SimpleNode.Type.Linebreak ->
                 // look for length of span to detect hard line break (2 trailing spaces plus endline)
                 // necessary because Pegdown doesn't distinguish between a hard line break and a normal line break
-                if (source != null && source!!.substring(node.startIndex, node.endIndex).startsWith(HARD_LINE_BREAK_MARKDOWN)) {
+                if (source.substring(node.startIndex, node.endIndex).startsWith(HARD_LINE_BREAK_MARKDOWN)) {
                     printer.print(" +").println()
                 } else {
                     // QUESTION should we fold or preserve soft line breaks? (pandoc emits a space here)
@@ -325,7 +325,9 @@ class ToAsciiDocSerializerKt @JvmOverloads constructor(private var rootNode: Roo
             printer.print("|")
         }
         column.accept(this)
-        if (node.colSpan > 1) printer.print(" colspan=\"").print(Integer.toString(node.colSpan)).print('"')
+        if (node.colSpan > 1) {
+            printer.print(" colspan=\"").print(Integer.toString(node.colSpan)).print('"')
+        }
         visitChildren(node)
 
         currentTableColumn += node.colSpan
@@ -382,7 +384,6 @@ class ToAsciiDocSerializerKt @JvmOverloads constructor(private var rootNode: Roo
 
     override fun visit(node: TableRowNode) {
         currentTableColumn = 0
-
         printer.println()
 
         visitChildren(node)

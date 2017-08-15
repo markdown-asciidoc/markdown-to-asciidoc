@@ -2,7 +2,6 @@ package nl.jworks.markdown_to_asciidoc;
 
 import nl.jworks.markdown_to_asciidoc.code.Linguist;
 import nl.jworks.markdown_to_asciidoc.html.TableToAsciiDoc;
-
 import nl.jworks.markdown_to_asciidoc.util.Joiner;
 import org.parboiled.common.StringUtils;
 import org.pegdown.LinkRenderer;
@@ -182,8 +181,6 @@ public class ToAsciiDocSerializer implements Visitor {
             printer.print(TableToAsciiDoc.convert(text));
             printer.println();
         }
-
-        //printer.print(text);
     }
 
     public void visit(InlineHtmlNode node) {
