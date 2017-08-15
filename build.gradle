@@ -35,7 +35,7 @@ compileTestKotlin {
 group 'nl.jworks.markdown_to_asciidoc'
 version '1.1'
 
-sourceCompatibility = targetCompatibility = 1.6
+sourceCompatibility = targetCompatibility = 1.8
 defaultTasks 'check'
 
 repositories {
