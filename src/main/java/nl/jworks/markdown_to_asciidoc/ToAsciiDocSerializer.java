@@ -77,6 +77,11 @@ public class ToAsciiDocSerializer implements Visitor {
     public void visit(AbbreviationNode node) {
     }
 
+    @Override
+    public void visit(AnchorLinkNode node) {
+        printer.print(node.getText());
+    }
+
     public void visit(AutoLinkNode node) {
         printLink(linkRenderer.render(node));
     }

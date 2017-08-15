@@ -124,6 +124,7 @@ Feature: Lists
     . Item 2
 
     ** Subitem of Item 2
+
     . Item 3
     """
 

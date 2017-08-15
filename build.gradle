@@ -20,6 +20,14 @@ repositories {
   mavenCentral()
 }
 
+tasks.withType(JavaCompile) {
+  options.encoding = 'UTF-8'
+}
+
+javadoc {
+  options.encoding = 'UTF-8'
+}
+
 publishing {
   publications {
     mavenJava(MavenPublication) {
@@ -36,7 +44,7 @@ publishing {
 }
 
 dependencies {
-  compile 'org.pegdown:pegdown:1.4.2'
+  compile 'org.pegdown:pegdown:1.6.0'
   compile 'org.jsoup:jsoup:1.8.1'
 
   testCompile 'info.cukes:cucumber-picocontainer:1.1.8'
