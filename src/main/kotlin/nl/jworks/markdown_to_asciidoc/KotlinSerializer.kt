@@ -445,8 +445,8 @@ class ToAsciiDocSerializerKt @JvmOverloads constructor(private var rootNode: Roo
         val len = children.size
         while (i < len) {
             val c = children[i]
-            if (c is RootNode) {
-                children[i] = c.getChildren()[0]
+            if (c is RootNode && c.children.size == 1) {
+                children[i] = c.children[0]
             } else if (c.javaClass == SuperNode::class.java && c.children.size == 1) {
                 children[i] = c.children[0]
             }
