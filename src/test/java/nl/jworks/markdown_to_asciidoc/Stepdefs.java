@@ -24,14 +24,14 @@ public class Stepdefs {
     @When("^it is converted to AsciiDoc")
     public void it_is_converted_to_asciidoc() throws Throwable {
         // Express the Regexp above with the code you wish you had
-        this.asciiDoc = Converter.convertMarkdownToAsciiDoc(markdown);
+        this.asciiDoc = Converter.convertMarkdownToAsciiDoc(markdown.replaceAll("\r\n", "\n"));
     }
 
     @Then("^the result should match the AsciiDoc source$")
     public void the_result_should_match_the_asciidoc_source(String result) throws Throwable {
         // Express the Regexp above with the code you wish you had
 
-        assertEquals(result, asciiDoc);
+        assertEquals(result.replaceAll("\r\n", "\n"), asciiDoc.replaceAll("\r\n", "\n"));
 
     }
 }

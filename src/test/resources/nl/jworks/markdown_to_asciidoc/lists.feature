@@ -158,6 +158,17 @@ Feature: Lists
     * https://github.com/geb/geb-example-maven[http://github.com/geb/geb-example-maven]
     """
 
+  Scenario: Render a list item that ends with a blank
+    Given the Markdown source
+    """
+    -{sp}
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    *
+    """
+
 #@@knownissue This doesn't work. Item 4 is contains 3 para nodes instead of a code block
 #  Scenario: Render 4 numbered items with a code block
 #    Given the Markdown source
