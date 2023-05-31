@@ -26,17 +26,6 @@ public class TestSuite {
         assertEquals(readToString("testsuite.adoc"), asciiDoc);
     }
 
-
-    @Test
-    public void readme() throws IOException {
-        String markDown = readToString("Readme.md");
-        String asciiDoc = Converter.markdownToAsciiDoc(markDown);
-
-
-        toFile(asciiDoc, new File("target/readme.adoc"));
-        //assertEquals(readToString("testsuite.adoc"), asciiDoc);
-    }
-
     private String readToString(String resourceName) {
         URL url = getClass().getResource("/" + resourceName);
         try {
@@ -45,23 +34,5 @@ public class TestSuite {
             fail();
             return null;
         }
-    }
-
-    public void toFile(String buffer, File file) throws IOException {
-
-        OutputStreamWriter bwr = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
-
-        toFile(buffer, bwr);
-    }
-
-    private void toFile(String buffer, OutputStreamWriter bwr) throws IOException {
-        //write contents of StringBuffer to a file
-        bwr.write(buffer);
-
-        //flush the stream
-        bwr.flush();
-
-        //close the stream
-        bwr.close();
     }
 }
