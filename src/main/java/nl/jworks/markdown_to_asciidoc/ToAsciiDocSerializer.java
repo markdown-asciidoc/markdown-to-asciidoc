@@ -414,9 +414,12 @@ public class ToAsciiDocSerializer implements Visitor {
         List<TableColumnNode> columns = node.getColumns();
 
         if(ifColumnsHaveAlignmentSpecified(columns)) {
+            printer.println();
             printer.print("[cols=\"");
             printer.print(getColumnAlignment(columns));
             printer.print("\"]");
+            printer.println();
+        } else {
             printer.println();
         }
 

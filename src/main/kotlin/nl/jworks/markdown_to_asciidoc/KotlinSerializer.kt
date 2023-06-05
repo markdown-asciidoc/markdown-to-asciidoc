@@ -367,9 +367,12 @@ class ToAsciiDocSerializerKt @JvmOverloads constructor(private var rootNode: Roo
         val columns = node.columns
 
         if (ifColumnsHaveAlignmentSpecified(columns)) {
+            printer.println()
             printer.print("[cols=\"")
             printer.print(getColumnAlignment(columns))
             printer.print("\"]")
+            printer.println()
+        } else {
             printer.println()
         }
 

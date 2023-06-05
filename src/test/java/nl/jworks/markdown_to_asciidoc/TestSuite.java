@@ -4,8 +4,12 @@ import org.apache.commons.io.IOUtils;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;

@@ -24,6 +24,36 @@ Feature: Tables
     |===
     """
 
+  Scenario: Render a table under a paragraph
+      Given the Markdown source
+      """
+      # Step
+
+      Lorem Ipsum etc.
+
+      - `sample.yaml`: sample file to do some stuff with
+
+      | Name of Column 1 | Name of Column 2|
+      | ---------------- | --------------- |
+      | Cell in column 1, row 1 | Cell in column 2, row 1|
+      | Cell in column 1, row 2 | Cell in column 2, row 2|
+      """
+      When it is converted to AsciiDoc
+      Then the result should match the AsciiDoc source
+      """
+      = Step
+
+      Lorem Ipsum etc.
+
+      * `sample.yaml`: sample file to do some stuff with
+      |===
+      |Name of Column 1 |Name of Column 2
+
+      |Cell in column 1, row 1 |Cell in column 2, row 1
+      |Cell in column 1, row 2 |Cell in column 2, row 2
+      |===
+      """
+
   # NOTE we are still getting trailing space at the end of lines
   Scenario: Leave a trailing space at the end of each adjacent cell
     Given the Markdown source
