@@ -4,7 +4,7 @@ image:https://badges.gitter.im/Join%20Chat.svg[link="https://gitter.im/bodiam/ma
 
 image:https://travis-ci.org/bodiam/markdown-to-asciidoc.svg["Build Status", link="https://travis-ci.org/bodiam/markdown-to-asciidoc"]
 
-A small, lightweight converter for Markdown to http://www.asciidoc.org[AsciiDoc] written in Java, and based on http://pegdown.org[Pegdown].
+A small, lightweight converter for Markdown to http://www.asciidoc.org[AsciiDoc] written in Java, and based on https://github.com/sirthias/pegdown[Pegdown].
 
 Uses https://github.com/bodiam/markdown-to-asciidoc/tree/master/src/test/resources/nl/jworks/markdown_to_asciidoc[Cucumber tests] as a reusable
 set to test conversion between Markdown and AsciiDoc.
