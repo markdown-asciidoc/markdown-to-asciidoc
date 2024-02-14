@@ -7,7 +7,11 @@
     <groupId>io.github.markdown-asciidoc</groupId>
     <artifactId>markdown-to-asciidoc</artifactId>
     <version>2.0.0-SNAPSHOT</version>
-  
+
+    <name>Markdown To AsciiDoc</name>
+    <description>A small, lightweight converter for Markdown to AsciiDoc written in Java, and based on Pegdown.</description>
+    <url>https://github.com/markdown-asciidoc/markdown-to-asciidoc</url>
+
     <licenses>
         <license>
             <name>The Apache License, Version 2.0</name>
