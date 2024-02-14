@@ -1,8 +1,12 @@
 = Markdown to AsciiDoc converter
 
-image:https://badges.gitter.im/Join%20Chat.svg[link="https://gitter.im/bodiam/markdown-to-asciidoc?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"]
 
-image:https://travis-ci.org/bodiam/markdown-to-asciidoc.svg["Build Status", link="https://travis-ci.org/bodiam/markdown-to-asciidoc"]
+image:https://github.com/bodiam/markdown-to-asciidoc/actions/workflows/maven.yml/badge.svg[Build Status]
+image:https://github.com/bodiam/markdown-to-asciidoc/actions/workflows/maven-publish.yml/badge.svg[Publish Status]
+
+image:https://badges.gitter.im/Join%20Chat.svg[link="https://gitter.im/bodiam/markdown-to-asciidoc?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"]
+image:https://maven-badges.herokuapp.com/maven-central/nl.jworks.markdown_to_asciidoc/markdown_to_asciidoc/badge.svg?style={style}[link=https://maven-badges.herokuapp.com/maven-central/nl.jworks.markdown_to_asciidoc/markdown_to_asciidoc]
+image:https://img.shields.io/github/license/apache/maven.svg?label=License[link=LICENCE]
 
 A small, lightweight converter for Markdown to http://www.asciidoc.org[AsciiDoc] written in Java, and based on https://github.com/sirthias/pegdown[Pegdown].
 
