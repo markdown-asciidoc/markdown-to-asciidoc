@@ -7,12 +7,12 @@ package nl.jworks.markdown_to_asciidoc.code;
 public class Linguist {
 
     public String detectLanguage(String text) {
-        if(text.startsWith("<")) {
+        if (text.startsWith("<")) {
             return "html";
-        } else if(text.endsWith(";")) {
+        } else if (text.endsWith(";")) {
             return "java";
         } else {
-            return  "groovy";
+            return "groovy";
         }
     }
 }

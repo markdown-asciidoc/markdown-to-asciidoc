@@ -7,7 +7,7 @@ import org.pegdown.ast.RootNode;
 import java.io.*;
 
 public class Converter {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         if (args.length != 1) {
             System.err.println("markdown_to_asciidoc: Please specify a file to convert");
             return;
@@ -19,20 +19,15 @@ public class Converter {
             return;
         }
 
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(input));
-            try {
-                StringBuilder buffer = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    buffer.append(line).append("\n");
-                }
-
-                reader.close();
-                System.out.println(convertMarkdownToAsciiDoc(buffer.toString().trim()));
-            } finally {
-                reader.close();
+        try (BufferedReader reader = new BufferedReader(new FileReader(input))) {
+            StringBuilder buffer = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                buffer.append(line).append("\n");
             }
+
+            reader.close();
+            System.out.println(convertMarkdownToAsciiDoc(buffer.toString().trim()));
         } catch (IOException e) {
             System.err.println("markdown_to_asciidoc: An error occurred while reading the input file");
         }
@@ -46,6 +41,6 @@ public class Converter {
         }
         char[] markDown = markdown.toCharArray();
         RootNode rootNode = processor.parseMarkdown(markDown);
-        return new ToAsciiDocSerializerKt(rootNode, markdown).toAsciiDoc();
+        return new ToAsciiDocSerializer(rootNode, markdown).toAsciiDoc();
     }
 }
