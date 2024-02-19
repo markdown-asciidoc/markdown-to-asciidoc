@@ -1,16 +1,16 @@
 = Markdown to AsciiDoc converter
 :library-version: 2.0.0
 
-image:https://github.com/bodiam/markdown-to-asciidoc/actions/workflows/maven.yml/badge.svg[Build Status]
-image:https://github.com/bodiam/markdown-to-asciidoc/actions/workflows/maven-publish.yml/badge.svg[Publish Status]
+image:https://github.com/markdown-asciidoc/markdown-to-asciidoc/actions/workflows/build.yml/badge.svg[Build Status]
+image:https://github.com/markdown-asciidoc/markdown-to-asciidoc/actions/workflows/release.yml/badge.svg[Publish Status]
 
-image:https://badges.gitter.im/Join%20Chat.svg[link="https://gitter.im/bodiam/markdown-to-asciidoc?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"]
+image:https://badges.gitter.im/Join%20Chat.svg[link="https://gitter.im/markdown-asciidoc/markdown-to-asciidoc?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"]
 image:https://maven-badges.herokuapp.com/maven-central/io.github.markdown-asciidoc/markdown-to-asciidoc/badge.svg?style={style}[link=https://maven-badges.herokuapp.com/maven-central/io.github.markdown-asciidoc/markdown-to-asciidoc]
 image:https://img.shields.io/github/license/apache/maven.svg?label=License[link=LICENCE]
 
 A small, lightweight converter for Markdown to http://www.asciidoc.org[AsciiDoc] written in Java, and based on https://github.com/sirthias/pegdown[Pegdown].
 
-Uses https://github.com/bodiam/markdown-to-asciidoc/tree/master/src/test/resources/nl/jworks/markdown_to_asciidoc[Cucumber tests] as a reusable
+Uses https://github.com/markdown-asciidoc/markdown-to-asciidoc/tree/master/src/test/resources/nl/jworks/markdown_to_asciidoc[Cucumber tests] as a reusable
 set to test conversion between Markdown and AsciiDoc.
 
 == Features
@@ -50,4 +50,4 @@ If you know of any projects using the library, please let me know on Twitter: ht
 
 == Bugs
 
-If you find a bug or a missing feature, please report it the https://github.com/bodiam/markdown-to-asciidoc/issues[Github Issue Tracker].
+If you find a bug or a missing feature, please report it the https://github.com/markdown-asciidoc/markdown-to-asciidoc/issues[Github Issue Tracker].
