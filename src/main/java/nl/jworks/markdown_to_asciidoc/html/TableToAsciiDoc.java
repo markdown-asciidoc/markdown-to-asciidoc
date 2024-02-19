@@ -7,7 +7,7 @@ import org.jsoup.select.Elements;
 
 public class TableToAsciiDoc {
     public static String convert(String html) {
-        if(!html.startsWith("<table")) {
+        if (!html.startsWith("<table")) {
             throw new IllegalArgumentException("No table found in HTML: " + html);
         }
 
@@ -24,7 +24,7 @@ public class TableToAsciiDoc {
         for (Element row : rows) {
             // table headers
             result.append(buildAsciiDocRow(row, "th"));
-            if(row.select("th").size() > 0) {
+            if (!row.select("th").isEmpty()) {
                 result.append('\n');
             }
 
@@ -53,17 +53,17 @@ public class TableToAsciiDoc {
         String result = element.ownText();
 
         for (Element child : element.children()) {
-            if("code".equals(child.tagName())) {
+            if ("code".equals(child.tagName())) {
                 result = "`" + child.ownText() + "`";
-            } else if("b".equals(child.tagName()) || "strong".equals(child.tagName())) {
+            } else if ("b".equals(child.tagName()) || "strong".equals(child.tagName())) {
                 result = "*" + child.ownText() + "*";
-            } else if("i".equals(child.tagName()) || "em".equals(child.tagName())) {
+            } else if ("i".equals(child.tagName()) || "em".equals(child.tagName())) {
                 result = "_" + child.ownText() + "_";
-            } else if("a".equals(child.tagName())) {
+            } else if ("a".equals(child.tagName())) {
                 result = child.attr("href") + "[" + child.ownText() + "]";
             }
         }
 
-        return  result;
+        return result;
     }
 }

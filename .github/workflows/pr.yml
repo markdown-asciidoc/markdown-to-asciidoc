@@ -6,15 +6,18 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        java-version: [ 17, 21 ]
+        runs-on: [ ubuntu-latest, macos-latest, windows-latest ]
+    name: Jdk ${{ matrix.java-version }}, os ${{ matrix.runs-on }}
+    runs-on: ${{ matrix.runs-on }}
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up JDK 17
+      - name: Set up JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: ${{ matrix.java-version }}
           distribution: 'adopt'
           cache: maven
       - name: Build with Maven

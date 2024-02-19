@@ -1,5 +1,5 @@
 = Markdown to AsciiDoc converter
-
+:library-version: 2.0.0
 
 image:https://github.com/bodiam/markdown-to-asciidoc/actions/workflows/maven.yml/badge.svg[Build Status]
 image:https://github.com/bodiam/markdown-to-asciidoc/actions/workflows/maven-publish.yml/badge.svg[Publish Status]
@@ -34,7 +34,7 @@ Also, currently known *not* supported items are:
 
 Add the following dependency to your project:
 
-`nl.jworks.markdown_to_asciidoc:markdown_to_asciidoc:1.0`
+`nl.jworks.markdown_to_asciidoc:markdown_to_asciidoc:{library-version}`
 
 To use the library, call the following:
 
@@ -44,8 +44,7 @@ The Converter converts all Markdown input to AsciiDoc.
 
 == Uses
 
-Currently the conversion library is used in the https://plugins.jetbrains.com/plugin/7391[IntelliJ AsciiDoc Plugin] to seamlessly convert between
-from Markdown to AsciiDoc.
+Currently, the conversion library is used in the https://plugins.jetbrains.com/plugin/7391[IntelliJ AsciiDoc Plugin] to seamlessly convert Markdown to AsciiDoc.
 
 If you know of any projects using the library, please let me know on Twitter: http://www.twitter.com/epragt[@epragt].
 
