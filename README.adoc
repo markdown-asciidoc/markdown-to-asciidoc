@@ -34,7 +34,7 @@ Also, currently known *not* supported items are:
 
 Add the following dependency to your project:
 
-`nl.jworks.markdown_to_asciidoc:markdown_to_asciidoc:{library-version}`
+`io.github.markdown-asciidoc:markdown-to-asciidoc:{library-version}`
 
 To use the library, call the following:
 
