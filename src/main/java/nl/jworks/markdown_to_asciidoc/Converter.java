@@ -35,10 +35,6 @@ public class Converter {
 
     public static String convertMarkdownToAsciiDoc(String markdown) {
         PegDownProcessor processor = new PegDownProcessor(Extensions.ALL);
-        // insert blank line before fenced code block if necessary
-        if (markdown.contains("```")) {
-            markdown = markdown.replaceAll("(?m)(?<!\n\n)(\\s*)```(\\w*\n)((?:\\1[^\n]*\n)+)\\1```", "\n$1```$2$3$1```");
-        }
         char[] markDown = markdown.toCharArray();
         RootNode rootNode = processor.parseMarkdown(markDown);
         return new ToAsciiDocSerializer(rootNode, markdown).toAsciiDoc();
