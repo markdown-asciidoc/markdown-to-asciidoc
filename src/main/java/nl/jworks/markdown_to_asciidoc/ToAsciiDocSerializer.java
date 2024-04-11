@@ -114,7 +114,7 @@ public class ToAsciiDocSerializer implements Visitor {
 
     public void visit(CodeNode node) {
         printer.print('`');
-        printer.printEncoded(node.getText());
+        printer.print(node.getText());
         printer.print('`');
     }
 

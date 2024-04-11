@@ -43,3 +43,14 @@ Feature: Paragraphs
 
     Second paragraph.
     """
+
+  Scenario: Render special characters as is
+    Given the Markdown source
+    """
+    This is an example: `Provider<List<File>>`
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    This is an example: `Provider<List<File>>`
+    """
