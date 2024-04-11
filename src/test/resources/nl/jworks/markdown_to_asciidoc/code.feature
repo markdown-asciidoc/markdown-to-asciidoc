@@ -120,3 +120,36 @@ Feature: Code
     We defined the `add` function to
     """
 
+  Scenario: Render no extra lines
+    Given the Markdown source
+    """
+    foo
+
+    ```kotlin
+    println("bar")
+    ```
+
+    baz
+
+    ```kotlin
+    println("bam")
+    ```
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    foo
+
+    [source,kotlin]
+    ----
+    println("bar")
+    ----
+
+    baz
+
+    [source,kotlin]
+    ----
+    println("bam")
+    ----
+    """
+
