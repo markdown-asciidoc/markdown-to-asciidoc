@@ -105,3 +105,15 @@ Feature: Headings
     """
     = Title
     """
+
+# Doesn't work. See https://github.com/markdown-asciidoc/markdown-to-asciidoc/issues/60
+#  Scenario: Render a heading with backticks
+#    Given the Markdown source
+#    """
+    ## `what.ever.Foo`
+#    """
+#    When it is converted to AsciiDoc
+#    Then the result should match the AsciiDoc source
+#    """
+#    === `what.ever.Foo`
+#    """
