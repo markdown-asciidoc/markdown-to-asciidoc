@@ -164,6 +164,28 @@ Feature: Code
     Set `+{foo}+` value
     """
 
+  Scenario: Render inline code adjacent to text with doubled markers
+    Given the Markdown source
+    """
+    `RegularFile`s are nice
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    ``RegularFile``s are nice
+    """
+
+  Scenario: Render inline code with space separation uses single markers
+    Given the Markdown source
+    """
+    Use `code` here
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    Use `code` here
+    """
+
   Scenario: Render no extra lines
     Given the Markdown source
     """
