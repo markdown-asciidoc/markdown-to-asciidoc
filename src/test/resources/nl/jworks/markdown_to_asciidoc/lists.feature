@@ -184,6 +184,24 @@ Feature: Lists
     baz
     """
 
+  Scenario: Render a list without separating blank line
+    Given the Markdown source
+    """
+    This is my typical list without any empty line for separation
+    - first item
+    - second item
+    - third item
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    This is my typical list without any empty line for separation
+
+    * first item
+    * second item
+    * third item
+    """
+
 #@@knownissue This doesn't work. Item 4 is contains 3 para nodes instead of a code block
 #  Scenario: Render 4 numbered items with a code block
 #    Given the Markdown source
