@@ -8,11 +8,17 @@ import org.pegdown.Printer;
 import org.pegdown.ast.*;
 
 import java.util.*;
+import java.util.regex.Pattern;
 
 import static org.parboiled.common.Preconditions.checkArgNotNull;
 
 public class ToAsciiDocSerializer implements Visitor {
     public static final String HARD_LINE_BREAK_MARKDOWN = "  \n";
+
+    // Pattern matching AsciiDoc replaceable text that needs pass-through protection in code spans.
+    // Based on kramdown-asciidoc's ReplaceableTextRx.
+    private static final Pattern REPLACEABLE_TEXT_RX = Pattern.compile(
+            "[-=]>|<[-=]| -- |\\w--\\w|\\*\\*|\\.\\.\\.|&\\S+;|\\{\\w[\\w-]*\\}|(?:https?|ftp)://\\w|\\((?:C|R|TM)\\)");
     protected String source;
     protected Printer printer;
     protected final Map<String, ReferenceNode> references = new HashMap<>();
@@ -113,9 +119,20 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(CodeNode node) {
-        printer.print('`');
-        printer.print(node.getText());
-        printer.print('`');
+        String text = node.getText();
+        if (text.contains("++")) {
+            printer.print("`pass:c[");
+            printer.print(text);
+            printer.print("]`");
+        } else if (needsPassthrough(text)) {
+            printer.print("`+");
+            printer.print(text);
+            printer.print("+`");
+        } else {
+            printer.print('`');
+            printer.print(text);
+            printer.print('`');
+        }
     }
 
     public void visit(DefinitionListNode node) {
@@ -669,6 +686,15 @@ public class ToAsciiDocSerializer implements Visitor {
 
     protected boolean isFirstChild(Node parent, Node child) {
         return child.equals(parent.getChildren().get(0));
+    }
+
+    protected boolean needsPassthrough(String text) {
+        if (REPLACEABLE_TEXT_RX.matcher(text).find()) {
+            return true;
+        }
+        // Check for caret not at start/end (potential superscript markers)
+        int caretIdx = text.indexOf('^');
+        return caretIdx > 0 && caretIdx < text.length() - 1;
     }
 
     protected boolean isListItemText(Node node) {
