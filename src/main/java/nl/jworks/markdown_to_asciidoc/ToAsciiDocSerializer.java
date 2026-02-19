@@ -120,18 +120,19 @@ public class ToAsciiDocSerializer implements Visitor {
 
     public void visit(CodeNode node) {
         String text = node.getText();
+        String marker = needsDoubleMarker(node) ? "``" : "`";
         if (text.contains("++")) {
-            printer.print("`pass:c[");
+            printer.print(marker + "pass:c[");
             printer.print(text);
-            printer.print("]`");
+            printer.print("]" + marker);
         } else if (needsPassthrough(text)) {
-            printer.print("`+");
+            printer.print(marker + "+");
             printer.print(text);
-            printer.print("+`");
+            printer.print("+" + marker);
         } else {
-            printer.print('`');
+            printer.print(marker);
             printer.print(text);
-            printer.print('`');
+            printer.print(marker);
         }
     }
 
@@ -695,6 +696,38 @@ public class ToAsciiDocSerializer implements Visitor {
         // Check for caret not at start/end (potential superscript markers)
         int caretIdx = text.indexOf('^');
         return caretIdx > 0 && caretIdx < text.length() - 1;
+    }
+
+    protected boolean needsDoubleMarker(CodeNode node) {
+        Node parent = findParentNode(node, rootNode);
+        if (parent == null) return false;
+
+        List<Node> siblings = parent.getChildren();
+        int idx = siblings.indexOf(node);
+
+        // Check if previous sibling text ends with a word character
+        if (idx > 0) {
+            Node prev = siblings.get(idx - 1);
+            if (prev instanceof TextNode) {
+                String text = ((TextNode) prev).getText();
+                if (!text.isEmpty() && Character.isLetterOrDigit(text.charAt(text.length() - 1))) {
+                    return true;
+                }
+            }
+        }
+
+        // Check if next sibling text starts with a word character
+        if (idx < siblings.size() - 1) {
+            Node next = siblings.get(idx + 1);
+            if (next instanceof TextNode) {
+                String text = ((TextNode) next).getText();
+                if (!text.isEmpty() && Character.isLetterOrDigit(text.charAt(0))) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     protected boolean isListItemText(Node node) {
