@@ -485,10 +485,18 @@ public class ToAsciiDocSerializer implements Visitor {
     }
 
     public void visit(TextNode node) {
+        String text = node.getText();
+        // Strip leading whitespace from continuation text in list items
+        if (listLevel > 0) {
+            String pstr = printer.getString();
+            if (!pstr.isEmpty() && pstr.charAt(pstr.length() - 1) == '\n') {
+                text = text.stripLeading();
+            }
+        }
         if (abbreviations.isEmpty()) {
-            printer.print(node.getText());
+            printer.print(text);
         } else {
-            printWithAbbreviations(node.getText());
+            printWithAbbreviations(text);
         }
     }
 
