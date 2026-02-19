@@ -120,6 +120,50 @@ Feature: Code
     We defined the `add` function to
     """
 
+  Scenario: Render inline code with ellipsis using pass-through
+    Given the Markdown source
+    """
+    Use `foo(...)` for that
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    Use `+foo(...)+` for that
+    """
+
+  Scenario: Render inline code with arrow using pass-through
+    Given the Markdown source
+    """
+    The `->` operator
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    The `+->+` operator
+    """
+
+  Scenario: Render inline code with double plus using pass macro
+    Given the Markdown source
+    """
+    Use `a ++ b` in code
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    Use `pass:c[a ++ b]` in code
+    """
+
+  Scenario: Render inline code with attribute reference using pass-through
+    Given the Markdown source
+    """
+    Set `{foo}` value
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    Set `+{foo}+` value
+    """
+
   Scenario: Render no extra lines
     Given the Markdown source
     """
