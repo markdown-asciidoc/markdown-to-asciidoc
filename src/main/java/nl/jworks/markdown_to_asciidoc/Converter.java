@@ -5,6 +5,7 @@ import org.pegdown.PegDownProcessor;
 import org.pegdown.ast.RootNode;
 
 import java.io.*;
+import java.util.regex.Pattern;
 
 public class Converter {
     public static void main(String[] args) {
@@ -33,10 +34,38 @@ public class Converter {
         }
     }
 
+    // Matches lines that start a list item: -, *, +, or ordered (1. 2. etc.)
+    private static final Pattern LIST_ITEM_PATTERN = Pattern.compile(
+            "^(\\s*)([-*+]|\\d+\\.)\\s");
+
     public static String convertMarkdownToAsciiDoc(String markdown) {
+        markdown = ensureBlankLineBeforeLists(markdown);
         PegDownProcessor processor = new PegDownProcessor(Extensions.ALL & ~Extensions.ANCHORLINKS);
         char[] markDown = markdown.toCharArray();
         RootNode rootNode = processor.parseMarkdown(markDown);
         return new ToAsciiDocSerializer(rootNode, markdown).toAsciiDoc();
+    }
+
+    /**
+     * Inserts a blank line before a list that immediately follows a non-blank,
+     * non-list line, so that pegdown recognizes it as a list.
+     */
+    static String ensureBlankLineBeforeLists(String markdown) {
+        String[] lines = markdown.split("\n", -1);
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < lines.length; i++) {
+            if (i > 0 && LIST_ITEM_PATTERN.matcher(lines[i]).find()) {
+                String prevLine = lines[i - 1];
+                // Insert blank line if previous line is non-blank and not itself a list item
+                if (!prevLine.trim().isEmpty() && !LIST_ITEM_PATTERN.matcher(prevLine).find()) {
+                    result.append('\n');
+                }
+            }
+            if (i > 0) result.append('\n');
+            result.append(lines[i]);
+        }
+
+        return result.toString();
     }
 }
