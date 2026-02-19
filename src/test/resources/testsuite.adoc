@@ -1,14 +1,13 @@
-[source]
 ----
 summary(cars$dist)
 summary(cars$speed)
 ----
 
-
 = 2-paragraphs-hard-return-spaces
 
 This is a first paragraph,
 on multiple lines.
+
 This is a second paragraph.
 There are spaces in between the two.
 
@@ -16,27 +15,32 @@ There are spaces in between the two.
 
 This is a first paragraph,
 on multiple lines.
+
 This is a second paragraph
 which has multiple lines too.
 
 = 2-paragraphs-line-returns
 
 A first paragraph.
+
 A second paragraph after 3 CR (carriage return).
 
 = 2-paragraphs-line-spaces
 
 This a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long paragraph on 1 line.
+
 A few spaces and a new long long long long long long long long long long long long long long long long paragraph on 1 line.
 
 = 2-paragraphs-line-tab
 
 This a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long paragraph on 1 line.
+
 1 tab to separate them and a new long long long long long long long long long long long long long long long long paragraph on 1 line.
 
 = 2-paragraphs-line
 
 This a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long paragraph on 1 line.
+
 A new long long long long long long long long long long long long long long long long paragraph on 1 line.
 
 = ampersand-text-flow
@@ -77,134 +81,149 @@ ____
 = heading level 1
 
 paragraph
-____
 
+____
 
 = blockquote-line-2-paragraphs
 
 ____
-A blockquote with a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long line.
-and a second very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long line.
-____
 
+A blockquote with a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long line.
+
+and a second very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long line.
+
+____
 
 = blockquote-line
 
 ____
-This a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long paragraph in a blockquote.
-____
 
+This a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long paragraph in a blockquote.
+
+____
 
 = blockquote-multiline-1-space-begin
 
 ____
+
 A blockquote
 on multiple lines
 like this.
-____
 
+____
 
 = blockquote-multiline-1-space-end
 
 ____
+
 A blockquote
 on multiple lines
 like this.
-____
 
+____
 
 = blockquote-multiline-2-paragraphs
 
 ____
+
 A blockquote
 on multiple lines
 like this.
+
 But it has
 two paragraphs.
-____
 
+____
 
 = blockquote-multiline
 
 ____
+
 A blockquote
 on multiple lines
 like this
-____
 
+____
 
 = blockquote-nested-multiplereturn-level1
 
 ____
+
 This is the first level of quoting.
+
 ________
+
 This is nested blockquote.
+
 ________
 
 Back to the first level.
-____
 
+____
 
 = blockquote-nested-multiplereturn
 
 ____
+
 This is the first level of quoting.
+
 ________
+
 This is nested blockquote.
+
 ________
 
 ____
-
 
 = blockquote-nested-return-level1
 
 ____
+
 This is the first level of quoting.
+
 ________
+
 This is nested blockquote.
 Back to the first level.
+
 ________
 
 ____
-
 
 = blockquote-nested
 
 ____
+
 This is the first level of quoting.
+
 ________
+
 This is nested blockquote.
+
 ________
 
 ____
 
-
 = code-1-tab
 
-[source]
 ----
 10 PRINT HELLO INFINITE
 20 GOTO 10
 ----
 
-
 = code-4-spaces-escaping
 
-[source]
 ----
 10 PRINT < > &
 20 GOTO 10
 ----
 
-
 = code-4-spaces
 
-[source]
 ----
 10 PRINT HELLO INFINITE
 20 GOTO 10
 ----
-
 
 = em-middle-word
 
@@ -224,15 +243,11 @@ HTML entities are written using ampersand notation: &copy;
 
 = header-level1-equal-underlined
 
-
 = This is an H1
-
 
 = header-level1-hash-sign-closed
 
-
 = This is an H1
-
 
 = header-level1-hash-sign-trailing-1-space
 
@@ -240,82 +255,57 @@ HTML entities are written using ampersand notation: &copy;
 
 = header-level1-hash-sign-trailing-2-spaces
 
-
 = this is an h1 with two trailing spaces
 
 A new paragraph.
 
 = header-level1-hash-sign
 
-
 = This is an H1
-
 
 = header-level2-dash-underlined
 
-
 == This is an H2
-
 
 = header-level2-hash-sign-closed
 
-
 == This is an H2
-
 
 = header-level2-hash-sign
 
-
 == This is an H2
-
 
 = header-level3-hash-sign-closed
 
-
 === This is an H3
-
 
 = header-level3-hash-sign
 
-
 === This is an H3
-
 
 = header-level4-hash-sign-closed
 
-
 ==== This is an H4
-
 
 = header-level4-hash-sign
 
-
 ==== This is an H4
-
 
 = header-level5-hash-sign-closed
 
-
 ===== This is an H5
-
 
 = header-level5-hash-sign
 
-
 ===== This is an H5
-
 
 = header-level6-hash-sign-closed
 
-
 ====== This is an H6
-
 
 = header-level6-hash-sign
 
-
 ====== This is an H6
-
 
 = horizontal-rule-3-dashes-spaces
 
@@ -355,7 +345,7 @@ image:http://www.w3.org/html/logo/img/mark-word-icon.png[HTML5]
 
 = inline-code-escaping-entities
 
-We love `&lt;code&gt; and &amp;` for everything
+We love `<code> and &` for everything
 
 = inline-code-with-visible-backtick
 
@@ -377,7 +367,7 @@ and a line break.
 
 = link-automatic
 
-This is an automatic link http://www.w3.org/[http://www.w3.org/]
+This is an automatic link http://www.w3.org/
 
 = link-bracket-paranthesis-title
 
@@ -406,6 +396,7 @@ http://www.w3.org/[World Wide Web Consortium]
 = link-idref-title-next-line
 
 http://www.w3.org/[World Wide Web Consortium]
+
 "Discover W3C"
 
 = link-idref-title-paranthesis
@@ -426,57 +417,54 @@ http://www.w3.org/[World Wide Web Consortium]
 
 = list-blockquote
 
-* 
-a list containing a blockquote
-____
-this the blockquote in the list
+* a list containing a blockquote
+
 ____
 
+this the blockquote in the list
+
+____
 
 = list-code-1-space
 
-* 
-a
-[source]
+* a
+
 ----
 b
 ----
 
-
 = list-code
 
-* 
-a list containing a block of code
-[source]
+* a list containing a block of code
+
 ----
 10 PRINT HELLO INFINITE
 20 GOTO 10
 ----
 
-
 = list-multiparagraphs-tab
 
-* 
-This is a list item with two paragraphs. Lorem ipsum dolor
+* This is a list item with two paragraphs. Lorem ipsum dolor
 sit amet, consectetuer adipiscing elit. Aliquam hendrerit
 mi posuere lectus.
+
 Vestibulum enim wisi, viverra nec, fringilla in, laoreet
 vitae, risus. Donec sit amet nisl. Aliquam semper ipsum
 sit amet velit.
-* 
-Suspendisse id sem consectetuer libero luctus adipiscing.
+
+* Suspendisse id sem consectetuer libero luctus adipiscing.
 
 = list-multiparagraphs
 
-* 
-This is a list item with two paragraphs. Lorem ipsum dolor
+* This is a list item with two paragraphs. Lorem ipsum dolor
 sit amet, consectetuer adipiscing elit. Aliquam hendrerit
 mi posuere lectus.
+
 Vestibulum enim wisi, viverra nec, fringilla in, laoreet
 vitae, risus. Donec sit amet nisl. Aliquam semper ipsum
 sit amet velit.
-* 
-Suspendisse id sem consectetuer libero luctus adipiscing.
+
+* Suspendisse id sem consectetuer libero luctus adipiscing.
 
 = ordered-list-escaped
 
@@ -484,26 +472,23 @@ Suspendisse id sem consectetuer libero luctus adipiscing.
 
 = ordered-list-inner-par-list
 
+. 1
 
-1. 
-1
-1. inner par list
-1. 
-2
+** inner par list
+
+. 2
 
 = ordered-list-items-random-number
 
-
-1. list item 1
-1. list item 2
-1. list item 3
+. list item 1
+. list item 2
+. list item 3
 
 = ordered-list-items
 
-
-1. list item 1
-1. list item 2
-1. list item 3
+. list item 1
+. list item 2
+. list item 3
 
 = paragraph-hard-return
 
@@ -589,10 +574,9 @@ as**te**risks
 
 = unordered-list-paragraphs
 
-* 
-list item in paragraph
-* 
-another list item in paragraph
+* list item in paragraph
+
+* another list item in paragraph
 
 = unordered-list-unindented-content
 
@@ -604,16 +588,15 @@ another list item in paragraph
 * This is a list item
 with the content on
 multiline and indented.
+
 * And this another list item
 with the same principle.
 
 = fenced-code-block
 
-[source]
 ----
 a
 ----
-
 
 = link-idref-implicit-no-bracket
 
@@ -625,15 +608,13 @@ link:b[a]
 
 = autolink-no-bracket
 
-http://a.com[http://a.com]
+http://a.com
 
 = fenced-code-block
 
-[source]
 ----
 a
 ----
-
 
 = link-idref-implicit-no-bracket
 
@@ -653,11 +634,9 @@ link:b[a]
 
 = fenced-code-block
 
-[source]
 ----
 a
 ----
-
 
 = link-idref-implicit-no-bracket
 
@@ -669,11 +648,9 @@ link:b[a]
 
 = fenced-code-block
 
-[source]
 ----
 a
 ----
-
 
 = link-idref-implicit-no-bracket
 
@@ -685,11 +662,9 @@ link:b[a]
 
 = fenced-code-block
 
-[source]
 ----
 a
 ----
-
 
 = utf8
 
@@ -697,15 +672,13 @@ a
 
 = autolink-no-bracket
 
-http://a.com[http://a.com]
+http://a.com
 
 = fenced-code-block
 
-[source]
 ----
 a
 ----
-
 
 = link-idref-implicit-no-bracket
 
@@ -717,11 +690,9 @@ link:b[a]
 
 = fenced-code-block
 
-[source]
 ----
 a
 ----
-
 
 = link-idref-implicit-no-bracket
 
@@ -733,11 +704,9 @@ link:b[a]
 
 = fenced-code-block
 
-[source]
 ----
 a
 ----
-
 
 = link-idref-implicit-no-bracket
 
@@ -749,11 +718,9 @@ link:b[a]
 
 = fenced-code-block
 
-[source]
 ----
 a
 ----
-
 
 = link-idref-implicit-no-bracket
 
@@ -765,11 +732,9 @@ link:b[a]
 
 = fenced-code-block
 
-[source]
 ----
 a
 ----
-
 
 = link-idref-implicit-no-bracket
 
@@ -781,11 +746,9 @@ link:b[a]
 
 = fenced-code-block
 
-[source]
 ----
 a
 ----
-
 
 = link-idref-implicit-no-bracket
 
@@ -797,11 +760,9 @@ link:b[a]
 
 = fenced-code-block
 
-[source]
 ----
 a
 ----
-
 
 = link-idref-implicit-no-bracket
 
@@ -813,11 +774,9 @@ link:b[a]
 
 = fenced-code-block
 
-[source]
 ----
 a
 ----
-
 
 = link-idref-implicit-no-bracket
 
@@ -829,11 +788,9 @@ link:b[a]
 
 = fenced-code-block
 
-[source]
 ----
 a
 ----
-
 
 = link-idref-implicit-no-bracket
 
