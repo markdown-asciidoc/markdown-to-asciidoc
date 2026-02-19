@@ -34,7 +34,7 @@ public class Converter {
     }
 
     public static String convertMarkdownToAsciiDoc(String markdown) {
-        PegDownProcessor processor = new PegDownProcessor(Extensions.ALL);
+        PegDownProcessor processor = new PegDownProcessor(Extensions.ALL & ~Extensions.ANCHORLINKS);
         char[] markDown = markdown.toCharArray();
         RootNode rootNode = processor.parseMarkdown(markDown);
         return new ToAsciiDocSerializer(rootNode, markdown).toAsciiDoc();
