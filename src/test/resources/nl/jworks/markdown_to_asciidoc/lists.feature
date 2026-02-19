@@ -169,6 +169,21 @@ Feature: Lists
     *
     """
 
+  Scenario: Render a multi-line list item with left-aligned continuation
+    Given the Markdown source
+    """
+    * foo
+        * bar
+          baz
+    """
+    When it is converted to AsciiDoc
+    Then the result should match the AsciiDoc source
+    """
+    * foo
+    ** bar
+    baz
+    """
+
 #@@knownissue This doesn't work. Item 4 is contains 3 para nodes instead of a code block
 #  Scenario: Render 4 numbered items with a code block
 #    Given the Markdown source
